@@ -10,7 +10,7 @@ const twoSum = async (paramsObj) => {
   const n = vals.length;
   const m = new Map();
   for (let i = 0; i < n; i++) {
-    store.dispatch(updateIndex(i))
+    store.dispatch(updateIndex(["i", i]));
     const complement = targetVal - vals[i];
     store.dispatch(updateMessage(`Complement selected. targetValue-vals[${i}] = ${targetVal}-${vals[i]} = ${complement}`));
     await new Promise((r) => setTimeout(r, 3000));

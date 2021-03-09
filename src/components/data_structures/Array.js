@@ -18,6 +18,7 @@ const Array = (props) => {
 
   const fontSize = cellWidth/4;
 
+  console.log('indices received:', props.indices);
 
   return (
         <Group>
@@ -28,7 +29,7 @@ const Array = (props) => {
           y={cellY}
           width={cellWidth}
           height={cellHeight}
-          fill={props.index===i ? "red" : "lightblue"}
+          fill={Object.values(props.indices).includes(i) ? "red" : "lightblue"}
           stroke="black"
           strokeWidth={1}
           />

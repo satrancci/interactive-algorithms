@@ -25,6 +25,9 @@ const Canvas = (props) => {
       window.removeEventListener('resize', handleResize)};
   })
 
+
+  console.log('props.state.indices:', props.state.indices);
+
   return (
       <Stage width={windowWidth} height={windowHeight} style={{borderStyle: "solid"}}>
         <Layer>
@@ -32,12 +35,12 @@ const Canvas = (props) => {
             <PrimaryDataStructure
               values={props.state.values}
               dataStructure={props.state.dataStructure}
-              index={props.state.index}
+              indices={props.state.indices}
               windowWidth={windowWidth}
               windowHeight={windowHeight} 
             />
           }
-          {false ? <DynamicIndex index={props.state.index}/> : null}
+          {false ? <DynamicIndex indices={props.state.indices}/> : null}
           {<Message message={props.state.message} windowWidth={windowWidth} windowHeight={windowHeight} />}
           {<AuxiliaryInfo />}
         </Layer>

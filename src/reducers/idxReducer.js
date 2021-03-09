@@ -1,9 +1,12 @@
-const idxReducer = (index=-100, action) => { // =-100 so that it is not visible on canvas by default
+const idxReducer = (indices={}, action) => {
     switch (action.type) {
         case 'UPDATE_INDEX':
-          return action.payload.index;
+          let newState = Object.assign(indices, {});
+          const [name, index] = action.payload.indexTuple;
+          newState[name] = index;
+          return newState;
         default:
-          return index;
+          return indices;
         
         case 'SOME_OTHER_ACTION':
           return {}

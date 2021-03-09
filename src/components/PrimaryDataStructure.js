@@ -6,7 +6,18 @@ const PrimaryDataStructure = (props) => {
   return (
     <Group>
       {props.dataStructure === "Array" ? (
-        <Array values={props.values} index={props.index} windowWidth={props.windowWidth} windowHeight={props.windowHeight} />
+        <Array
+          values={props.values}
+          indices={props.indices}
+          cellX={props.cellX}
+          cellWidth={props.cellWidth}
+          cellHeight={props.cellHeight}
+          iFactor={props.iFactor}
+          textCenterX={props.textCenterX}
+          windowHeight={props.windowHeight}
+          fontSize={props.fontSize}
+
+        />
       ) : null}
     </Group>
   );

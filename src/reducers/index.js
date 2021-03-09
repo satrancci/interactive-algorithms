@@ -11,7 +11,7 @@ export default combineReducers({
   dataStructure: dsReducer,
   values: valsReducer,
   algorithm: algoReducer,
-  index: idxReducer,
+  indices: idxReducer,
   message: msgReducer,
   params: paramReducer,
 });

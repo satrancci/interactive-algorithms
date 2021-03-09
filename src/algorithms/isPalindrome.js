@@ -8,11 +8,11 @@ const isPalindrome = async (paramsObj) => {
    const s = values.join("");
    console.log('isPalindrome() received s:', s);
    let l = 0;
-   store.dispatch(updateIndex(l))
+   store.dispatch(updateIndex(["l", l]));
    store.dispatch(updateMessage(`Left pointer has been set to index ${l}`));
    await new Promise((r) => setTimeout(r, 1000));
    let r = s.length-1;
-   store.dispatch(updateIndex(r))
+   store.dispatch(updateIndex(["r", r]));
    store.dispatch(updateMessage(`Right pointer has been set to index ${r}`));
    await new Promise((r) => setTimeout(r, 1000));
    while (l < r) {
@@ -26,7 +26,9 @@ const isPalindrome = async (paramsObj) => {
        store.dispatch(updateMessage(`Values are equal. Incrementing l and decrementing r...`));
        await new Promise((r) => setTimeout(r, 1000));
        l += 1;
+       store.dispatch(updateIndex(["l", l]));
        r -= 1;
+       store.dispatch(updateIndex(["r", r]));
        store.dispatch(updateMessage(`l is now ${l} and r is ${r}...`));
        await new Promise((r) => setTimeout(r, 3000));
    }

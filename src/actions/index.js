@@ -17,11 +17,12 @@ export const updateAlgorithm = (algorithm) => {
     };
 };
 
-export const updateIndex = (index) => {
+// indexTuple of the form ["i", 0]
+export const updateIndex = (indexTuple) => {
     return {
         type: 'UPDATE_INDEX',
         payload: {
-            index: index
+            indexTuple: indexTuple
         }
     };
 };

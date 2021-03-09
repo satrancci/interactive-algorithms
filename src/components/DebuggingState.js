@@ -18,7 +18,7 @@ const DebuggingState = (props) => {
           algorithm: {props.state.algorithm}
         </div>
         <div>
-          index: {props.state.index}
+          indices: {JSON.stringify(props.state.indices)}
         </div>
         <div>
           message: {props.state.message}

@@ -29,7 +29,16 @@ const Canvas = (props) => {
     };
   });
 
-  console.log("props.state.indices:", props.state.indices);
+  // for Array
+  const N = props.state.values.length;
+  const divisor = Math.max(N, 5);
+  const cellX = windowWidth*0.1;
+  const cellWidth = windowWidth/(divisor*1.2);
+  const cellHeight = windowHeight/(divisor*1.2);
+  const iFactor = windowWidth/(divisor*1.2);
+  const textCenterX = cellX+cellWidth*0.5;
+  const fontSize = cellWidth/4;
+  
 
   return (
     <Stage
@@ -43,16 +52,25 @@ const Canvas = (props) => {
             values={props.state.values}
             dataStructure={props.state.dataStructure}
             indices={props.state.indices}
-            windowWidth={windowWidth}
+            cellX={cellX}
+            cellWidth={cellWidth}
+            cellHeight={cellHeight}
+            iFactor={iFactor}
+            textCenterX={textCenterX}
             windowHeight={windowHeight}
+            fontSize={fontSize}
           />
         }
         {true ? (
           <DynamicIndex
-            values={props.state.values}
             indices={props.state.indices}
-            windowWidth={windowWidth}
+            textCenterX={textCenterX}
             windowHeight={windowHeight}
+            cellHeight={cellHeight}
+            iFactor={iFactor}
+            cellWidth={cellWidth}
+            fontSize={fontSize}
+
           />
         ) : null}
         {

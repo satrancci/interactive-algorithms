@@ -36,9 +36,9 @@ const Tree = (props) => {
                     {/*console.log(`mapping over... val.value: ${val.value}, i: ${i}`) */}
 
                     {/* Drawing current node */}
-                    {isRoot ? <TreeNode i={i} x={x} y={y+level*offset} level={level} val={val.value}/> : null}
-                    {(!isRoot) && (i === 0) ? <TreeNode i={i} x={x-distOffset} y={y+level*offset} level={level} val={val.value}/> : null}
-                    {(!isRoot) && (i === 1) ? <TreeNode i={i} x={x+distOffset} y={y+level*offset} level={level} val={val.value}/> : null}
+                    {isRoot ? <TreeNode i={i} x={x} y={y+level*offset} level={level} val={val.value} parentX={null} parentY={null} /> : null}
+                    {(!isRoot) && (i === 0) ? <TreeNode i={i} x={x-distOffset} y={y+level*offset} level={level} val={val.value} parentX={x} parentY={y+(level-1)*offset}/> : null}
+                    {(!isRoot) && (i === 1) ? <TreeNode i={i} x={x+distOffset} y={y+level*offset} level={level} val={val.value} parentX={x} parentY={y+(level-1)*offset}/> : null}
                     {/* Recursing */} 
                     {/*<Tree values={val.children} offset={offset} level={level+1} x={x/2} isRoot={false} />*/}
                     {isRoot ? <Tree values={val.children} offset={offset} level={level+1} x={x} isRoot={false} windowCenter={windowCenter}/> : null }

@@ -79,8 +79,6 @@ const TreeInput = (props) => {
               <Form.Button onClick={onFormAddSubmit}>Add</Form.Button>
               {props.treeValues.root ? <Form.Button onClick={onFormPopSubmit}>Delete</Form.Button> : null}
         </Form.Group>
-
-      
     </Form>
   );
 };

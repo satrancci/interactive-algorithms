@@ -47,7 +47,7 @@ const Header = (props) => {
       ) : null}
       <DataStructureSelection />
       {props.state.dataStructure === "Array" ? <AddValue /> : null}
-      <PopValue />
+      {props.state.dataStructure === "Array" ? <PopValue /> : null}
 
       <VisualizeButton />
 

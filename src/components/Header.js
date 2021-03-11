@@ -46,7 +46,7 @@ const Header = (props) => {
         <AdditionalParameters algorithm={props.state.algorithm} />
       ) : null}
       <DataStructureSelection />
-      <AddValue />
+      {props.state.dataStructure === "Array" ? <AddValue /> : null}
       <PopValue />
 
       <VisualizeButton />

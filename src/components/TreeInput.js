@@ -47,7 +47,7 @@ const TreeInput = (props) => {
   };
 
 
-  const onFormPopSubmit = () => {
+  const onFormDeleteSubmit = () => {
     // need to add validation!
     if (parentID) {
       let newTree = _.cloneDeep(props.treeValues);
@@ -103,7 +103,7 @@ const TreeInput = (props) => {
         }
         <Form.Group inline>
               <Form.Button onClick={onFormAddSubmit}>Add</Form.Button>
-              {props.treeValues.root ? <Form.Button onClick={onFormPopSubmit}>Delete</Form.Button> : null}
+              {props.treeValues.root ? <Form.Button onClick={onFormDeleteSubmit}>Delete</Form.Button> : null}
               {props.treeValues.root ? <Form.Button onClick={onFormModifySubmit}>Modify</Form.Button> : null}
         </Form.Group>
     </Form>

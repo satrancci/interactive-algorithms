@@ -1,4 +1,4 @@
-const BinaryTree = require('../algorithms/data_structures/BinaryTree');
+import BinaryTree from '../algorithms/data_structures/BinaryTree';
 
 const initialTree = new BinaryTree();
 

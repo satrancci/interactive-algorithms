@@ -1,6 +1,6 @@
-const BinaryTreeNode = require("./BinaryTreeNode");
+import BinaryTreeNode from "./BinaryTreeNode";
 
-module.exports = class BinaryTree {
+export default class BinaryTree {
   constructor() {
     this.root = null;
     this.idMap = new Map();

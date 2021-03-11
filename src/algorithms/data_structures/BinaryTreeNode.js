@@ -1,4 +1,4 @@
-module.exports = class BinaryTreeNode {
+export default class BinaryTreeNode {
   constructor(id, value) {
     this.id = id;
     this.value = value;

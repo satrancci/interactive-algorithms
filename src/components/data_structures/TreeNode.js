@@ -11,14 +11,12 @@ const TreeNode = (props) => {
     const fontSize = 15;
     const radius = 30;
 
-    const nodeID = id;
-
     return (
-        <Group id={"nodeID"+nodeID}>
+        <Group id={"nodeID"+id}>
              <Circle x={x} y={y} radius={radius} fill="green" />
              <Line points={[x-radius, y+radius*0.3, x+radius, y+radius*0.3]} stroke="black" strokeWidth={0.5} />
              <Text text={val} x={x} y={y-radius*0.3} fontSize={fontSize} />
-             <Text text={nodeID} x={x} y={y+radius*0.5} fontSize={fontSize*0.75} />
+             <Text text={id} x={x} y={y+radius*0.5} fontSize={fontSize*0.75} />
              {parentX && parentY ? <Line points={[parentX, parentY+radius, x, y-radius]} stroke="black" strokeWidth={1} /> : null}
         </Group>
         

@@ -4,14 +4,14 @@ import { Group, Circle, Line, Text } from 'react-konva';
 
 const TreeNode = (props) => {
 
-    const {i, x, y, val, level, parentX, parentY} = props;
+    const {i, x, y, val, level, parentX, parentY, id} = props;
 
-    console.log('TREE NODE: i:', i, 'x:', x, 'y:', y, 'val:', val, 'level:', level, 'parentX:', parentX, 'parentY:', parentY);
+    console.log('TREE NODE: id:', id, 'x:', x, 'y:', y, 'val:', val, 'level:', level, 'parentX:', parentX, 'parentY:', parentY);
 
     const fontSize = 15;
     const radius = 30;
 
-    const nodeID = Math.random().toString(36).substring(2,3)+Math.random().toString(36).substring(2,3);
+    const nodeID = id;
 
     return (
         <Group id={"nodeID"+nodeID}>

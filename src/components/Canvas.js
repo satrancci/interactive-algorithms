@@ -63,6 +63,7 @@ const Canvas = (props) => {
             windowHeight={windowHeight}
             windowCenter={windowCenter}
             fontSize={fontSize}
+            treeValues={props.state.treeValues.root}
           />
         }
         {true ? (

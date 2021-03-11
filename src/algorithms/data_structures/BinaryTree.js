@@ -72,4 +72,18 @@ export default class BinaryTree {
     }
   }
 
+  modify(nodeID, new_value) {
+    if (!this.root) {
+      console.log('Tree is empty. There is nothing to modify.');
+      return;
+    }
+    if (!this.idMap[nodeID]) {
+      console.log('Node that you want to modify does not exist in the tree');
+      return
+    }
+    const node = this.idMap[nodeID];
+    node.value = new_value;
+    console.log(`Node ${nodeID}'s has been successfully modified to ${this.idMap[nodeID].value}`)
+  }
+
 };

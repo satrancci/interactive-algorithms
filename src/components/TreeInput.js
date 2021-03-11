@@ -7,10 +7,13 @@ import _ from "lodash";
 
 const TreeInput = (props) => {
   const [value, setValue] = useState("");
+  const [nodeID, setNodeID] = useState("");
   const [parentID, setParentID] = useState("");
   const [leftOrRightChild, setLeftOrRightChild] = useState(false); // true refers to left child
 
   const onValueChange = e => setValue(e.target.value);
+
+  const onNodeIDChange = e => setNodeID(e.target.value);
 
   const onParentIDChange = e => setParentID(e.target.value);
 
@@ -27,6 +30,19 @@ const TreeInput = (props) => {
       setValue("");
       //setParentID("");
       setLeftOrRightChild(!leftOrRightChild);
+    }
+  };
+
+  const onFormModifySubmit = () => {
+    // need to add validation!
+    if (value && nodeID) {
+      let newTree = _.cloneDeep(props.treeValues);
+      newTree.modify(nodeID, value);
+      props.updateTree(newTree);
+      setValue("");
+      setNodeID("");
+    } else {
+      console.log("You need to provie both value and nodeID");
     }
   };
 
@@ -63,6 +79,16 @@ const TreeInput = (props) => {
         />
         : null
         }
+        {props.treeValues.root ?
+        <Form.Input
+          fluid
+          label="node-id"
+          placeholder="node id"
+          value={nodeID}
+          onChange={onNodeIDChange}
+        />
+        : null
+        }
       </Form.Group>
       {props.treeValues.root ?
       <Form.Group inline>
@@ -78,6 +104,7 @@ const TreeInput = (props) => {
         <Form.Group inline>
               <Form.Button onClick={onFormAddSubmit}>Add</Form.Button>
               {props.treeValues.root ? <Form.Button onClick={onFormPopSubmit}>Delete</Form.Button> : null}
+              {props.treeValues.root ? <Form.Button onClick={onFormModifySubmit}>Modify</Form.Button> : null}
         </Form.Group>
     </Form>
   );

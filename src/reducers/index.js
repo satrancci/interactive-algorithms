@@ -1,4 +1,3 @@
-
 import { combineReducers } from 'redux';
 import dsReducer from './dsReducer';
 import algoReducer from './algoReducer';
@@ -6,6 +5,7 @@ import idxReducer from './idxReducer';
 import msgReducer from './msgReducer';
 import valsReducer from './valsReducer';
 import paramReducer from './paramReducer';
+import treeReducer from './treeReducer';
 
 export default combineReducers({
   dataStructure: dsReducer,
@@ -14,4 +14,5 @@ export default combineReducers({
   indices: idxReducer,
   message: msgReducer,
   params: paramReducer,
+  treeValues: treeReducer,
 });

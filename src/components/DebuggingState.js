@@ -12,6 +12,9 @@ const DebuggingState = (props) => {
           values:[{props.state.values.map(val => `${val}  `)}]
         </div>
         <div>
+          treeValuesRoot: {JSON.stringify(props.state.treeValues.root)}
+        </div>
+        <div>
           params:{JSON.stringify(props.state.params)}
         </div>
         <div>

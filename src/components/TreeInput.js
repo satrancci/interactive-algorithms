@@ -49,9 +49,9 @@ const TreeInput = (props) => {
 
   const onFormDeleteSubmit = () => {
     // need to add validation!
-    if (parentID) {
+    if (nodeID) {
       let newTree = _.cloneDeep(props.treeValues);
-      newTree.delete(parentID);
+      newTree.delete(nodeID);
       props.updateTree(newTree);
       setParentID("");
     } else {

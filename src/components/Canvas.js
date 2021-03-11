@@ -38,6 +38,8 @@ const Canvas = (props) => {
   const iFactor = windowWidth/(divisor*1.2);
   const textCenterX = cellX+cellWidth*0.5;
   const fontSize = cellWidth/4;
+
+  const windowCenter = windowWidth/2;
   
 
   return (
@@ -57,8 +59,11 @@ const Canvas = (props) => {
             cellHeight={cellHeight}
             iFactor={iFactor}
             textCenterX={textCenterX}
+            windowWidth={windowWidth}
             windowHeight={windowHeight}
+            windowCenter={windowCenter}
             fontSize={fontSize}
+            treeValues={props.state.treeValues.root}
           />
         }
         {true ? (

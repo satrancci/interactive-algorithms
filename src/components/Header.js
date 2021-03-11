@@ -5,6 +5,7 @@ import algorithmMappings from "../algorithms/algorithmMappings";
 
 import AddValue from "./AddValue";
 import PopValue from "./PopValue";
+import TreeInput from "./TreeInput";
 import VisualizeButton from "./VisualizeButton";
 import DataStructureSelection from "./DataStructureSelection";
 import AlgorithmSelection from "./AlgorithmSelection";
@@ -46,8 +47,9 @@ const Header = (props) => {
         <AdditionalParameters algorithm={props.state.algorithm} />
       ) : null}
       <DataStructureSelection />
-      <AddValue />
-      <PopValue />
+      {props.state.dataStructure === "Array" ? <AddValue /> : null}
+      {props.state.dataStructure === "Array" ? <PopValue /> : null}
+      {props.state.dataStructure === "Tree" ? <TreeInput/> : null}
 
       <VisualizeButton />
 

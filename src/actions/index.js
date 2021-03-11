@@ -60,3 +60,12 @@ export const addParams = (params) => {
         }
     };
 };
+
+export const updateTree = (tree) => {
+    return {
+        type: 'UPDATE_TREE',
+        payload: {
+            tree:tree
+        }
+    };
+};

@@ -1,3 +1,4 @@
+import treeReducer from "../../reducers/treeReducer";
 import BinaryTreeNode from "./BinaryTreeNode";
 
 export default class BinaryTree {
@@ -24,6 +25,7 @@ export default class BinaryTree {
         console.log("the parent node already has two children");
         return;
       }
+      newNode.parentID = parentNode.id;
       if (parentNode.isLeaf()) {
         if (left) {
           parentNode.left = newNode;
@@ -36,6 +38,37 @@ export default class BinaryTree {
         parentNode.left = newNode;
       }
       this.idMap[nodeID] = newNode;
+    }
+  }
+
+  delete(nodeID) {
+    if (!this.root) {
+      console.log('Tree is empty. There is nothing to delete.');
+      return;
+    }
+    if (!this.idMap[nodeID]) {
+      console.log('Node that you want to delete does not exist in the tree');
+      return
+    }
+    if (this.root.id === nodeID) {
+      this.idMap.delete(nodeID);
+      this.root = null;
+      console.log('Root deleted');
+      return;
+    }
+    this.deleteNode(nodeID);
+  }
+
+  deleteNode(nodeID) {
+    const node = this.idMap[nodeID];
+    console.log(`deleteNode(): nodeID ${nodeID} received. node: ${JSON.stringify(node)}`)
+    const parentNode = this.idMap[node.parentID];
+    if (parentNode.left && parentNode.left.id === nodeID) {
+      parentNode.left = null;
+      return;
+    } else {
+      parentNode.right = null;
+      return
     }
   }
 

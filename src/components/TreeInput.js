@@ -16,7 +16,7 @@ const TreeInput = (props) => {
 
   const onToggleChange = e => setLeftOrRightChild(!leftOrRightChild);
 
-  const onFormSubmit = () => {
+  const onFormAddSubmit = () => {
     // need to add validation!
     if (value) {
       let newTree = _.cloneDeep(props.treeValues);
@@ -27,6 +27,19 @@ const TreeInput = (props) => {
       setValue("");
       //setParentID("");
       setLeftOrRightChild(!leftOrRightChild);
+    }
+  };
+
+
+  const onFormPopSubmit = () => {
+    // need to add validation!
+    if (parentID) {
+      let newTree = _.cloneDeep(props.treeValues);
+      newTree.delete(parentID);
+      props.updateTree(newTree);
+      setParentID("");
+    } else {
+      console.log("You need to specify parentID that you want to delete");
     }
   };
 
@@ -57,13 +70,16 @@ const TreeInput = (props) => {
         <Form.Radio
           toggle
           checked={leftOrRightChild}
-          value={leftOrRightChild}
           onClick={onToggleChange}
         />
       </Form.Group>
       : null
         }
-      <Form.Button onClick={onFormSubmit}>Submit</Form.Button>
+        <Form.Group inline>
+              <Form.Button onClick={onFormAddSubmit}>Add</Form.Button>
+              {props.treeValues.root ? <Form.Button onClick={onFormPopSubmit}>Delete</Form.Button> : null}
+        </Form.Group>
+
       
     </Form>
   );

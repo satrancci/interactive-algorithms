@@ -7,6 +7,7 @@ import Message from "./Message";
 import AuxiliaryInfo from "./AuxiliaryInfo";
 
 const Canvas = (props) => {
+
   const scaleFactorX = 0.8;
   const scaleFactorY = 0.8;
 
@@ -64,6 +65,7 @@ const Canvas = (props) => {
             windowCenter={windowCenter}
             fontSize={fontSize}
             treeValues={props.state.treeValues.root}
+            curNodeID={props.state.nodeID}
           />
         }
         {true ? (

@@ -69,3 +69,12 @@ export const updateTree = (tree) => {
         }
     };
 };
+
+export const updateNodeID = (nodeID) => {
+    return {
+        type: 'UPDATE_NODE_ID',
+        payload: {
+            nodeID: nodeID
+        }
+    };
+};

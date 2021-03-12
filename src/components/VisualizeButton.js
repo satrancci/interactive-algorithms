@@ -6,8 +6,8 @@ import algorithmMappings from '../algorithms/algorithmMappings';
 const VisualizeButton = (props) => {
 
   const onVisualize = async () => {
-    if (!(props.state["dataStructure"] && props.state["algorithm"] && props.state.values)) { // add another check for params!
-      console.log("You must select ds, algorithm and values!");
+    if (!(props.state["dataStructure"] && props.state["algorithm"])) { // add another check for params!
+      console.log("You must select ds and algorithm");
       return;
     }
     console.log("onVisualize clicked!");
@@ -18,6 +18,7 @@ const VisualizeButton = (props) => {
     //f.apply(null, [props.state.values, Object.values(props.state.params)]); // doesn't work right now
     let allParameters = Object.keys(props.state.params).length > 0 ? Object.fromEntries(props.state.params) : {}; // needs to be improved!!
     allParameters["values"] = props.state.values;
+    allParameters["tree"] = props.state.treeValues;
     console.log('OnVisualize() is sending:', allParameters);
     await f(allParameters);
     };

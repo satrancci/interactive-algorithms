@@ -6,6 +6,7 @@ import msgReducer from './msgReducer';
 import valsReducer from './valsReducer';
 import paramReducer from './paramReducer';
 import treeReducer from './treeReducer';
+import nodeIDReducer from './nodeIDReducer';
 
 export default combineReducers({
   dataStructure: dsReducer,
@@ -15,4 +16,5 @@ export default combineReducers({
   message: msgReducer,
   params: paramReducer,
   treeValues: treeReducer,
+  nodeID: nodeIDReducer,
 });

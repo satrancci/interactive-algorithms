@@ -18,10 +18,21 @@ const PrimaryDataStructure = (props) => {
           textCenterX={props.textCenterX}
           windowHeight={props.windowHeight}
           fontSize={props.fontSize}
-
         />
       ) : null}
-      {props.dataStructure === "Tree" ? <Tree values={props.treeValues} offset={props.windowWidth*0.1} level={0} isRoot={true} windowCenter={props.windowCenter} x={props.windowCenter} windowWidth={props.windowWidth} windowHeight={props.windowHeight} />: null}
+      {props.dataStructure === "Tree" ? (
+        <Tree
+          values={props.treeValues}
+          offset={props.windowWidth * 0.1}
+          level={0}
+          isRoot={true}
+          windowCenter={props.windowCenter}
+          x={props.windowCenter}
+          windowWidth={props.windowWidth}
+          windowHeight={props.windowHeight}
+          curNodeID={props.curNodeID}
+        />
+      ) : null}
     </Group>
   );
 };

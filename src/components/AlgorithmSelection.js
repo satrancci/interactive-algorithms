@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Dropdown } from "semantic-ui-react";
 
 import { updateAlgorithm, updateDataStructure } from '../actions';
-import algorithmMappings from '../algorithms/algorithmMappings';
+import algorithmMappings from '../algorithmMappings';
 
 
 

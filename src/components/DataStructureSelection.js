@@ -4,7 +4,7 @@ import { Dropdown } from "semantic-ui-react";
 
 import { updateDataStructure } from '../actions';
 import dataStructureOptions from './data_structures/dataStructureOptions';
-import algorithmMappings from '../algorithms/algorithmMappings';
+import algorithmMappings from '../algorithmMappings';
 
 
 const DataStructureSelection = (props) => {

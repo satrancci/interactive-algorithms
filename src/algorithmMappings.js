@@ -3,6 +3,8 @@ import isPalindrome from './algorithms/array/isPalindrome';
 import levelOrderTraversal from './algorithms/tree/levelOrderTraversal';
 import preorderTraversal from './algorithms/tree/preorderTraversal';
 import inorderTraversal from './algorithms/tree/inorderTraversal';
+import postorderTraversal from './algorithms/tree/postorderTraversal';
+
 
 const algorithmMappings = {
     twoSum: {f:twoSum, tags:["Array"], params:{targetVal:''}},
@@ -11,6 +13,7 @@ const algorithmMappings = {
     levelOrderTraversal: {f:levelOrderTraversal, tags:["Tree"], params:{}},
     preorderTraversal: {f:preorderTraversal, tags:["Tree"], params:{}},
     inorderTraversal: {f:inorderTraversal, tags:["Tree"], params:{}},
+    postorderTraversal: {f:postorderTraversal, tags:["Tree"], params:{}}
 };
 
 export default algorithmMappings;

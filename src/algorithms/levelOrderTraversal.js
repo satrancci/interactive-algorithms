@@ -3,13 +3,13 @@ import { updateNodeID, updateMessage } from "../actions";
 
 const Deque = require("../../node_modules/collections/deque");
 
-const bfs = async (paramsObj) => {
+const levelOrderTraversal = async (paramsObj) => {
   const tree = paramsObj["tree"];
   const root = tree.root;
-  bfsHelper(root);
+  levelOrderTraversalHelper(root);
 };
 
-const bfsHelper = async (root) => {
+const levelOrderTraversalHelper = async (root) => {
   const q = new Deque();
   q.push(root);
   let level = 0;
@@ -36,7 +36,7 @@ const bfsHelper = async (root) => {
       level += 1;
     }
   }
-  store.dispatch(updateMessage(`BFS traversal completed...`));
+  store.dispatch(updateMessage(`Level order traversal completed...`));
 };
 
-export default bfs;
+export default levelOrderTraversal;

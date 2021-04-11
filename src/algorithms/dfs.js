@@ -50,38 +50,4 @@ const dfsRecursive = async (node, visited) => {
 
 }
 
-const dfsIterative = async (root) => {
-
-    const q = [[root, 0]];
-    const visited = new Set();
-    
-    while (q.length > 0) {
-      await new Promise((r) => setTimeout(r, 2000));
-      const n = q.length;
-      for (let i=0; i<n; i++) {
-        const [node, level] = q.pop();
-        if (!visited.has(node.id)) {
-            visited.add(node.id);
-            console.log(`${node.id} added to set`);
-        }
-        store.dispatch(updateNodeID(node.id));
-        store.dispatch(updateMessage(`Exploring node ${node.id}`));
-        await new Promise((r) => setTimeout(r, 2000));
-
-        if (node.right) {
-            q.push([node.right, level+1]);
-        }
-        if (node.left) {
-            q.push([node.left, level+1]);
-        }
-        q.length > 0 ? store.dispatch(updateMessage(`some comment`)) : store.dispatch(updateMessage(`DFS traversal completed...`));
-        await new Promise((r) => setTimeout(r, 2000));
-
-      }
-
-    }
-
-    
-}
-
 export default dfs;

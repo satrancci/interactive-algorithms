@@ -17,7 +17,7 @@ const TreeNode = (props) => {
              <Line points={[x-radius, y+radius*0.3, x+radius, y+radius*0.3]} stroke="black" strokeWidth={0.5}/>
              <Text text={val} x={x} y={y-radius*0.3} fontSize={fontSize} />
              <Text text={id} x={x} y={y+radius*0.5} fontSize={fontSize*0.75} />
-             {parentX && parentY ? <Line points={[parentX, parentY+radius, x, y-radius]} stroke={curNodeID === id ? "red" : "black"} strokeWidth={1} /> : null}
+             {parentX && parentY ? <Line points={[parentX, parentY+radius, x, y-radius]} stroke={"black"} strokeWidth={1} /> : null}
         </Group>
         
     );

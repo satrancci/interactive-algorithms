@@ -1,7 +1,7 @@
-import twoSum from './twoSum';
-import isPalindrome from './isPalindrome';
-import levelOrderTraversal from './levelOrderTraversal';
-import preorderTraversal from './preorderTraversal';
+import twoSum from './array/twoSum';
+import isPalindrome from './array/isPalindrome';
+import levelOrderTraversal from './tree/levelOrderTraversal';
+import preorderTraversal from './tree/preorderTraversal';
 
 const algorithmMappings = {
     twoSum: {f:twoSum, tags:["Array"], params:{targetVal:''}},

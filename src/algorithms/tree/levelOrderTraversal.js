@@ -1,7 +1,7 @@
-import store from "../store";
-import { updateNodeID, updateMessage } from "../actions";
+import store from "../../store";
+import { updateNodeID, updateMessage } from "../../actions";
 
-const Deque = require("../../node_modules/collections/deque");
+const Deque = require("collections/deque");
 
 const levelOrderTraversal = async (paramsObj) => {
   const tree = paramsObj["tree"];

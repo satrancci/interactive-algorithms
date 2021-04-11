@@ -1,5 +1,5 @@
-import store from '../store';
-import { updateNodeID, updateMessage } from '../actions';
+import store from '../../store';
+import { updateNodeID, updateMessage } from '../../actions';
 
 const preorderTraversal = async (paramsObj) => {
     const tree = paramsObj["tree"];

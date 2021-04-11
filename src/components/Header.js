@@ -7,8 +7,8 @@ import AddValue from "./AddValue";
 import PopValue from "./PopValue";
 import TreeInput from "./TreeInput";
 import VisualizeButton from "./VisualizeButton";
-import DataStructureSelection from "./DataStructureSelection";
-import AlgorithmSelection from "./AlgorithmSelection";
+import DataStructureSelection from "./ds_algo_selection/DataStructureSelection";
+import AlgorithmSelection from "./ds_algo_selection/AlgorithmSelection";
 import AdditionalParameters from "./AdditionalParams";
 
 import DebuggingState from "./DebuggingState";

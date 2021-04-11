@@ -1,4 +1,4 @@
-import treeReducer from "../../reducers/treeReducer";
+import treeReducer from "../reducers/treeReducer";
 import BinaryTreeNode from "./BinaryTreeNode";
 
 export default class BinaryTree {

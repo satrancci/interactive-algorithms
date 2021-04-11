@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
-import algorithmMappings from '../algorithmMappings';
+import algorithmMappings from '../../algorithmMappings';
 
-import { addParams } from '../actions';
+import { addParams } from '../../actions';
 
 import FunctionParameter from './FunctionParameter';
 

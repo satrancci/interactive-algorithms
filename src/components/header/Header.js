@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
-import algorithmMappings from "../algorithmMappings";
+import algorithmMappings from "../../algorithmMappings";
 
-import AddValue from "./AddValue";
-import PopValue from "./PopValue";
-import TreeInput from "./TreeInput";
-import VisualizeButton from "./VisualizeButton";
-import DataStructureSelection from "./ds_algo_selection/DataStructureSelection";
-import AlgorithmSelection from "./ds_algo_selection/AlgorithmSelection";
-import AdditionalParameters from "./AdditionalParams";
+import AddValue from "../algo_params/AddValue";
+import PopValue from "../algo_params/PopValue";
+import TreeInput from "../algo_params/TreeInput";
+import VisualizeButton from "../algo_params/VisualizeButton";
+import DataStructureSelection from "../ds_algo_selection/DataStructureSelection";
+import AlgorithmSelection from "../ds_algo_selection/AlgorithmSelection";
+import AdditionalParameters from "../algo_params/AdditionalParams";
 
-import DebuggingState from "./DebuggingState";
+import DebuggingState from "../debugging/DebuggingState";
 
 const Header = (props) => {
   const [targetValToAdd, setTargetValToAdd] = useState("");

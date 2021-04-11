@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Stage, Layer, Circle } from "react-konva";
-import PrimaryDataStructure from "./ds_algo_selection/PrimaryDataStructure";
-import DynamicIndex from "./DynamicIndex";
-import Message from "./Message";
-import AuxiliaryInfo from "./AuxiliaryInfo";
+import PrimaryDataStructure from "./data_structures/PrimaryDataStructure";
+import DynamicIndex from "./explanations/DynamicIndex";
+import Message from "./explanations/Message";
+import AuxiliaryInfo from "./explanations/AuxiliaryInfo";
 
 const Canvas = (props) => {
 

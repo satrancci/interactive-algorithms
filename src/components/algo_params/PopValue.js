@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { Button } from 'semantic-ui-react';
-import { popValue } from '../actions';
+import { popValue } from '../../actions';
 
 const PopValue = (props) => {
 

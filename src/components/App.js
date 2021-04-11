@@ -1,6 +1,6 @@
 import React from "react";
-import Header from './Header';
-import Canvas from './Canvas';
+import Header from './header/Header';
+import Canvas from './konva_components/Canvas';
 
 const App = () => {
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Form } from "semantic-ui-react";
-import { updateTree } from "../actions";
+import { updateTree } from "../../actions";
 
 import _ from "lodash";
 

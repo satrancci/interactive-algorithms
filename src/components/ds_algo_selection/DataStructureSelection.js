@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Dropdown } from "semantic-ui-react";
 
-import { updateDataStructure } from '../actions';
-import dataStructureOptions from './data_structures/dataStructureOptions';
-import algorithmMappings from '../algorithms/algorithmMappings';
+import { updateDataStructure } from '../../actions';
+import dataStructureOptions from '../../dataStructureOptions';
+import algorithmMappings from '../../algorithmMappings';
 
 
 const DataStructureSelection = (props) => {

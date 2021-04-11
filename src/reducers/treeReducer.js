@@ -1,4 +1,4 @@
-import BinaryTree from '../algorithms/data_structures/BinaryTree';
+import BinaryTree from '../data_structures/BinaryTree';
 
 const initialTree = new BinaryTree();
 

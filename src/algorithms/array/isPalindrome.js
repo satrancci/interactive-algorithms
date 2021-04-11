@@ -1,5 +1,5 @@
-import store from '../store';
-import { updateIndex, updateMessage } from '../actions';
+import store from '../../store';
+import { updateIndex, updateMessage } from '../../actions';
 
 const isPalindrome = async (paramsObj) => {
    // need to add support for two or more indices!

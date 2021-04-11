@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { Input, Button } from 'semantic-ui-react';
-import { addValue } from '../actions';
+import { addValue } from '../../actions';
 
 const AddValue = (props) => {
 

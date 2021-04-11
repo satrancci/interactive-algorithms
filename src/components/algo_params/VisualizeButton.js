@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { Button } from 'semantic-ui-react';
-import algorithmMappings from '../algorithms/algorithmMappings';
+import algorithmMappings from '../../algorithmMappings';
 
 const VisualizeButton = (props) => {
 

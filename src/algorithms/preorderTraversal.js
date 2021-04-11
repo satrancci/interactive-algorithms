@@ -4,48 +4,53 @@ import { updateNodeID, updateMessage } from '../actions';
 const preorderTraversal = async (paramsObj) => {
     const tree = paramsObj["tree"];
     const root = tree.root;
-    const visited = new Set();
-    await preorderTraversalHelper(root, visited);
+    await preorderTraversalHelper(root);
     store.dispatch(updateMessage(`Preorder traversal completed...`));
 
 }
 
-const preorderTraversalHelper = async (node, visited) => {
-    console.log('visited before:', visited);
+const preorderTraversalHelper = async (node) => {
+
     if (!node) {
         return;
     }
+
     store.dispatch(updateNodeID(node.id));
-    console.log('nodeID:', node.id);
     store.dispatch(updateMessage(`Exploring node ${node.id}`));
-    console.log('sleeping for 4 seconds...');
     await new Promise((r) => setTimeout(r, 2000));
-    console.log('Resuming after sleep...');
+
+    store.dispatch(updateMessage(`Check left child of ${node.id}`));
+    await new Promise((r) => setTimeout(r, 2000));
     
-    visited.add(node.id);
-    console.log('visited after:', visited);
-    if ((node.left) && (!visited.has(node.left.id))) {
-        console.log('checking left...')
-        const leftNode = await preorderTraversalHelper(node.left, visited);
-        console.log('leftNode.id:', leftNode.id);
-        store.dispatch(updateNodeID(leftNode.id));
+    if (node.left) {
+        store.dispatch(updateMessage(`Left child of ${node.id} exists. Going there...`));
+        await new Promise((r) => setTimeout(r, 2000));
+        await preorderTraversalHelper(node.left);
+
         store.dispatch(updateMessage(`Recursing...`));
+        store.dispatch(updateNodeID(node.id));
+        await new Promise((r) => setTimeout(r, 1000));
+
+    } else {
+        store.dispatch(updateMessage(`Left child of ${node.id} does not exist.`));
         await new Promise((r) => setTimeout(r, 2000));
     }
-    store.dispatch(updateNodeID(node.id));
+
+    store.dispatch(updateMessage(`Check right child of ${node.id}`));
     await new Promise((r) => setTimeout(r, 2000));
-    if ((node.right) && (!visited.has(node.right.id))) {
-        console.log('checking right...')
-        const rightNode = await preorderTraversalHelper(node.right, visited);
-        console.log('rightNode.id:', rightNode.id);
-        store.dispatch(updateNodeID(rightNode.id));
-        store.dispatch(updateMessage(`Recursing...`));
+
+    if (node.right) {
+        store.dispatch(updateMessage(`Right child of ${node.id} exists. Going there...`));
+        await new Promise((r) => setTimeout(r, 2000));
+        await preorderTraversalHelper(node.right);
+    } else {
+        store.dispatch(updateMessage(`Right child of ${node.id} does not exist.`));
         await new Promise((r) => setTimeout(r, 2000));
     }
+
+    store.dispatch(updateMessage(`Recursing...`));
     store.dispatch(updateNodeID(node.id));
-    await new Promise((r) => setTimeout(r, 2000));
-    console.log('returning', node.id);
-    return node;
+    await new Promise((r) => setTimeout(r, 1000));
 
 }
 

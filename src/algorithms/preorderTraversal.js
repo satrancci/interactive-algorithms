@@ -1,17 +1,16 @@
 import store from '../store';
 import { updateNodeID, updateMessage } from '../actions';
 
-const dfs = async (paramsObj) => {
+const preorderTraversal = async (paramsObj) => {
     const tree = paramsObj["tree"];
     const root = tree.root;
     const visited = new Set();
-    //dfsIterative(root);
-    await dfsRecursive(root, visited);
-    store.dispatch(updateMessage(`DFS traversal completed...`));
+    await preorderTraversalHelper(root, visited);
+    store.dispatch(updateMessage(`Preorder traversal completed...`));
 
 }
 
-const dfsRecursive = async (node, visited) => {
+const preorderTraversalHelper = async (node, visited) => {
     console.log('visited before:', visited);
     if (!node) {
         return;
@@ -27,7 +26,7 @@ const dfsRecursive = async (node, visited) => {
     console.log('visited after:', visited);
     if ((node.left) && (!visited.has(node.left.id))) {
         console.log('checking left...')
-        const leftNode = await dfsRecursive(node.left, visited);
+        const leftNode = await preorderTraversalHelper(node.left, visited);
         console.log('leftNode.id:', leftNode.id);
         store.dispatch(updateNodeID(leftNode.id));
         store.dispatch(updateMessage(`Recursing...`));
@@ -37,7 +36,7 @@ const dfsRecursive = async (node, visited) => {
     await new Promise((r) => setTimeout(r, 2000));
     if ((node.right) && (!visited.has(node.right.id))) {
         console.log('checking right...')
-        const rightNode = await dfsRecursive(node.right, visited);
+        const rightNode = await preorderTraversalHelper(node.right, visited);
         console.log('rightNode.id:', rightNode.id);
         store.dispatch(updateNodeID(rightNode.id));
         store.dispatch(updateMessage(`Recursing...`));
@@ -50,4 +49,4 @@ const dfsRecursive = async (node, visited) => {
 
 }
 
-export default dfs;
+export default preorderTraversal;

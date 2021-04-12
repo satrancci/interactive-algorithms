@@ -10,6 +10,7 @@ import VisualizeButton from "../algo_params/VisualizeButton";
 import DataStructureSelection from "../ds_algo_selection/DataStructureSelection";
 import AlgorithmSelection from "../ds_algo_selection/AlgorithmSelection";
 import AdditionalParameters from "../algo_params/AdditionalParams";
+import VisualizationSpeed from "../algo_params/VisualizationSpeed";
 
 import DebuggingState from "../debugging/DebuggingState";
 
@@ -50,6 +51,8 @@ const Header = (props) => {
       {props.state.dataStructure === "Array" ? <AddValue /> : null}
       {props.state.dataStructure === "Array" ? <PopValue /> : null}
       {props.state.dataStructure === "Tree" ? <TreeInput/> : null}
+
+      <VisualizationSpeed/>
 
       <VisualizeButton />
 

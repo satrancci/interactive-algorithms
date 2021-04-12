@@ -78,3 +78,13 @@ export const updateNodeID = (nodeID) => {
         }
     };
 };
+
+
+export const updateVisualizationSpeed = (speed) => {
+    return {
+        type: 'UPDATE_VISUALIZATION_SPEED',
+        payload: {
+            speed: speed
+        }
+    };
+};

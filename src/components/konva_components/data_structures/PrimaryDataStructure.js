@@ -1,7 +1,7 @@
 import React from "react";
 import { Group } from "react-konva";
-import Array from "../data_structures/Array";
-import Tree from "../data_structures/Tree";
+import Array from "./Array";
+import Tree from "./Tree";
 
 const PrimaryDataStructure = (props) => {
 

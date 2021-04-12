@@ -4,6 +4,7 @@ import levelOrderTraversal from './algorithms/tree/levelOrderTraversal';
 import preorderTraversal from './algorithms/tree/preorderTraversal';
 import inorderTraversal from './algorithms/tree/inorderTraversal';
 import postorderTraversal from './algorithms/tree/postorderTraversal';
+import fibonacci from './algorithms/tree/fibonacci';
 
 
 const algorithmMappings = {
@@ -13,7 +14,8 @@ const algorithmMappings = {
     levelOrderTraversal: {f:levelOrderTraversal, tags:["Tree"], params:{}},
     preorderTraversal: {f:preorderTraversal, tags:["Tree"], params:{}},
     inorderTraversal: {f:inorderTraversal, tags:["Tree"], params:{}},
-    postorderTraversal: {f:postorderTraversal, tags:["Tree"], params:{}}
+    postorderTraversal: {f:postorderTraversal, tags:["Tree"], params:{}},
+    fibonacci: {f:fibonacci, tags:["Tree"], params:{}}
 };
 
 export default algorithmMappings;

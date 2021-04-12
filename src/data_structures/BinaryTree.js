@@ -1,5 +1,5 @@
-import treeReducer from "../reducers/treeReducer";
 import BinaryTreeNode from "./BinaryTreeNode";
+import { createNodeID } from "./treeUtils";
 
 export default class BinaryTree {
   constructor() {
@@ -8,9 +8,7 @@ export default class BinaryTree {
   }
 
   insert(parentID, value, left=true) {
-    const nodeID =
-      Math.random().toString(36).substring(2, 3) +
-      Math.random().toString(36).substring(2, 3);
+    const nodeID = createNodeID(this.idMap);
     const newNode = new BinaryTreeNode(nodeID, value);
     if (!this.root) {
       this.root = newNode;

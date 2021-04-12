@@ -1,9 +1,10 @@
 import store from '../../store';
 import { updateIndex, updateMessage } from '../../actions';
 
-
-
 const twoSum = async (paramsObj) => {
+
+  const BASE_SLEEP_TIME = 700;
+
   const vals = paramsObj["values"];
   const targetVal = paramsObj["targetVal"];
   console.log(`twoSum received values:${vals}, targetVal:${targetVal}`);
@@ -13,15 +14,15 @@ const twoSum = async (paramsObj) => {
     store.dispatch(updateIndex(["i", i]));
     const complement = targetVal - vals[i];
     store.dispatch(updateMessage(`Complement selected. targetValue-vals[${i}] = ${targetVal}-${vals[i]} = ${complement}`));
-    await new Promise((r) => setTimeout(r, 3000));
+    await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
     if (complement in m) {
       const ans = [m[complement], i];
       store.dispatch(updateMessage(`complement (${complement}) found in the dictionary. Answer: [${ans}]`));
-      await new Promise((r) => setTimeout(r, 2000));
+      await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
       return ans;
     }
     store.dispatch(updateMessage(`complement = targetValue-vals[${i}] = ${targetVal}-${vals[i]}=${complement} not found in the dictionary.`));
-    await new Promise((r) => setTimeout(r, 2000));
+    await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
     m[vals[i]] = i;
   }
   store.dispatch(updateMessage(`A pair that whose sum is equal to ${targetVal} is not found in the array.`));

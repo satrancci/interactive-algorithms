@@ -29,6 +29,9 @@ const DebuggingState = (props) => {
         <div>
           message: {props.state.message}
         </div>
+        <div>
+          speed: {props.state.visualizationSpeed}
+        </div>
       </div>
     );
 };

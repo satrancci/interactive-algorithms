@@ -5,12 +5,13 @@ import preorderTraversal from './algorithms/tree/preorderTraversal';
 import inorderTraversal from './algorithms/tree/inorderTraversal';
 import postorderTraversal from './algorithms/tree/postorderTraversal';
 import fibonacci from './algorithms/tree/fibonacci';
+import sudokuSolver from './algorithms/array2d/sudokuSolver';
 
 
 const algorithmMappings = {
     twoSum: {f:twoSum, tags:["Array"], params:{targetVal:''}},
     isPalindrome: {f:isPalindrome, tags:["Array"], params:{}},
-    sudokuSolver: {f:null, tags:["2DArray"], params:{}},
+    sudokuSolver: {f:sudokuSolver, tags:["Array2D"], params:{}},
     levelOrderTraversal: {f:levelOrderTraversal, tags:["Tree"], params:{}},
     preorderTraversal: {f:preorderTraversal, tags:["Tree"], params:{}},
     inorderTraversal: {f:inorderTraversal, tags:["Tree"], params:{}},

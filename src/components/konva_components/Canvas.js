@@ -68,7 +68,7 @@ const Canvas = (props) => {
             curNodeID={props.state.nodeID}
           />
         }
-        {true ? (
+        {props.state.dataStructure === "Array" ? (
           <DynamicIndex
             indices={props.state.indices}
             textCenterX={textCenterX}

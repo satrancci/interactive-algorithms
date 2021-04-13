@@ -10,7 +10,7 @@ import fibonacci from './algorithms/tree/fibonacci';
 const algorithmMappings = {
     twoSum: {f:twoSum, tags:["Array"], params:{targetVal:''}},
     isPalindrome: {f:isPalindrome, tags:["Array"], params:{}},
-    sudokuSolver: {f:null, tags:["2DArray"], params:{}},
+    sudokuSolver: {f:null, tags:["Array2D"], params:{}},
     levelOrderTraversal: {f:levelOrderTraversal, tags:["Tree"], params:{}},
     preorderTraversal: {f:preorderTraversal, tags:["Tree"], params:{}},
     inorderTraversal: {f:inorderTraversal, tags:["Tree"], params:{}},

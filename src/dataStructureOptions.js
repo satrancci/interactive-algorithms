@@ -1,3 +1,3 @@
-const dataStructureOptions = ["Array", "2DArray", "Graph", "Tree"];
+const dataStructureOptions = ["Array", "Array2D", "Graph", "Tree"];
 
 export default dataStructureOptions;

@@ -7,6 +7,7 @@ import postorderTraversal from './algorithms/tree/postorderTraversal';
 import fibonacci from './algorithms/tree/fibonacci';
 import sudokuSolver from './algorithms/array2d/sudokuSolver';
 import nQueens from './algorithms/array2d/nQueens';
+import longestIncreasingSubsequence from './algorithms/array2d/longestIncreasingSubsequence';
 
 const algorithmMappings = {
     twoSum: {f:twoSum, tags:["Array"], params:{targetVal:''}},
@@ -17,7 +18,8 @@ const algorithmMappings = {
     inorderTraversal: {f:inorderTraversal, tags:["Tree"], params:{}},
     postorderTraversal: {f:postorderTraversal, tags:["Tree"], params:{}},
     fibonacci: {f:fibonacci, tags:["Tree"], params:{}},
-    nQueens: {f:nQueens, tags:["Array2D"], params:{}}
+    nQueens: {f:nQueens, tags:["Array2D"], params:{}},
+    longestIncreasingSubsequence: {f:longestIncreasingSubsequence, tags:["Array"], params:{}}
 };
 
 export default algorithmMappings;

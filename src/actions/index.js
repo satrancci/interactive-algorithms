@@ -52,6 +52,16 @@ export const popValue = () => {
     };
 };
 
+export const updateAtIndex = (idx, newVal) => {
+    return {
+        type: 'UPDATE_AT_INDEX',
+        payload: {
+            idx: idx,
+            newVal: newVal
+        }
+    };
+};
+
 export const addParams = (params) => {
     return {
         type: 'ADD_PARAMS',

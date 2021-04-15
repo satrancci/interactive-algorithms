@@ -37,6 +37,8 @@ const SingleInput = (props) => {
         } else if (inputName === "sudokuBoard"){
             const arr2d = valToAdd.split("").reduce((rows, key, index) => (index % 9 == 0 ? rows.push([key]) : rows[rows.length-1].push(key)) && rows, []); // one-liner from https://stackoverflow.com/questions/4492385/how-to-convert-simple-array-into-two-dimensional-array-matrix-with-javascript
             props.onSingleInputSubmit(inputName, arr2d);
+        } else if (inputName === "n") {
+          props.onSingleInputSubmit(inputName, parseInt(valToAdd));
         } else {
             props.onSingleInputSubmit(inputName, valToAdd);
         }

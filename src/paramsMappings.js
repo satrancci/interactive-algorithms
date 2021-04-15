@@ -1,7 +1,7 @@
 const paramsMappings = {
     twoSum: ["arr", "targetSum"],
     isPalindrome: ["arr"],
-    sudokuSolver: null,
+    sudokuSolver: ["sudokuBoard"],
     levelOrderTraversal: ["treeValues"],
     preorderTraversal: ["treeValues"],
     inorderTraversal: ["treeValues"],

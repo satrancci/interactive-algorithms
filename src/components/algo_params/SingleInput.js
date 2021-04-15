@@ -11,6 +11,8 @@ const getPlaceholderValue = (inputName) => {
         case "str1":
         case "str2":
             return "e.g. abc"
+        case "sudokuBoard":
+            return "str of size 81, no commas"
         default:
             return "";
     }
@@ -27,12 +29,14 @@ const SingleInput = (props) => {
   const onAddValue = new_val => setValToAdd(new_val);
 
   const onAddSubmit = () => {
-    // need to add validation!
+    // need to add robust and modular validation, these checks below are just temporary
     if (valToAdd) {
         if (inputName === "arr") {
-            // just for now
             const arr = valToAdd.split(",");
             props.onSingleInputSubmit(inputName, arr);
+        } else if (inputName === "sudokuBoard"){
+            const arr2d = valToAdd.split("").reduce((rows, key, index) => (index % 9 == 0 ? rows.push([key]) : rows[rows.length-1].push(key)) && rows, []); // one-liner from https://stackoverflow.com/questions/4492385/how-to-convert-simple-array-into-two-dimensional-array-matrix-with-javascript
+            props.onSingleInputSubmit(inputName, arr2d);
         } else {
             props.onSingleInputSubmit(inputName, valToAdd);
         }

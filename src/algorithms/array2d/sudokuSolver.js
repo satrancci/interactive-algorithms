@@ -1,72 +1,58 @@
 import store from "../../store";
-import { addValue, updateIndex, updateMessage } from "../../actions";
-
+import { updateIndex, updateMessage, assignVisValues } from "../../actions";
 import _ from "lodash";
 
 const BOARD_SIZE = 9;
 
 
-const sudokuSolver = async (paramsObj) => {
+const sudokuSolver = async () => {
 
   const BASE_SLEEP_TIME = 100;
 
-  //const vals = paramsObj["values"];
-  //console.log(`sudokuSolver received values:${vals}`);
+  const {sudokuBoard} = store.getState().inputObj;
+  console.log(`sudokuSolver received sudokuBoard: ${sudokuBoard}`);
 
-  const matrix = [
-    [".",".",".",".",".",".",".",".","."],
-    [".",".",".",".",".",".",".",".","."],
-    [".",".",".",".",".",".",".",".","."],
-    [".",".",".",".",".",".",".",".","."],
-    [".",".",".",".",".",".",".",".","."],
-    [".",".",".",".",".",".",".",".","."],
-    [".",".",".",".",".",".",".",".","."],
-    [".",".",".",".",".",".",".",".","."],
-    [".",".",".",".",".",".",".",".","."]    
-];
+  store.dispatch(assignVisValues(_.cloneDeep(sudokuBoard)));
 
-  for (let i = 0; i < matrix.length; i++) {
-    store.dispatch(addValue(matrix[i]));
-  }
-
-
-  const isFull = (matrix) => _.flatten(matrix).filter(x => x === ".").length === 0;
+  const isFull = (sudokuBoard) => _.flatten(sudokuBoard).filter(x => x === ".").length === 0;
   
-  const isValid = (x, y, num, matrix) => {
+  const isValid = (x, y, num, sudokuBoard) => {
       for ( let i=0; i<BOARD_SIZE; i++ ) {
-          if (matrix[x][i] === num || matrix[i][y] === num || matrix[3*(Math.floor(x/3))+Math.floor(i/3)][3*(Math.floor(y/3))+i%3] === num) {
+          if (sudokuBoard[x][i] === num || sudokuBoard[i][y] === num || sudokuBoard[3*(Math.floor(x/3))+Math.floor(i/3)][3*(Math.floor(y/3))+i%3] === num) {
               return false;
           }
       }
       return true;
   }
 
-  const solve = async (matrix) => {
+  const solve = async (sudokuBoard) => {
       for ( let i=0; i<BOARD_SIZE; i++ ) {
           for ( let j=0; j<BOARD_SIZE; j++ ) {
               store.dispatch(updateIndex(["i", i]));
               store.dispatch(updateIndex(["j", j]));
-              if (matrix[i][j] === ".") {
+              if (sudokuBoard[i][j] === ".") {
                   store.dispatch(updateMessage(`Cell [${i}][${j}] is empty`));
                   await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
                   for ( let num=1; num<10; num++ ) {
                       store.dispatch(updateMessage(`Try ${num}`));
                       await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
                       const numStr = num.toString();
-                      if (isValid(i,j, numStr, matrix)) {
+                      if (isValid(i,j, numStr, sudokuBoard)) {
                           store.dispatch(updateMessage(`${num} is valid, so place it!`));
-                          matrix[i][j] = numStr;
+                          sudokuBoard[i][j] = numStr;
+                          store.dispatch(assignVisValues(_.cloneDeep(sudokuBoard)));
                           await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 
                           store.dispatch(updateMessage(`Try to solve recursively.`));
                           await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
-                          if (await solve(matrix)) {
+                          if (await solve(sudokuBoard)) {
                               store.dispatch(updateMessage(`Could solve recursively. Return TRUE`));
                               await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
                               return true;
                           }
                           store.dispatch(updateMessage(`Could not solve recursively. Backtrack.`));
-                          matrix[i][j] = ".";
+                          sudokuBoard[i][j] = ".";
+                          store.dispatch(assignVisValues(_.cloneDeep(sudokuBoard)));
                           store.dispatch(updateIndex(["i", i]));
                           store.dispatch(updateIndex(["j", j]));
                           await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
@@ -82,12 +68,12 @@ const sudokuSolver = async (paramsObj) => {
               }
           }
       }
-      store.dispatch(updateMessage(`Check if there are any empty cells in the matrix`));
+      store.dispatch(updateMessage(`Check if there are any empty cells in the sudokuBoard`));
       await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
-      return isFull(matrix);
+      return isFull(sudokuBoard);
   }
 
-  await solve(matrix);
+  await solve(sudokuBoard);
   store.dispatch(updateMessage("Sudoku solved!"));
   await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 };

@@ -31,7 +31,7 @@ const Canvas = (props) => {
   });
 
   // for Array
-  const N = props.state.values.length;
+  const N = props.state.visValues.length;
   const divisor = Math.max(N, 5);
   const cellX = windowWidth*0.1;
   const cellWidth = windowWidth/(divisor*1.2);
@@ -52,7 +52,7 @@ const Canvas = (props) => {
       <Layer>
         {
           <PrimaryDataStructure
-            values={props.state.values}
+            values={props.state.visValues}
             dataStructure={props.state.dataStructure}
             indices={props.state.indices}
             cellX={cellX}

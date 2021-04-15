@@ -7,17 +7,19 @@ import { createNodeID } from "../../data_structures/treeUtils";
 import _ from "lodash";
 
 
-const FIB_N = 5;
-
 const fibonacci = async (paramsObj) => {
+
+    const {n} = store.getState().inputObj;
+    console.log(`fibonacci received n: ${n}`);
+
     const tree = paramsObj["tree"];
     let newTree = _.cloneDeep(tree);
     const nodeID = createNodeID(newTree.idMap);
-    const newRoot = new BinaryTreeNode(nodeID, `fib(${FIB_N})`);
+    const newRoot = new BinaryTreeNode(nodeID, `fib(${n})`);
     newTree.root = newRoot;
     store.dispatch(updateTree(newTree));
     const root = newTree.root;
-    await fibonacciHelper(newTree, root, FIB_N);
+    await fibonacciHelper(newTree, root, n);
     store.dispatch(updateMessage(`Fibonacci visualization completed...`));
 }
 

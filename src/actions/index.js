@@ -98,3 +98,19 @@ export const updateVisualizationSpeed = (speed) => {
         }
     };
 };
+
+
+export const assignInputObj = (obj) => {
+    return {
+        type: 'ASSIGN_INPUT_OBJ',
+        payload: {
+            obj:obj
+        }
+    };
+};
+
+export const deleteInputObj = () => {
+    return {
+        type: 'DELETE_INPUT_OBJ'
+    }
+};

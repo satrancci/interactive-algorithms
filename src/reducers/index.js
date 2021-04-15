@@ -8,6 +8,8 @@ import paramReducer from './paramReducer';
 import treeReducer from './treeReducer';
 import nodeIDReducer from './nodeIDReducer';
 import speedReducer from './speedReducer';
+import inputObjReducer from './inputObjReducer';
+import visValuesReducer from './visValuesReducer';
 
 export default combineReducers({
   dataStructure: dsReducer,
@@ -19,4 +21,6 @@ export default combineReducers({
   treeValues: treeReducer,
   nodeID: nodeIDReducer,
   visualizationSpeed: speedReducer,
+  inputObj: inputObjReducer,
+  visValues: visValuesReducer
 });

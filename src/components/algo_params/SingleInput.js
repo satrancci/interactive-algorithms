@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Input, Button } from 'semantic-ui-react';
 
 const SingleInput = (props) => {
-
+  
+  const inputName = props.inputName;
   const [valToAdd, setValToAdd] = useState("");
 
   const onAddValue = new_val => setValToAdd(new_val);
@@ -10,7 +11,7 @@ const SingleInput = (props) => {
   const onAddSubmit = () => {
     // need to add validation!
     if (valToAdd) {
-      props.onSingleInputSubmit(props.inputName, valToAdd);
+      props.onSingleInputSubmit(inputName, valToAdd);
       //setValToAdd("");
     }
   };
@@ -18,8 +19,8 @@ const SingleInput = (props) => {
     return (
       <div style={{display: "inline-block", marginRight: "5px", marginBottom: "10px"}}>
         <Input
-          label={`${props.inputName}: `}
-          id={props.inputName}
+          label={`${inputName}: `}
+          id={inputName}
           type="text"
           value={valToAdd}
           onChange={(e) => onAddValue(e.target.value)}

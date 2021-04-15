@@ -32,6 +32,12 @@ const DebuggingState = (props) => {
         <div>
           speed: {props.state.visualizationSpeed}
         </div>
+        <div>
+          inputObj: {JSON.stringify(props.state.inputObj)}
+        </div>
+        <div>
+          visValues: {props.state.visValues}
+        </div>
       </div>
     );
 };

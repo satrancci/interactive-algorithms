@@ -1,31 +1,34 @@
 import store from '../../store';
-import { updateIndex, updateMessage } from '../../actions';
+import { updateIndex, updateMessage, assignVisValues } from '../../actions';
+import _ from "lodash";
 
-const twoSum = async (paramsObj) => {
+const twoSum = async () => {
 
   const BASE_SLEEP_TIME = 700;
 
-  const vals = paramsObj["values"];
-  const targetVal = paramsObj["targetVal"];
-  console.log(`twoSum received values:${vals}, targetVal:${targetVal}`);
-  const n = vals.length;
+  const {arr, targetSum} = store.getState().inputObj;
+  console.log(`twoSum received arr: ${arr}, ${targetSum}`);
+
+  store.dispatch(assignVisValues(_.cloneDeep(arr)));
+
+  const n = arr.length;
   const m = new Map();
   for (let i = 0; i < n; i++) {
     store.dispatch(updateIndex(["i", i]));
-    const complement = targetVal - vals[i];
-    store.dispatch(updateMessage(`Complement selected. targetValue-vals[${i}] = ${targetVal}-${vals[i]} = ${complement}`));
+    const complement = targetSum - arr[i];
+    store.dispatch(updateMessage(`Complement selected. targetSum-arr[${i}] = ${targetSum}-${arr[i]} = ${complement}`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
     if (complement in m) {
       const ans = [m[complement], i];
-      store.dispatch(updateMessage(`complement (${complement}) found in the dictionary. Answer: [${ans}]`));
+      store.dispatch(updateMessage(`Complement (${complement}) found in the dictionary. Indices: [${ans}]`));
       await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
       return ans;
     }
-    store.dispatch(updateMessage(`complement = targetValue-vals[${i}] = ${targetVal}-${vals[i]}=${complement} not found in the dictionary.`));
+    store.dispatch(updateMessage(`Complement = targetSum-arr[${i}] = ${targetSum}-${arr[i]}=${complement} not found in the dictionary.`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
-    m[vals[i]] = i;
+    m[arr[i]] = i;
   }
-  store.dispatch(updateMessage(`A pair that whose sum is equal to ${targetVal} is not found in the array.`));
+  store.dispatch(updateMessage(`A pair whose sum is equal to ${targetSum} is not found in the array.`));
   return [-1, -1];
 };
 

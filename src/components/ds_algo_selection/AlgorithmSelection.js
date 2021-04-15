@@ -23,9 +23,9 @@ const AlgorithmSelection = (props) => {
   };
 
   return (
-    <div className="ui segment">
-      <label>Select Algorithm</label>
+    <div style={{display: "inline-block", width: "48%", margin: "10px 1% 10px 1%"}}>
         <Dropdown
+          placeholder='Select Algorithm'
           text={props.algorithm}
           onChange={handleOnChange}
           fluid

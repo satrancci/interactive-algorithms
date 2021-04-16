@@ -1,12 +1,14 @@
 import store from "../../store";
-import { addValue, updateIndex, updateMessage } from "../../actions";
+import { addValue, updateIndex, updateMessage, assignVisValues } from "../../actions";
+import _ from "lodash";
 
 
-const nQueens = async (paramsObj) => {
+const nQueens = async () => {
 
     const BASE_SLEEP_TIME = 200;
-    // get N from paramsObj later, for now hard-coded
-    const n = 8;
+
+    const {n} = store.getState().inputObj;
+    console.log(`nQueens received n: ${n}`);
 
     const isValid = (board, r, c) => {
         for ( let i=0; i<r; i++ ) {
@@ -37,6 +39,7 @@ const nQueens = async (paramsObj) => {
                 store.dispatch(updateMessage(`Placement is valid for ${c} on row ${r}. Place the queen!`));
                 await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
                 board[r][c] = "Q";
+                store.dispatch(assignVisValues(_.cloneDeep(board)));
                 await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
                 if (await dfs(board, r+1)) {
                     store.dispatch(updateMessage(`Could solve recursively! Return TRUE!`));
@@ -48,6 +51,7 @@ const nQueens = async (paramsObj) => {
                 store.dispatch(updateMessage(`Could not solve recursively. Remove the queen.`));
                 await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
                 board[r][c] = ".";
+                store.dispatch(assignVisValues(_.cloneDeep(board)));
                 await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
             }
         }
@@ -55,9 +59,7 @@ const nQueens = async (paramsObj) => {
 
     const board = new Array(n).fill(".").map(() => new Array(n).fill("."));
 
-    for (let i = 0; i < board.length; i++) {
-        store.dispatch(addValue(board[i]));
-    };
+    store.dispatch(assignVisValues(_.cloneDeep(board)));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 
     const sol = await dfs(board, 0);

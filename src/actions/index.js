@@ -114,3 +114,18 @@ export const deleteInputObj = () => {
         type: 'DELETE_INPUT_OBJ'
     }
 };
+
+export const assignVisValues = (values) => {
+    return {
+        type: 'ASSIGN_VIS_VALUES',
+        payload: {
+            values:values
+        }
+    };
+};
+
+export const deleteVisValues = () => {
+    return {
+        type: 'DELETE_VIS_VALUES'
+    }
+};

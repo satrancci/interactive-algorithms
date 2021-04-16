@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Dropdown } from "semantic-ui-react";
 
-import { updateAlgorithm, updateDataStructure } from '../../actions';
+import { updateAlgorithm, updateDataStructure, deleteVisValues, deleteInputObj } from '../../actions';
 import algorithmMappings from '../../algorithmMappings';
 
 
@@ -19,13 +19,15 @@ const AlgorithmSelection = (props) => {
     if (Object.keys(algorithmMappings[data.value].params).length > 0) {console.log('params required!')};
     if (props.dataStructure && (!(algorithmMappings[data.value].tags.includes(props.dataStructure)))) {
         props.updateDataStructure("");
+        props.deleteInputObj();
+        props.deleteVisValues();
       }
   };
 
   return (
-    <div className="ui segment">
-      <label>Select Algorithm</label>
+    <div style={{display: "inline-block", width: "48%", margin: "10px 1% 10px 1%"}}>
         <Dropdown
+          placeholder='Select Algorithm'
           text={props.algorithm}
           onChange={handleOnChange}
           fluid
@@ -48,5 +50,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   updateAlgorithm,
-  updateDataStructure
+  updateDataStructure,
+  deleteVisValues,
+  deleteInputObj
 })(AlgorithmSelection);

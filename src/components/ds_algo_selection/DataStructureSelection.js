@@ -17,12 +17,13 @@ const DataStructureSelection = (props) => {
   };
 
   return (
-    <div className="ui segment">
-        <label>Select Data Structure</label>
+    <div style={{display: "inline-block", width: "48%",  margin: "10px 1% 10px 1%"}}>
         <Dropdown
+          placeholder='Select Data Structure'
           text={props.dataStructure}
           onChange={handleOnChange}
           fluid
+          disabled={props.disabled}
           selection
           search
           button

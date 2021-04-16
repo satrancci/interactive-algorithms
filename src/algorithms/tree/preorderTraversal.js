@@ -1,9 +1,16 @@
 import store from '../../store';
-import { updateNodeID, updateMessage } from '../../actions';
+import { updateNodeID, updateMessage, assignVisValues } from '../../actions';
 
-const preorderTraversal = async (paramsObj) => {
-    const tree = paramsObj["tree"];
-    const root = tree.root;
+import _ from "lodash";
+
+const preorderTraversal = async () => {
+
+    const {treeValues} = store.getState().inputObj;
+    console.log(`preorderTraversal received treeValues: ${JSON.stringify(treeValues)}`);
+
+    store.dispatch(assignVisValues(_.cloneDeep(treeValues)));
+
+    const root = treeValues.root;
     await preorderTraversalHelper(root);
     store.dispatch(updateMessage(`Preorder traversal completed...`));
 

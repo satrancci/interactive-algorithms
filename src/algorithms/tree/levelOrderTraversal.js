@@ -1,7 +1,7 @@
 import store from "../../store";
 import { updateNodeID, updateMessage, assignVisValues } from "../../actions";
 
-import _ from "lodash"
+import _ from "lodash";
 
 const Deque = require("collections/deque");
 

@@ -1,9 +1,17 @@
 import store from '../../store';
-import { updateNodeID, updateMessage } from '../../actions';
+import { updateNodeID, updateMessage, assignVisValues } from '../../actions';
 
-const postorderTraversal = async (paramsObj) => {
-    const tree = paramsObj["tree"];
-    const root = tree.root;
+import _ from "lodash";
+
+const postorderTraversal = async () => {
+
+    const {treeValues} = store.getState().inputObj;
+    console.log(`postorderTraversal received treeValues: ${JSON.stringify(treeValues)}`);
+
+    store.dispatch(assignVisValues(_.cloneDeep(treeValues)));
+
+    const root = treeValues.root;
+
     await postorderTraversalHelper(root);
     store.dispatch(updateMessage(`postorder traversal completed...`));
 

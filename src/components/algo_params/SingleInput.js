@@ -26,7 +26,7 @@ const SingleInput = (props) => {
 
   const [valToAdd, setValToAdd] = useState("");
 
-  const onAddValue = new_val => setValToAdd(new_val);
+  const onAddValue = newVal => setValToAdd(newVal);
 
   const onAddSubmit = () => {
     // need to add robust and modular validation, these checks below are just temporary
@@ -45,6 +45,8 @@ const SingleInput = (props) => {
     //setValToAdd("");
     }
   };
+    
+    if (props.hidden) {return null};
 
     return (
       <div style={{display: "inline-block", marginRight: "5px", marginBottom: "10px"}}>
@@ -56,7 +58,7 @@ const SingleInput = (props) => {
           value={valToAdd}
           onChange={(e) => onAddValue(e.target.value)}
         />
-        <Button primary onClick={onAddSubmit}>Add</Button>
+        <Button primary onClick={onAddSubmit}>{props.buttonText || "Add"}</Button>
       </div>
     );
 };

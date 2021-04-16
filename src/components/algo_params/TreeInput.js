@@ -1,112 +1,166 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Form } from "semantic-ui-react";
-import { updateTree } from "../../actions";
+import { updateTree, assignInputObj, deleteInputObj } from "../../actions";
+import { Button, Form } from "semantic-ui-react";
+import SingleInput from "./SingleInput";
 
 import _ from "lodash";
 
+const treeInputOperations = {
+  Add: ["node-value", "parent-id"],
+  Delete: ["node-id"],
+  Modify: ["node-value", "node-id"],
+};
+
 const TreeInput = (props) => {
-  const [value, setValue] = useState("");
-  const [nodeID, setNodeID] = useState("");
-  const [parentID, setParentID] = useState("");
+
+  const [optionSelected, setOptionSelected] = useState("Add");
+
+  const [singleInputObj, setSingleInputObj] = useState({});
+
   const [leftOrRightChild, setLeftOrRightChild] = useState(false); // true refers to left child
+  const onToggleChange = (e) => setLeftOrRightChild(!leftOrRightChild);
 
-  const onValueChange = e => setValue(e.target.value);
+  const onAddClick = () => setOptionSelected("Add");
+  const onDeleteClick = () => props.treeValues.root !== null ? setOptionSelected("Delete") : null;
+  const onModifyClick = () => props.treeValues.root !== null ? setOptionSelected("Modify") : null;
 
-  const onNodeIDChange = e => setNodeID(e.target.value);
 
-  const onParentIDChange = e => setParentID(e.target.value);
+  const onSingleInputSubmit = (inputName, value) => {
+      setSingleInputObj((singleInputObj) => ({
+      ...singleInputObj,
+      [inputName]: value,
+    }));
+  };
 
-  const onToggleChange = e => setLeftOrRightChild(!leftOrRightChild);
+  useEffect(() => {
+      const objLength = Object.keys(singleInputObj).length;
+      const optionsLength = treeInputOperations[optionSelected].length;
+      if ( (objLength === optionsLength) || (props.treeValues.root === null && objLength === optionsLength-1 )) {
+          switch (optionSelected) {
+              case "Add":
+                  onAddSubmit(singleInputObj);
+                  setSingleInputObj({});
+                  break;
+              case "Delete":
+                  onDeleteSubmit(singleInputObj);
+                  setSingleInputObj({});
+                  if (props.treeValues.tree === null) {setOptionSelected("Add")};
+                  break;
+              case "Modify":
+                  onModifySubmit(singleInputObj);
+                  setSingleInputObj({});
+                  break;
+              default:
+                  return null;
+          }
+      }        
+  }, [singleInputObj])
 
-  const onFormAddSubmit = () => {
-    // need to add validation!
+  // add validation to all later
+  const onAddSubmit = (obj) => {
+    const value = obj["node-value"];
+    const parentID = obj["parent-id"];
     if (value) {
       let newTree = _.cloneDeep(props.treeValues);
       const parID = newTree.root === null ? null : parentID;
       const leftChild = leftOrRightChild === true;
       newTree.insert(parID, value, leftChild);
+      props.assignInputObj({"treeValues": newTree});
       props.updateTree(newTree);
-      setValue("");
-      //setParentID("");
       setLeftOrRightChild(!leftOrRightChild);
     }
   };
 
-  const onFormModifySubmit = () => {
-    // need to add validation!
-    if (value && nodeID) {
+  const onDeleteSubmit = (obj) => {
+    const nodeID = obj["node-id"];
+    if (nodeID) {
       let newTree = _.cloneDeep(props.treeValues);
-      newTree.modify(nodeID, value);
+      newTree.delete(nodeID);
+      if (newTree.root === null) {
+          props.deleteInputObj();
+          setOptionSelected("Add");
+      } else {
+          props.assignInputObj({"treeValues": newTree});
+      }
       props.updateTree(newTree);
-      setValue("");
-      setNodeID("");
     } else {
-      console.log("You need to provie both value and nodeID");
+      console.log("You need to specify nodeID that you want to delete");
     }
   };
 
 
-  const onFormDeleteSubmit = () => {
-    // need to add validation!
-    if (nodeID) {
+  const onModifySubmit = (obj) => {
+    const value = obj["node-value"];
+    const nodeID = obj["node-id"];
+    if (value && nodeID) {
       let newTree = _.cloneDeep(props.treeValues);
-      newTree.delete(nodeID);
+      newTree.modify(nodeID, value);
+      props.assignInputObj({"treeValues": newTree});
       props.updateTree(newTree);
-      setParentID("");
     } else {
-      console.log("You need to specify parentID that you want to delete");
+      console.log("You need to provide both value and nodeID");
     }
   };
 
   return (
-    <Form>
-      <Form.Group widths="equal">
-        <Form.Input
-          fluid
-          label="node-value"
-          placeholder="node value"
-          value={value}
-          onChange={onValueChange}
-        />
-        {props.treeValues.root ?
-        <Form.Input
-          fluid
-          label="parent-id"
-          placeholder="parent id"
-          value={parentID}
-          onChange={onParentIDChange}
-        />
-        : null
-        }
-        {props.treeValues.root ?
-        <Form.Input
-          fluid
-          label="node-id"
-          placeholder="node id"
-          value={nodeID}
-          onChange={onNodeIDChange}
-        />
-        : null
-        }
-      </Form.Group>
-      {props.treeValues.root ?
-      <Form.Group inline>
-        <label>{`${leftOrRightChild ? "Left" : "Right"}`} Child</label>
-        <Form.Radio
-          toggle
-          checked={leftOrRightChild}
-          onClick={onToggleChange}
-        />
-      </Form.Group>
-      : null
-        }
-        <Form.Group inline>
-              <Form.Button onClick={onFormAddSubmit}>Add</Form.Button>
-              {props.treeValues.root ? <Form.Button onClick={onFormDeleteSubmit}>Delete</Form.Button> : null}
-              {props.treeValues.root ? <Form.Button onClick={onFormModifySubmit}>Modify</Form.Button> : null}
-        </Form.Group>
-    </Form>
+    <div>
+      <div style={{ margin: "10px 10px 10px 10px" }}>
+        <Button.Group>
+          <Button
+            color={optionSelected === "Add" ? "teal" : null}
+            active={optionSelected === "Add"}
+            disabled={!optionSelected === "Add"}
+            onClick={onAddClick}
+          >
+            Add
+          </Button>
+          <Button.Or />
+          <Button
+            color={optionSelected === "Delete" ? "teal" : null}
+            active={optionSelected === "Delete"}
+            disabled={!optionSelected === "Delete"}
+            onClick={onDeleteClick}
+          >
+            Delete
+          </Button>
+          <Button.Or />
+          <Button
+            color={optionSelected === "Modify" ? "teal" : null}
+            active={optionSelected === "Modify"}
+            disabled={!optionSelected === "Modify"}
+            onClick={onModifyClick}
+          >
+            Modify
+          </Button>
+        </Button.Group>
+      </div>
+
+      <div style={{ margin: "10px 10px 10px 10px" }}>
+        {treeInputOperations[optionSelected].map((labelName) => {
+          return (
+            <SingleInput
+              key={labelName}
+              inputName={labelName}
+              hidden={optionSelected === "Add" && props.treeValues.root === null && labelName === "parent-id"}
+              onSingleInputSubmit={onSingleInputSubmit}
+              buttonText={optionSelected}
+              onAddSubmit={onAddSubmit}
+            />
+          );
+        })}
+        {optionSelected === "Add" && props.treeValues.root !== null && (
+          <Form.Group>
+            <label>{`${leftOrRightChild ? "Left" : "Right"}`} Child</label>
+            <Form.Radio
+              toggle
+              checked={leftOrRightChild}
+              onClick={onToggleChange}
+            />
+          </Form.Group>
+        )}
+      </div>
+    </div>
   );
 };
 
@@ -118,4 +172,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   updateTree,
+  assignInputObj,
+  deleteInputObj
 })(TreeInput);

@@ -1,25 +1,24 @@
 import store from '../../store';
-import { updateNodeID, updateMessage } from '../../actions';
-import { updateTree } from "../../actions";
+import { updateNodeID, updateMessage, assignVisValues } from '../../actions';
 import BinaryTreeNode from "../../data_structures/BinaryTreeNode";
+import BinaryTree from "../../data_structures/BinaryTree";
 import { createNodeID } from "../../data_structures/treeUtils";
 
 import _ from "lodash";
 
 
-const fibonacci = async (paramsObj) => {
+const fibonacci = async () => {
 
     const {n} = store.getState().inputObj;
     console.log(`fibonacci received n: ${n}`);
 
-    const tree = paramsObj["tree"];
-    let newTree = _.cloneDeep(tree);
-    const nodeID = createNodeID(newTree.idMap);
-    const newRoot = new BinaryTreeNode(nodeID, `fib(${n})`);
-    newTree.root = newRoot;
-    store.dispatch(updateTree(newTree));
-    const root = newTree.root;
-    await fibonacciHelper(newTree, root, n);
+    const tree = new BinaryTree();
+
+    const nodeID = createNodeID(tree.idMap);
+    const root = new BinaryTreeNode(nodeID, `fib(${n})`);
+    tree.root = root;
+    store.dispatch(assignVisValues(_.cloneDeep(tree)));
+    await fibonacciHelper(tree, root, n);
     store.dispatch(updateMessage(`Fibonacci visualization completed...`));
 }
 
@@ -34,7 +33,7 @@ const fibonacciHelper = async (tree, node, n) => {
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
         node.value = `${n}`;
         const newTree = _.cloneDeep(tree);
-        store.dispatch(updateTree(newTree));
+        store.dispatch(assignVisValues(newTree));
 
         store.dispatch(updateMessage(`Recursing...`));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
@@ -50,7 +49,7 @@ const fibonacciHelper = async (tree, node, n) => {
 
     node.left = leftNode;
     const newTreeBeforeLeft = _.cloneDeep(tree);
-    store.dispatch(updateTree(newTreeBeforeLeft));
+    store.dispatch(assignVisValues(newTreeBeforeLeft));
     
     store.dispatch(updateMessage(`${node.value}: Make first recursive call`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
@@ -61,12 +60,12 @@ const fibonacciHelper = async (tree, node, n) => {
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 
     const newTreeAfterLeft = _.cloneDeep(tree);
-    store.dispatch(updateTree(newTreeAfterLeft));
+    store.dispatch(assignVisValues(newTreeAfterLeft));
 
     node.right = rightNode;
 
     const newTreeBeforeRight = _.cloneDeep(tree);
-    store.dispatch(updateTree(newTreeBeforeRight));
+    store.dispatch(assignVisValues(newTreeBeforeRight));
 
     store.dispatch(updateMessage(`${node.value}: Make second recursive call`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
@@ -81,7 +80,7 @@ const fibonacciHelper = async (tree, node, n) => {
 
     node.value = parseInt(node.left.value) + parseInt(node.right.value);
     const newTreeAfterRight = _.cloneDeep(tree);
-    store.dispatch(updateTree(newTreeAfterRight));
+    store.dispatch(assignVisValues(newTreeAfterRight));
 
     store.dispatch(updateMessage(`Recursing...`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));

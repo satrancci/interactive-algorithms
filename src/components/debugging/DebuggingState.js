@@ -36,7 +36,7 @@ const DebuggingState = (props) => {
           inputObj: {JSON.stringify(props.state.inputObj)}
         </div>
         <div>
-          visValues:{props.state.dataStructure === "Tree" ? JSON.stringify(props.state.visValues.root) : props.state.visValue }
+          visValues:{props.state.dataStructure === "Tree" ? JSON.stringify(props.state.visValues.root) : props.state.visValues.map(val => `${val}  `) }
         </div>
       </div>
     );

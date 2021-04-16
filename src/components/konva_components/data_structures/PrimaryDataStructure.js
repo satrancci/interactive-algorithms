@@ -5,7 +5,7 @@ import Tree from "./Tree";
 import Array2D from "./Array2D";
 
 const PrimaryDataStructure = (props) => {
-
+  
   return (
     <Group>
       {props.dataStructure === "Array" ? (

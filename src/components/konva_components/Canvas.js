@@ -53,6 +53,7 @@ const Canvas = (props) => {
         {
           <PrimaryDataStructure
             values={props.state.visValues}
+            treeValues={props.state.visValues.root || props.state.treeValues.root}
             dataStructure={props.state.dataStructure}
             indices={props.state.indices}
             cellX={cellX}
@@ -64,7 +65,6 @@ const Canvas = (props) => {
             windowHeight={windowHeight}
             windowCenter={windowCenter}
             fontSize={fontSize}
-            treeValues={props.state.treeValues.root}
             curNodeID={props.state.nodeID}
           />
         }

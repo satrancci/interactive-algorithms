@@ -1,11 +1,18 @@
 import store from "../../store";
-import { updateNodeID, updateMessage } from "../../actions";
+import { updateNodeID, updateMessage, assignVisValues } from "../../actions";
+
+import _ from "lodash"
 
 const Deque = require("collections/deque");
 
-const levelOrderTraversal = async (paramsObj) => {
-  const tree = paramsObj["tree"];
-  const root = tree.root;
+const levelOrderTraversal = async () => {
+
+  const {treeValues} = store.getState().inputObj;
+  console.log(`levelOrderTraversal received treeValues: ${JSON.stringify(treeValues)}`);
+
+  store.dispatch(assignVisValues(_.cloneDeep(treeValues)));
+
+  const root = treeValues.root;
   levelOrderTraversalHelper(root);
 };
 

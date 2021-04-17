@@ -25,7 +25,7 @@ const AlgorithmSelection = (props) => {
   };
 
   return (
-    <div style={{display: "inline-block", width: "48%", margin: "10px 1% 10px 1%"}}>
+    <div style={{display: "inline-block"}}>
         <Dropdown
           placeholder='Select Algorithm'
           text={props.algorithm}

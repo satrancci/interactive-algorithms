@@ -41,7 +41,7 @@ const Canvas = (props) => {
       style={{
         overflow: "auto",
         boxSizing: "border-box",
-        padding: "2%",
+        padding: "1%",
         width: availableWidth,
         height: availableHeight
       }}

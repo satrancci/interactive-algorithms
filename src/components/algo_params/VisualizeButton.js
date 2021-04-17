@@ -19,7 +19,7 @@ const VisualizeButton = (props) => {
 
     return (
       <div>
-        <Button color="orange" style={{marginTop:"10px", marginBottom: "10px"}} onClick={onVisualize}>Visualize!</Button>
+        <Button color="orange" style={{}} onClick={onVisualize}>Visualize!</Button>
       </div>
     );
 };

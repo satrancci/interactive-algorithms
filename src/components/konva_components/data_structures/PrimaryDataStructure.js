@@ -6,6 +6,8 @@ import Array2D from "./Array2D";
 
 const PrimaryDataStructure = (props) => {
   
+  console.log(`PRIMARY DS canvasHeight: ${props.canvasHeight}`)
+
   return (
     <Group>
       {props.dataStructure === "Array" ? (
@@ -17,7 +19,7 @@ const PrimaryDataStructure = (props) => {
           cellHeight={props.cellHeight}
           iFactor={props.iFactor}
           textCenterX={props.textCenterX}
-          windowHeight={props.windowHeight}
+          canvasHeight={props.canvasHeight}
           fontSize={props.fontSize}
         />
       ) : null}
@@ -31,7 +33,7 @@ const PrimaryDataStructure = (props) => {
           cellHeight={props.cellHeight}
           iFactor={props.iFactor}
           textCenterX={props.textCenterX}
-          windowHeight={props.windowHeight}
+          canvasHeight={props.canvasHeight}
           fontSize={props.fontSize}
         />
       ) : null}
@@ -39,13 +41,13 @@ const PrimaryDataStructure = (props) => {
       {props.dataStructure === "Tree" ? (
         <Tree
           values={props.treeValues}
-          offset={props.windowWidth * 0.1}
+          offset={props.canvasWidth * 0.1}
           level={0}
           isRoot={true}
-          windowCenter={props.windowCenter}
-          x={props.windowCenter}
-          windowWidth={props.windowWidth}
-          windowHeight={props.windowHeight}
+          canvasCenter={props.canvasCenter}
+          x={props.canvasCenter}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
           curNodeID={props.curNodeID}
         />
       ) : null}

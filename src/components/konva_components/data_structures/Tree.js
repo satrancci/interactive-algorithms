@@ -4,7 +4,7 @@ import { Group } from "react-konva";
 import TreeNode from "./TreeNode";
 
 const Tree = (props) => {
-  const { values, x, offset, level, isRoot, windowCenter, child, curNodeID } = props;
+  const { values, x, offset, level, isRoot, canvasCenter, child, curNodeID } = props;
 
   /*
     console.log('values received:', values);
@@ -12,7 +12,7 @@ const Tree = (props) => {
     console.log('x:', x);
     console.log('level:', level);
     console.log('offset:', offset);
-    console.log('windowCenter:', windowCenter);
+    console.log('canvasCenter:', canvasCenter);
     */
 
   if (!values) {
@@ -23,7 +23,7 @@ const Tree = (props) => {
   //console.log('levelOffset:', levelOffset);
   const y = 50;
 
-  const distOffset = windowCenter / levelOffset;
+  const distOffset = canvasCenter / levelOffset;
   //console.log('distOffset:', distOffset);
 
   return (
@@ -71,7 +71,7 @@ const Tree = (props) => {
           level={level + 1}
           x={x - distOffset}
           isRoot={false}
-          windowCenter={windowCenter}
+          canvasCenter={canvasCenter}
           child="left"
           curNodeID={curNodeID}
         />
@@ -83,7 +83,7 @@ const Tree = (props) => {
           level={level + 1}
           x={x + distOffset}
           isRoot={false}
-          windowCenter={windowCenter}
+          canvasCenter={canvasCenter}
           child="right"
           curNodeID={curNodeID}
         />

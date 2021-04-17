@@ -3,7 +3,7 @@ import { Group, Rect, Text } from 'react-konva';
 
 const Array = (props) => {
 
-  const cellY = props.windowHeight*0.2;
+  const cellY = props.canvasHeight*0.2;
   const textCenterY = cellY+props.cellHeight*0.4;
 
   return (

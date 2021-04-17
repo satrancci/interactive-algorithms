@@ -3,10 +3,10 @@ import { Group, Text } from 'react-konva';
 
 const Message = (props) => {
 
-    const textStartX = props.windowWidth*0.1;
-    const textStartY = props.windowHeight*0.5;
-    
-    const fontSize = props.windowWidth/40;
+    const textStartX = props.canvasWidth*0.1;
+    const textStartY = props.canvasHeight*0.5;
+
+    const fontSize = props.canvasWidth/40;
 
     return (
         <Group>

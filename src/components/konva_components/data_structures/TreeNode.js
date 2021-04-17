@@ -8,7 +8,7 @@ const TreeNode = (props) => {
 
     //console.log('TREE NODE: id:', id, 'x:', x, 'y:', y, 'val:', val, 'level:', level, 'parentX:', parentX, 'parentY:', parentY, 'curNodeID:', curNodeID);
 
-    const fontSize = 15;
+    const fontSize = 14;
     const radius = 30;
 
     return (

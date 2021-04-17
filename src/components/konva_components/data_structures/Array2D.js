@@ -2,7 +2,8 @@ import React from "react";
 import { Group, Rect, Text } from "react-konva";
 
 const Array2D = (props) => {
-  const cellY = props.canvasHeight * 0.05;
+
+  const cellY = props.cellY;
   const textCenterY = cellY + props.cellHeight * 0.4;
 
   return (

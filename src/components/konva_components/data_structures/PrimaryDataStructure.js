@@ -8,6 +8,8 @@ const PrimaryDataStructure = (props) => {
   
   console.log(`PRIMARY DS canvasHeight: ${props.canvasHeight}`)
 
+  const cellY = props.canvasHeight*0.1;
+
   return (
     <Group>
       {props.dataStructure === "Array" ? (
@@ -15,6 +17,7 @@ const PrimaryDataStructure = (props) => {
           values={props.values}
           indices={props.indices}
           cellX={props.cellX}
+          cellY={cellY}
           cellWidth={props.cellWidth}
           cellHeight={props.cellHeight}
           iFactor={props.iFactor}
@@ -29,6 +32,7 @@ const PrimaryDataStructure = (props) => {
           values={props.values}
           indices={props.indices}
           cellX={props.cellX}
+          cellY={cellY}
           cellWidth={props.cellWidth}
           cellHeight={props.cellHeight}
           iFactor={props.iFactor}

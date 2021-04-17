@@ -11,19 +11,19 @@ import DebuggingState from "../debugging/DebuggingState";
 
 const InputSelectionWrapper = (props) => {
 
-  const parentRef   = useRef(null);
+  const elemRef = useRef(null);
 
   useEffect(() => {
-    if(parentRef.current){
-        let parentHeight = parentRef.current.offsetHeight;
-        let parentWidth  = parentRef.current.offsetWidth;
-        console.log(`parentRef. parentWidth: ${parentWidth}, parentHeight: ${parentHeight}`);
+    if(elemRef.current){
+        let elemHeight = elemRef.current.offsetHeight;
+        let elemWidth  = elemRef.current.offsetWidth;
+        props.callback({width: elemWidth, height: elemHeight});
     }
           
-  });
+  }, [elemRef, props.state.algorithm, props.state.dataStructure, props.state.inputObj, props.resize]);
 
   return (
-    <div ref = { parentRef }>
+    <div id="input-selection-wrapper" style={{boxSizing: "border-box", padding: "2%"}} ref = {elemRef}>
       <AlgorithmSelection />
 
       {props.state.algorithm ? <DataStructureSelection disabled={false}/> : <DataStructureSelection disabled={true}/>}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
 
@@ -9,10 +9,21 @@ import VisualizationSpeed from "../algo_params/VisualizationSpeed";
 import InputParams from "../algo_params/InputParams";
 import DebuggingState from "../debugging/DebuggingState";
 
-const Header = (props) => {
+const InputSelectionWrapper = (props) => {
+
+  const parentRef   = useRef(null);
+
+  useEffect(() => {
+    if(parentRef.current){
+        let parentHeight = parentRef.current.offsetHeight;
+        let parentWidth  = parentRef.current.offsetWidth;
+        console.log(`parentRef. parentWidth: ${parentWidth}, parentHeight: ${parentHeight}`);
+    }
+          
+  });
 
   return (
-    <div>
+    <div ref = { parentRef }>
       <AlgorithmSelection />
 
       {props.state.algorithm ? <DataStructureSelection disabled={false}/> : <DataStructureSelection disabled={true}/>}
@@ -23,7 +34,7 @@ const Header = (props) => {
 
       {props.state.algorithm && props.state.dataStructure && (!_.isEmpty(props.state.inputObj)) && <VisualizeButton />}
 
-      <DebuggingState />
+      {/*<DebuggingState />*/}
     </div>
   );
 };
@@ -34,4 +45,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(InputSelectionWrapper);

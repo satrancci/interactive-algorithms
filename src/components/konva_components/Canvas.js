@@ -8,7 +8,7 @@ import AuxiliaryInfo from "./explanations/AuxiliaryInfo";
 
 const Canvas = (props) => {
 
-  const availableWidth = window.innerWidth;
+  const availableWidth = props.x;
   const availableHeight = window.innerHeight - props.y;
   const canvasWidth = availableWidth;
   const canvasHeight = availableHeight;

@@ -4,26 +4,19 @@ import { Group } from "react-konva";
 import TreeNode from "./TreeNode";
 
 const Tree = (props) => {
-  const { values, x, offset, level, isRoot, windowCenter, child, curNodeID } = props;
-
-  /*
-    console.log('values received:', values);
-    console.log('child:', child);
-    console.log('x:', x);
-    console.log('level:', level);
-    console.log('offset:', offset);
-    console.log('windowCenter:', windowCenter);
-    */
+  const { values, x, offset, level, isRoot, canvasCenter, child, curNodeID } = props;
+  const maxLevel = Math.max(props.maxLevel, level);
 
   if (!values) {
     return null;
   }
 
-  const levelOffset = 2 ** (level + 1);
+  const decayMultiplier = 2.0;
+  const levelOffset = decayMultiplier ** (level + 1);
   //console.log('levelOffset:', levelOffset);
   const y = 50;
 
-  const distOffset = windowCenter / levelOffset;
+  const distOffset = canvasCenter / levelOffset;
   //console.log('distOffset:', distOffset);
 
   return (
@@ -38,6 +31,9 @@ const Tree = (props) => {
           parentX={null}
           parentY={null}
           curNodeID={curNodeID}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
+          maxLevel={maxLevel}
         />
       ) : null}
       {child === "left" ? (
@@ -47,9 +43,12 @@ const Tree = (props) => {
           id={values.id}
           level={level}
           val={values.value}
-          parentX={x + distOffset * 2}
+          parentX={x + distOffset * decayMultiplier}
           parentY={y + (level - 1) * offset}
           curNodeID={curNodeID}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
+          maxLevel={maxLevel}
         />
       ) : null}
       {child === "right" ? (
@@ -59,9 +58,12 @@ const Tree = (props) => {
           id={values.id}
           level={level}
           val={values.value}
-          parentX={x - distOffset * 2}
+          parentX={x - distOffset * decayMultiplier}
           parentY={y + (level - 1) * offset}
           curNodeID={curNodeID}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
+          maxLevel={maxLevel}
         />
       ) : null}
       {values.left ? (
@@ -71,9 +73,12 @@ const Tree = (props) => {
           level={level + 1}
           x={x - distOffset}
           isRoot={false}
-          windowCenter={windowCenter}
+          canvasCenter={canvasCenter}
           child="left"
           curNodeID={curNodeID}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
+          maxLevel={maxLevel}
         />
       ) : null}
       {values.right ? (
@@ -83,9 +88,12 @@ const Tree = (props) => {
           level={level + 1}
           x={x + distOffset}
           isRoot={false}
-          windowCenter={windowCenter}
+          canvasCenter={canvasCenter}
           child="right"
           curNodeID={curNodeID}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
+          maxLevel={maxLevel}
         />
       ) : null}
     </Group>

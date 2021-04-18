@@ -3,8 +3,13 @@ import { Group, Rect, Text } from 'react-konva';
 
 const Array = (props) => {
 
-  const cellY = props.windowHeight*0.2;
-  const textCenterY = cellY+props.cellHeight*0.4;
+  const cellY = props.cellY;
+  const textCenterY = props.textCenterY;
+
+  const fillColorArray = i => Object.values(props.indices).includes(i) ? "red" : "lightblue";
+  const fillColorArray2D = (i, j) => props.indices["i"] === i && props.indices["j"] === j ? "red" : "lightblue";
+
+  const calcCellTextX = (v,i) => props.textCenterX+i*props.iFactor - v.toString().length*0.08*props.cellWidth;
 
   return (
         <Group>
@@ -15,11 +20,11 @@ const Array = (props) => {
           y={cellY}
           width={props.cellWidth}
           height={props.cellHeight}
-          fill={Object.values(props.indices).includes(i) ? "red" : "lightblue"}
+          fill={(props.rowIdx === undefined || props.rowIdx === null) ? fillColorArray(i) : fillColorArray2D(props.rowIdx, i)}
           stroke="black"
           strokeWidth={1}
           />
-          <Text id={"cellText"+i} text={v} x={props.textCenterX+i*props.iFactor - v.toString().length*0.08*props.cellWidth} y={textCenterY} fontSize={props.fontSize} />
+          <Text id={"cellText"+i} text={v} x={calcCellTextX(v,i)} y={textCenterY} fontSize={props.fontSize} />
 
           </Group>
           )}

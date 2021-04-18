@@ -18,9 +18,7 @@ const VisualizeButton = (props) => {
 
 
     return (
-      <div>
-        <Button color="orange" style={{marginTop:"10px", marginBottom: "10px"}} onClick={onVisualize}>Visualize!</Button>
-      </div>
+        <Button size="small" disabled={props.disabled} color="orange" style={{marginLeft: "auto"}} onClick={onVisualize}>Visualize!</Button>
     );
 };
 

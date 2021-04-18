@@ -5,27 +5,30 @@ import { Dropdown } from "semantic-ui-react";
 import { updateAlgorithm, updateDataStructure, deleteVisValues, deleteInputObj } from '../../actions';
 import algorithmMappings from '../../algorithmMappings';
 
-
+// sort by the length of algorithm name so that all options are fully visible in the dropdown
+const compare = (a, b) => {
+  if (a["key"].length > b["key"].length) {return -1;}
+  if (a["key"].length < b["key"].length) {return 1;}
+  return 0;
+}
 
 const AlgorithmSelection = (props) => {
 
-  const filtered = false ? Object.fromEntries(Object.entries(algorithmMappings).filter(alg => alg[1].tags.includes(props.dataStructure))) : algorithmMappings; // needs to be simplified
-  const algorithms = Object.keys(filtered);
-  const options = algorithms.map(elem => Object({key:elem, text:elem, value:elem}));
-
+  const algorithms = Object.keys(algorithmMappings);
+  const options = algorithms.map(elem => Object({key:elem, text:elem, value:elem})).sort((a,b) => compare(a,b));
 
   const handleOnChange = (e, data) => {
+    const newDataStructure = algorithmMappings[data.value].tags[0];
     props.updateAlgorithm(data.value);
-    if (Object.keys(algorithmMappings[data.value].params).length > 0) {console.log('params required!')};
+    props.updateDataStructure(newDataStructure);
     if (props.dataStructure && (!(algorithmMappings[data.value].tags.includes(props.dataStructure)))) {
-        props.updateDataStructure("");
         props.deleteInputObj();
         props.deleteVisValues();
       }
   };
 
   return (
-    <div style={{display: "inline-block", width: "48%", margin: "10px 1% 10px 1%"}}>
+    <div style={{}}>
         <Dropdown
           placeholder='Select Algorithm'
           text={props.algorithm}

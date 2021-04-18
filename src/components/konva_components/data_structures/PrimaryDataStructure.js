@@ -6,6 +6,9 @@ import Array2D from "./Array2D";
 
 const PrimaryDataStructure = (props) => {
   
+  const cellY = 0;
+  const textCenterY = cellY+props.cellHeight*0.4;
+
   return (
     <Group>
       {props.dataStructure === "Array" ? (
@@ -13,11 +16,13 @@ const PrimaryDataStructure = (props) => {
           values={props.values}
           indices={props.indices}
           cellX={props.cellX}
+          cellY={cellY}
           cellWidth={props.cellWidth}
           cellHeight={props.cellHeight}
           iFactor={props.iFactor}
           textCenterX={props.textCenterX}
-          windowHeight={props.windowHeight}
+          canvasHeight={props.canvasHeight}
+          textCenterY={textCenterY}
           fontSize={props.fontSize}
         />
       ) : null}
@@ -27,11 +32,13 @@ const PrimaryDataStructure = (props) => {
           values={props.values}
           indices={props.indices}
           cellX={props.cellX}
+          cellY={cellY}
           cellWidth={props.cellWidth}
           cellHeight={props.cellHeight}
           iFactor={props.iFactor}
           textCenterX={props.textCenterX}
-          windowHeight={props.windowHeight}
+          canvasHeight={props.canvasHeight}
+          textCenterY={textCenterY}
           fontSize={props.fontSize}
         />
       ) : null}
@@ -39,14 +46,15 @@ const PrimaryDataStructure = (props) => {
       {props.dataStructure === "Tree" ? (
         <Tree
           values={props.treeValues}
-          offset={props.windowWidth * 0.1}
+          offset={props.canvasWidth * 0.1}
           level={0}
           isRoot={true}
-          windowCenter={props.windowCenter}
-          x={props.windowCenter}
-          windowWidth={props.windowWidth}
-          windowHeight={props.windowHeight}
+          canvasCenter={props.canvasCenter}
+          x={props.canvasCenter}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
           curNodeID={props.curNodeID}
+          maxLevel={0}
         />
       ) : null}
     </Group>

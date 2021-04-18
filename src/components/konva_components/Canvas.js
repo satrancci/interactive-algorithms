@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Stage, Layer, Circle } from "react-konva";
+import { Stage, Layer } from "react-konva";
 import PrimaryDataStructure from "./data_structures/PrimaryDataStructure";
 import DynamicIndex from "./explanations/DynamicIndex";
 import Message from "./explanations/Message";
@@ -8,88 +8,78 @@ import AuxiliaryInfo from "./explanations/AuxiliaryInfo";
 
 const Canvas = (props) => {
 
-  const scaleFactorX = 0.8;
-  const scaleFactorY = 0.8;
-
-  const [windowWidth, setWindowWidth] = useState(
-    window.innerWidth * scaleFactorX
-  );
-  const [windowHeight, setWindowHeight] = useState(
-    window.innerHeight * scaleFactorY
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth * scaleFactorX);
-      setWindowHeight(window.innerHeight * scaleFactorY);
-    };
-    window.addEventListener("resize", handleResize);
-
-    return (_) => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
+  const availableWidth = props.x;
+  const availableHeight = window.innerHeight - props.y;
+  const canvasWidth = availableWidth;
+  const canvasHeight = availableHeight;
 
   // for Array
   const N = props.state.visValues.length;
   const divisor = Math.max(N, 5);
-  const cellX = windowWidth*0.1;
-  const cellWidth = windowWidth/(divisor*1.2);
-  const cellHeight = windowHeight/(divisor*1.2);
-  const iFactor = windowWidth/(divisor*1.2);
-  const textCenterX = cellX+cellWidth*0.5;
-  const fontSize = cellWidth/4;
+  const divisorConstant = 1.4;
+  const cellX = canvasWidth * 0.05;
+  const cellWidth = canvasWidth / (divisor * divisorConstant);
+  const cellHeight = canvasHeight / (divisor * divisorConstant);
+  const iFactor = canvasWidth / (divisor * divisorConstant);
+  const textCenterX = cellX + cellWidth * 0.5;
+  const fontSize = Math.max(cellWidth / 5, cellHeight / 5);
 
-  const windowCenter = windowWidth/2;
-  
+  const canvasCenter = canvasWidth / 2;
 
   return (
-    <Stage
-      width={windowWidth}
-      height={windowHeight}
-      style={{ borderStyle: "solid" }}
+    <div
+      id="canvas-wrapper"
+      style={{
+        overflow: "auto",
+        boxSizing: "border-box",
+        padding: "1%",
+        backgroundColor: "#EEEEEE",
+      }}
     >
-      <Layer>
-        {
-          <PrimaryDataStructure
-            values={props.state.visValues}
-            treeValues={props.state.visValues.root || props.state.treeValues.root}
-            dataStructure={props.state.dataStructure}
-            indices={props.state.indices}
-            cellX={cellX}
-            cellWidth={cellWidth}
-            cellHeight={cellHeight}
-            iFactor={iFactor}
-            textCenterX={textCenterX}
-            windowWidth={windowWidth}
-            windowHeight={windowHeight}
-            windowCenter={windowCenter}
-            fontSize={fontSize}
-            curNodeID={props.state.nodeID}
-          />
-        }
-        {props.state.dataStructure === "Array" ? (
-          <DynamicIndex
-            indices={props.state.indices}
-            textCenterX={textCenterX}
-            windowHeight={windowHeight}
-            cellHeight={cellHeight}
-            iFactor={iFactor}
-            cellWidth={cellWidth}
-            fontSize={fontSize}
+      <Stage width={canvasWidth} height={canvasHeight*2} draggable>
+        <Layer>
+          {
+            <PrimaryDataStructure
+              values={props.state.visValues}
+              treeValues={props.state.visValues.root || props.state.treeValues.root}
+              dataStructure={props.state.dataStructure}
+              indices={props.state.indices}
+              cellX={cellX}
+              cellWidth={cellWidth}
+              cellHeight={cellHeight || null}
+              iFactor={iFactor}
+              textCenterX={textCenterX}
+              canvasWidth={canvasWidth}
+              canvasHeight={canvasHeight}
+              canvasCenter={canvasCenter}
+              fontSize={fontSize}
+              curNodeID={props.state.nodeID}
+            />
+          }
+          {props.state.dataStructure === "Array" ? (
+            <DynamicIndex
+              indices={props.state.indices}
+              textCenterX={textCenterX}
+              canvasHeight={canvasHeight}
+              cellHeight={cellHeight}
+              iFactor={iFactor}
+              cellWidth={cellWidth}
+              ellHeight={cellHeight}
+              fontSize={fontSize}
 
-          />
-        ) : null}
-        {
-          <Message
-            message={props.state.message}
-            windowWidth={windowWidth}
-            windowHeight={windowHeight}
-          />
-        }
-        {<AuxiliaryInfo />}
-      </Layer>
-    </Stage>
+            />
+          ) : null}
+          {
+            <Message
+              message={props.state.message}
+              canvasWidth={canvasWidth}
+              canvasHeight={canvasHeight}
+            />
+          }
+          {<AuxiliaryInfo />}
+        </Layer>
+      </Stage>
+    </div>
   );
 };
 

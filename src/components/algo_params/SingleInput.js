@@ -49,8 +49,9 @@ const SingleInput = (props) => {
     if (props.hidden) {return null};
 
     return (
-      <div style={{display: "inline-block", marginRight: "5px", marginBottom: "10px"}}>
+      <div style={{display: "inline-block"}}>
         <Input
+          size="small"
           placeholder={placeholderValue}
           label={`${inputName}: `}
           id={inputName}
@@ -58,7 +59,7 @@ const SingleInput = (props) => {
           value={valToAdd}
           onChange={(e) => onAddValue(e.target.value)}
         />
-        <Button primary onClick={onAddSubmit}>{props.buttonText || "Add"}</Button>
+        <Button size="small" primary onClick={onAddSubmit}>{props.buttonText || "Add"}</Button>
       </div>
     );
 };

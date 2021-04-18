@@ -18,25 +18,9 @@ function valuetext(value) {
 
 const marks = [
   {
-    value: 1,
-    label: 'Very Fast',
-  },
-  {
-    value: 2,
-    label: 'Fast',
-  },
-  {
     value: 3,
-    label: 'Normal',
-  },
-  {
-    value: 4,
-    label: 'Slow',
-  },
-  {
-    value: 5,
-    label: 'Very Slow',
-  },
+    label: 'Fast <- Normal -> Slow',
+  }
 ];
 
 
@@ -46,9 +30,8 @@ const VisualizationSpeed = (props) => {
   const onChangeSpeed = newValue => props.updateVisualizationSpeed(newValue);
 
   return (
-    <div className={classes.root} style={{marginLeft: "40px", marginTop: "20px", marginBottom: "10px"}}>
+    <div className={classes.root} style={{margin: "auto"}}>
       <Typography id="discrete-slider" gutterBottom>
-        Visualization Speed
       </Typography>
       <Slider
         value={props.state.visualizationSpeed}

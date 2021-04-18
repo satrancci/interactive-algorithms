@@ -20,7 +20,7 @@ const InputSelectionWrapper = (props) => {
   }, [elemRef, props.state.algorithm, props.state.dataStructure, props.state.inputObj, props.resize]);
 
   return (
-    <div id="input-selection-wrapper" style={{boxSizing: "border-box", backgroundColor: "#EEEEEE", padding: "0%"}} ref = {elemRef}>
+    <div id="input-selection-wrapper" style={{boxSizing: "border-box", backgroundColor: "#F4F4F4", padding: "0%"}} ref = {elemRef}>
 
       {props.state.algorithm && <InputParams/>}
       

@@ -1,15 +1,30 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Group, Circle, Line, Text } from 'react-konva';
+
+
+const decayTable = {
+    2: 0.95,
+    3: 0.9,
+    4: 0.85,
+    5: 0.75,
+    6: 0.65,
+    7: 0.7,
+    8: 0.65,
+    9: 0.6
+}
 
 
 const TreeNode = (props) => {
 
-    const {i, x, y, val, level, parentX, parentY, id, curNodeID} = props;
+    const {i, x, y, val, level, parentX, parentY, id, curNodeID, canvasWidth, canvasHeight} = props;
 
-    //console.log('TREE NODE: id:', id, 'x:', x, 'y:', y, 'val:', val, 'level:', level, 'parentX:', parentX, 'parentY:', parentY, 'curNodeID:', curNodeID);
+    let fontSize = Math.min(canvasWidth, canvasHeight) * 0.02;
+    fontSize = level > 3 ? fontSize * decayTable[level] : fontSize;
 
-    const fontSize = Math.min(props.canvasWidth, props.canvasHeight) * 0.02;
-    const radius = Math.min(props.canvasWidth, props.canvasHeight) * 0.04;
+    let radius = Math.min(canvasWidth, canvasHeight) * 0.04;
+    console.log(`TREENODE original radius: ${radius} for level: ${level}`);
+    radius = level > 3 ? radius * decayTable[level] : radius;
+    console.log(`TREENODE adjusted radius: ${radius} for level: ${level}`);
 
     return (
         <Group id={"nodeID"+id}>

@@ -13,7 +13,6 @@ const treeInputOperations = {
 };
 
 const TreeInput = (props) => {
-
   const [optionSelected, setOptionSelected] = useState("Add");
 
   const [singleInputObj, setSingleInputObj] = useState({});
@@ -22,40 +21,46 @@ const TreeInput = (props) => {
   const onToggleChange = (e) => setLeftOrRightChild(!leftOrRightChild);
 
   const onAddClick = () => setOptionSelected("Add");
-  const onDeleteClick = () => props.treeValues.root !== null ? setOptionSelected("Delete") : null;
-  const onModifyClick = () => props.treeValues.root !== null ? setOptionSelected("Modify") : null;
-
+  const onDeleteClick = () =>
+    props.treeValues.root !== null ? setOptionSelected("Delete") : null;
+  const onModifyClick = () =>
+    props.treeValues.root !== null ? setOptionSelected("Modify") : null;
 
   const onSingleInputSubmit = (inputName, value) => {
-      setSingleInputObj((singleInputObj) => ({
+    setSingleInputObj((singleInputObj) => ({
       ...singleInputObj,
       [inputName]: value,
     }));
   };
 
   useEffect(() => {
-      const objLength = Object.keys(singleInputObj).length;
-      const optionsLength = treeInputOperations[optionSelected].length;
-      if ( (objLength === optionsLength) || (props.treeValues.root === null && objLength === optionsLength-1 )) {
-          switch (optionSelected) {
-              case "Add":
-                  onAddSubmit(singleInputObj);
-                  setSingleInputObj({});
-                  break;
-              case "Delete":
-                  onDeleteSubmit(singleInputObj);
-                  setSingleInputObj({});
-                  if (props.treeValues.tree === null) {setOptionSelected("Add")};
-                  break;
-              case "Modify":
-                  onModifySubmit(singleInputObj);
-                  setSingleInputObj({});
-                  break;
-              default:
-                  return null;
+    const objLength = Object.keys(singleInputObj).length;
+    const optionsLength = treeInputOperations[optionSelected].length;
+    if (
+      objLength === optionsLength ||
+      (props.treeValues.root === null && objLength === optionsLength - 1)
+    ) {
+      switch (optionSelected) {
+        case "Add":
+          onAddSubmit(singleInputObj);
+          setSingleInputObj({});
+          break;
+        case "Delete":
+          onDeleteSubmit(singleInputObj);
+          setSingleInputObj({});
+          if (props.treeValues.tree === null) {
+            setOptionSelected("Add");
           }
-      }        
-  }, [singleInputObj])
+          break;
+        case "Modify":
+          onModifySubmit(singleInputObj);
+          setSingleInputObj({});
+          break;
+        default:
+          return null;
+      }
+    }
+  }, [singleInputObj]);
 
   // add validation to all later
   const onAddSubmit = (obj) => {
@@ -66,7 +71,7 @@ const TreeInput = (props) => {
       const parID = newTree.root === null ? null : parentID;
       const leftChild = leftOrRightChild === true;
       newTree.insert(parID, value, leftChild);
-      props.assignInputObj({"treeValues": newTree});
+      props.assignInputObj({ treeValues: newTree });
       props.updateTree(newTree);
       setLeftOrRightChild(!leftOrRightChild);
     }
@@ -78,10 +83,10 @@ const TreeInput = (props) => {
       let newTree = _.cloneDeep(props.treeValues);
       newTree.delete(nodeID);
       if (newTree.root === null) {
-          props.deleteInputObj();
-          setOptionSelected("Add");
+        props.deleteInputObj();
+        setOptionSelected("Add");
       } else {
-          props.assignInputObj({"treeValues": newTree});
+        props.assignInputObj({ treeValues: newTree });
       }
       props.updateTree(newTree);
     } else {
@@ -89,14 +94,13 @@ const TreeInput = (props) => {
     }
   };
 
-
   const onModifySubmit = (obj) => {
     const value = obj["node-value"];
     const nodeID = obj["node-id"];
     if (value && nodeID) {
       let newTree = _.cloneDeep(props.treeValues);
       newTree.modify(nodeID, value);
-      props.assignInputObj({"treeValues": newTree});
+      props.assignInputObj({ treeValues: newTree });
       props.updateTree(newTree);
     } else {
       console.log("You need to provide both value and nodeID");
@@ -105,7 +109,7 @@ const TreeInput = (props) => {
 
   return (
     <div>
-      <div style={{ margin: "10px 10px 10px 10px" }}>
+      <div>
         <Button.Group>
           <Button
             color={optionSelected === "Add" ? "teal" : null}
@@ -136,29 +140,35 @@ const TreeInput = (props) => {
         </Button.Group>
       </div>
 
-      <div style={{ margin: "10px 10px 10px 10px" }}>
+      <div>
         {treeInputOperations[optionSelected].map((labelName) => {
           return (
             <SingleInput
               key={labelName}
               inputName={labelName}
-              hidden={optionSelected === "Add" && props.treeValues.root === null && labelName === "parent-id"}
+              hidden={
+                optionSelected === "Add" &&
+                props.treeValues.root === null &&
+                labelName === "parent-id"
+              }
               onSingleInputSubmit={onSingleInputSubmit}
               buttonText={optionSelected}
               onAddSubmit={onAddSubmit}
             />
           );
         })}
-        {optionSelected === "Add" && props.treeValues.root !== null && (
-          <Form.Group>
-            <label>{`${leftOrRightChild ? "Left" : "Right"}`} Child</label>
-            <Form.Radio
-              toggle
-              checked={leftOrRightChild}
-              onClick={onToggleChange}
-            />
-          </Form.Group>
-        )}
+        <div>
+          {optionSelected === "Add" && props.treeValues.root !== null && (
+            <Form.Group>
+              <label>{`${leftOrRightChild ? "Left" : "Right"}`} Child</label>
+              <Form.Radio
+                toggle
+                checked={leftOrRightChild}
+                onClick={onToggleChange}
+              />
+            </Form.Group>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -173,5 +183,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   updateTree,
   assignInputObj,
-  deleteInputObj
+  deleteInputObj,
 })(TreeInput);

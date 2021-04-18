@@ -9,6 +9,7 @@ const PrimaryDataStructure = (props) => {
   console.log(`PRIMARY DS canvasHeight: ${props.canvasHeight}`)
 
   const cellY = props.canvasHeight*0.1;
+  const textCenterY = cellY+props.cellHeight*0.4;
 
   return (
     <Group>
@@ -23,6 +24,7 @@ const PrimaryDataStructure = (props) => {
           iFactor={props.iFactor}
           textCenterX={props.textCenterX}
           canvasHeight={props.canvasHeight}
+          textCenterY={textCenterY}
           fontSize={props.fontSize}
         />
       ) : null}
@@ -38,6 +40,7 @@ const PrimaryDataStructure = (props) => {
           iFactor={props.iFactor}
           textCenterX={props.textCenterX}
           canvasHeight={props.canvasHeight}
+          textCenterY={textCenterY}
           fontSize={props.fontSize}
         />
       ) : null}

@@ -4,7 +4,10 @@ import { Group, Rect, Text } from 'react-konva';
 const Array = (props) => {
 
   const cellY = props.cellY;
-  const textCenterY = cellY+props.cellHeight*0.4;
+  const textCenterY = props.textCenterY;
+
+  const fillColorArray = i => Object.values(props.indices).includes(i) ? "red" : "lightblue";
+  const fillColorArray2D = (i, j) => props.indices["i"] === i && props.indices["j"] === j ? "red" : "lightblue";
 
   return (
         <Group>
@@ -15,7 +18,7 @@ const Array = (props) => {
           y={cellY}
           width={props.cellWidth}
           height={props.cellHeight}
-          fill={Object.values(props.indices).includes(i) ? "red" : "lightblue"}
+          fill={(props.rowIdx === undefined || props.rowIdx === null) ? fillColorArray(i) : fillColorArray2D(props.rowIdx, i)}
           stroke="black"
           strokeWidth={1}
           />

@@ -8,14 +8,14 @@ const TreeNode = (props) => {
 
     //console.log('TREE NODE: id:', id, 'x:', x, 'y:', y, 'val:', val, 'level:', level, 'parentX:', parentX, 'parentY:', parentY, 'curNodeID:', curNodeID);
 
-    const fontSize = 14;
-    const radius = 30;
+    const fontSize = Math.min(props.canvasWidth, props.canvasHeight) * 0.02;
+    const radius = Math.min(props.canvasWidth, props.canvasHeight) * 0.04;
 
     return (
         <Group id={"nodeID"+id}>
              <Circle x={x} y={y} radius={radius} fill={curNodeID === id ? "red" : "green"} />
              <Line points={[x-radius, y+radius*0.3, x+radius, y+radius*0.3]} stroke="black" strokeWidth={0.5}/>
-             <Text text={val} x={x} y={y-radius*0.3} fontSize={fontSize} />
+             <Text text={val} x={x-val.toString().length*0.08*radius} y={y-radius*0.3} fontSize={fontSize} />
              <Text text={id} x={x} y={y+radius*0.5} fontSize={fontSize*0.75} />
              {parentX && parentY ? <Line points={[parentX, parentY+radius, x, y-radius]} stroke={"black"} strokeWidth={1} /> : null}
         </Group>

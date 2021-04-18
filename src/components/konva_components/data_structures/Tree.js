@@ -6,15 +6,6 @@ import TreeNode from "./TreeNode";
 const Tree = (props) => {
   const { values, x, offset, level, isRoot, canvasCenter, child, curNodeID } = props;
 
-  /*
-    console.log('values received:', values);
-    console.log('child:', child);
-    console.log('x:', x);
-    console.log('level:', level);
-    console.log('offset:', offset);
-    console.log('canvasCenter:', canvasCenter);
-    */
-
   if (!values) {
     return null;
   }
@@ -38,6 +29,8 @@ const Tree = (props) => {
           parentX={null}
           parentY={null}
           curNodeID={curNodeID}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
         />
       ) : null}
       {child === "left" ? (
@@ -50,6 +43,8 @@ const Tree = (props) => {
           parentX={x + distOffset * 2}
           parentY={y + (level - 1) * offset}
           curNodeID={curNodeID}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
         />
       ) : null}
       {child === "right" ? (
@@ -62,6 +57,8 @@ const Tree = (props) => {
           parentX={x - distOffset * 2}
           parentY={y + (level - 1) * offset}
           curNodeID={curNodeID}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
         />
       ) : null}
       {values.left ? (
@@ -74,6 +71,8 @@ const Tree = (props) => {
           canvasCenter={canvasCenter}
           child="left"
           curNodeID={curNodeID}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
         />
       ) : null}
       {values.right ? (
@@ -86,6 +85,8 @@ const Tree = (props) => {
           canvasCenter={canvasCenter}
           child="right"
           curNodeID={curNodeID}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
         />
       ) : null}
     </Group>

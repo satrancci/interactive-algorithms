@@ -27,7 +27,7 @@ const InputParams = (props) => {
     }, [inputObj])
 
     return (
-        <div>
+        <div style={{display: "flex"}}>
             {inputNames.includes("treeValues") ? <TreeInput/> : null}
 
             {inputNames && (!inputNames.includes("treeValues")) && inputNames.map((inputName) => {

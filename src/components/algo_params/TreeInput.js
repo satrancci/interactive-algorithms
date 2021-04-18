@@ -112,6 +112,7 @@ const TreeInput = (props) => {
       <div>
         <Button.Group>
           <Button
+            size="small"
             color={optionSelected === "Add" ? "teal" : null}
             active={optionSelected === "Add"}
             disabled={!optionSelected === "Add"}
@@ -121,6 +122,7 @@ const TreeInput = (props) => {
           </Button>
           <Button.Or />
           <Button
+            size="small"
             color={optionSelected === "Delete" ? "teal" : null}
             active={optionSelected === "Delete"}
             disabled={!optionSelected === "Delete"}
@@ -130,6 +132,7 @@ const TreeInput = (props) => {
           </Button>
           <Button.Or />
           <Button
+            size="small"
             color={optionSelected === "Modify" ? "teal" : null}
             active={optionSelected === "Modify"}
             disabled={!optionSelected === "Modify"}

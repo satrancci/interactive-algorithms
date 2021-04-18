@@ -51,6 +51,7 @@ const SingleInput = (props) => {
     return (
       <div style={{display: "inline-block"}}>
         <Input
+          size="small"
           placeholder={placeholderValue}
           label={`${inputName}: `}
           id={inputName}
@@ -58,7 +59,7 @@ const SingleInput = (props) => {
           value={valToAdd}
           onChange={(e) => onAddValue(e.target.value)}
         />
-        <Button primary onClick={onAddSubmit}>{props.buttonText || "Add"}</Button>
+        <Button size="small" primary onClick={onAddSubmit}>{props.buttonText || "Add"}</Button>
       </div>
     );
 };

@@ -5,7 +5,7 @@ import Array from "./Array";
 const Array2D = (props) => {
 
   const cellY = props.cellY;
-  const textCenterY = cellY + props.cellHeight * 0.4;
+  const textCenterY = props.textCenterY;
 
   return (
     <Group>

@@ -23,7 +23,7 @@ const InputSelectionWrapper = (props) => {
   }, [elemRef, props.state.algorithm, props.state.dataStructure, props.state.inputObj, props.resize]);
 
   return (
-    <div id="input-selection-wrapper" style={{boxSizing: "border-box", padding: "2%"}} ref = {elemRef}>
+    <div id="input-selection-wrapper" style={{boxSizing: "border-box", backgroundColor: "#72ce9b", padding: "0%"}} ref = {elemRef}>
       <AlgorithmSelection />
 
       {props.state.algorithm ? <DataStructureSelection disabled={false}/> : <DataStructureSelection disabled={true}/>}

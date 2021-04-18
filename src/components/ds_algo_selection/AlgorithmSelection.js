@@ -28,7 +28,7 @@ const AlgorithmSelection = (props) => {
   };
 
   return (
-    <div style={{display: "inline-block"}}>
+    <div style={{}}>
         <Dropdown
           placeholder='Select Algorithm'
           text={props.algorithm}

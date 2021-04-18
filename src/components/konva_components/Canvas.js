@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Stage, Layer } from "react-konva";
 import PrimaryDataStructure from "./data_structures/PrimaryDataStructure";
@@ -9,29 +9,21 @@ import AuxiliaryInfo from "./explanations/AuxiliaryInfo";
 const Canvas = (props) => {
 
 
-  console.log(`Canvas received props.x: ${props.x}`);
   const availableWidth = window.innerWidth;
-  console.log(`Canvas available width: ${availableWidth}`);
-
-  console.log(`Canvas received props.y: ${props.y}`);
   const availableHeight = window.innerHeight - props.y;
-  console.log(`Canvas available height: ${availableHeight}`);
-
-  const canvasWidth = availableWidth * 0.9;
-  const canvasHeight = availableHeight * 0.9;
-  console.log(`CANVAS SIZE: ${canvasWidth}x${canvasHeight}`);
+  const canvasWidth = availableWidth;
+  const canvasHeight = availableHeight;
 
   // for Array
   const N = props.state.visValues.length;
   const divisor = Math.max(N, 5);
-  const cellX = canvasWidth * 0.1;
-  const cellWidth = canvasWidth / (divisor * 1.2);
-  const cellHeight = canvasHeight / (divisor * 1.2);
-  const iFactor = canvasWidth / (divisor * 1.2);
+  const divisorConstant = 1.4;
+  const cellX = canvasWidth * 0.05;
+  const cellWidth = canvasWidth / (divisor * divisorConstant);
+  const cellHeight = canvasHeight / (divisor * divisorConstant);
+  const iFactor = canvasWidth / (divisor * divisorConstant);
   const textCenterX = cellX + cellWidth * 0.5;
   const fontSize = cellWidth / 4;
-
-  console.log(`cellX: ${cellX}, cellWidth: ${cellWidth}, cellHeight: ${cellHeight}`)
 
   const canvasCenter = canvasWidth / 2;
 
@@ -42,11 +34,12 @@ const Canvas = (props) => {
         overflow: "auto",
         boxSizing: "border-box",
         padding: "1%",
+        backgroundColor: "#EEEEEE",
         width: availableWidth,
         height: availableHeight
       }}
     >
-      <Stage width={canvasWidth} height={canvasHeight} draggable>
+      <Stage width={canvasWidth} height={canvasHeight*2} draggable>
         <Layer>
           {
             <PrimaryDataStructure
@@ -56,7 +49,7 @@ const Canvas = (props) => {
               indices={props.state.indices}
               cellX={cellX}
               cellWidth={cellWidth}
-              cellHeight={cellHeight}
+              cellHeight={cellHeight || null}
               iFactor={iFactor}
               textCenterX={textCenterX}
               canvasWidth={canvasWidth}

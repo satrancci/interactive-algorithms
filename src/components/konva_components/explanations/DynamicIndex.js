@@ -3,11 +3,11 @@ import { Group, Text } from "react-konva";
 
 const DynamicIndex = (props) => {
   const indicesList = Object.entries(props.indices);
-  const textY = props.canvasHeight * 0.3;
-  const textCenterY = textY + props.cellHeight * 0.4;
+  const textY = props.cellHeight;
+  const textCenterY = textY + props.canvasHeight * 0.05;
 
   const offsetY = props.canvasHeight * 0.05;
-  const fontSizeMultiplier = 1.2;
+  const fontSizeMultiplier = 1.0;
   const fontColor = "red";
 
   return (

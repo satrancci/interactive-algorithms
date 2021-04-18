@@ -21,6 +21,10 @@ const Header = (props) => {
     return (
         <div id="header" style={{boxSizing: "border-box", backgroundColor: "#add8e6", display: "flex"}} ref={elemRef}>
             <AlgorithmSelection />
+            <div style={{ margin: "auto"}}>
+              <a href="https://github.com/satrancci/interactive-algorithms" title="Interactive Algorithms"><i class="large github icon"></i></a>
+            </div>
+            
             {(props.state.algorithm && (!_.isEmpty(props.state.inputObj))) ? <VisualizeButton disabled={false}/> : <VisualizeButton disabled={true}/>}
         </div>
     )

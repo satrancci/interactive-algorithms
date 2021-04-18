@@ -5,12 +5,14 @@ import TreeNode from "./TreeNode";
 
 const Tree = (props) => {
   const { values, x, offset, level, isRoot, canvasCenter, child, curNodeID } = props;
+  const maxLevel = Math.max(props.maxLevel, level);
 
   if (!values) {
     return null;
   }
 
-  const levelOffset = 2 ** (level + 1);
+  const decayMultiplier = 2.0;
+  const levelOffset = decayMultiplier ** (level + 1);
   //console.log('levelOffset:', levelOffset);
   const y = 50;
 
@@ -31,6 +33,7 @@ const Tree = (props) => {
           curNodeID={curNodeID}
           canvasWidth={props.canvasWidth}
           canvasHeight={props.canvasHeight}
+          maxLevel={maxLevel}
         />
       ) : null}
       {child === "left" ? (
@@ -40,11 +43,12 @@ const Tree = (props) => {
           id={values.id}
           level={level}
           val={values.value}
-          parentX={x + distOffset * 2}
+          parentX={x + distOffset * decayMultiplier}
           parentY={y + (level - 1) * offset}
           curNodeID={curNodeID}
           canvasWidth={props.canvasWidth}
           canvasHeight={props.canvasHeight}
+          maxLevel={maxLevel}
         />
       ) : null}
       {child === "right" ? (
@@ -54,11 +58,12 @@ const Tree = (props) => {
           id={values.id}
           level={level}
           val={values.value}
-          parentX={x - distOffset * 2}
+          parentX={x - distOffset * decayMultiplier}
           parentY={y + (level - 1) * offset}
           curNodeID={curNodeID}
           canvasWidth={props.canvasWidth}
           canvasHeight={props.canvasHeight}
+          maxLevel={maxLevel}
         />
       ) : null}
       {values.left ? (
@@ -73,6 +78,7 @@ const Tree = (props) => {
           curNodeID={curNodeID}
           canvasWidth={props.canvasWidth}
           canvasHeight={props.canvasHeight}
+          maxLevel={maxLevel}
         />
       ) : null}
       {values.right ? (
@@ -87,6 +93,7 @@ const Tree = (props) => {
           curNodeID={curNodeID}
           canvasWidth={props.canvasWidth}
           canvasHeight={props.canvasHeight}
+          maxLevel={maxLevel}
         />
       ) : null}
     </Group>

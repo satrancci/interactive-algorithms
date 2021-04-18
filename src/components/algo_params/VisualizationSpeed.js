@@ -30,7 +30,7 @@ const VisualizationSpeed = (props) => {
   const onChangeSpeed = newValue => props.updateVisualizationSpeed(newValue);
 
   return (
-    <div className={classes.root} style={{}}>
+    <div className={classes.root} style={{margin: "auto"}}>
       <Typography id="discrete-slider" gutterBottom>
       </Typography>
       <Slider

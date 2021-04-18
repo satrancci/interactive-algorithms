@@ -34,7 +34,7 @@ const App = () => {
       />
       <Canvas
         x={window.innerWidth}
-        y={headerSize["height"] + inputSelectionWrapperSize["height"]}
+        y={(headerSize["height"] + inputSelectionWrapperSize["height"]) ? headerSize["height"] + inputSelectionWrapperSize["height"] : 0} // to avoid NaN warning
       />
     </div>
   );

@@ -9,6 +9,8 @@ const Array = (props) => {
   const fillColorArray = i => Object.values(props.indices).includes(i) ? "red" : "lightblue";
   const fillColorArray2D = (i, j) => props.indices["i"] === i && props.indices["j"] === j ? "red" : "lightblue";
 
+  const calcCellTextX = (v,i) => props.textCenterX+i*props.iFactor - v.toString().length*0.08*props.cellWidth;
+
   return (
         <Group>
           {props.values.map((v,i) => 
@@ -22,7 +24,7 @@ const Array = (props) => {
           stroke="black"
           strokeWidth={1}
           />
-          <Text id={"cellText"+i} text={v} x={props.textCenterX+i*props.iFactor - v.toString().length*0.08*props.cellWidth} y={textCenterY} fontSize={props.fontSize} />
+          <Text id={"cellText"+i} text={v} x={calcCellTextX(v,i)} y={textCenterY} fontSize={props.fontSize} />
 
           </Group>
           )}

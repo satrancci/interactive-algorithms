@@ -6,6 +6,8 @@ import DynamicIndex from "./explanations/DynamicIndex";
 import Message from "./explanations/Message";
 import AuxiliaryInfo from "./explanations/AuxiliaryInfo";
 
+import _ from "lodash"
+
 const Canvas = (props) => {
 
   const availableWidth = props.x;
@@ -13,9 +15,12 @@ const Canvas = (props) => {
   const canvasWidth = availableWidth;
   const canvasHeight = availableHeight;
 
-  // for Array
+  const defaultVal = 5;
+  // so that 2darray of highly skewed dimensions is displayed in full size on the screen
+  const thresholdToResize = (props.state.dataStructure === "Array2D" && (!_.isEmpty(props.state.visValues))) ? Math.max(props.state.visValues.length, props.state.visValues[0].length) : defaultVal;
+
   const N = props.state.visValues.length;
-  const divisor = Math.max(N, 5);
+  const divisor = Math.max(N, thresholdToResize);
   const divisorConstant = 1.4;
   const cellX = canvasWidth * 0.05;
   const cellWidth = canvasWidth / (divisor * divisorConstant);

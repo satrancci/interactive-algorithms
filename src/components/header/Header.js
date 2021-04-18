@@ -15,7 +15,7 @@ const Header = (props) => {
   }, [elemRef, props.state.algorithm, props.state.dataStructure, props.state.inputObj, props.resize]);
 
     return (
-        <div id="header" style={{boxSizing: "border-box", padding: "2%"}} ref={elemRef}>
+        <div id="header" style={{boxSizing: "border-box", backgroundColor: "#add8e6", padding: "1%"}} ref={elemRef}>
             This space will be filled with custom header elements (logo, name, link to github)
         </div>
     )

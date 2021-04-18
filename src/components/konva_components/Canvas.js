@@ -8,7 +8,6 @@ import AuxiliaryInfo from "./explanations/AuxiliaryInfo";
 
 const Canvas = (props) => {
 
-
   const availableWidth = window.innerWidth;
   const availableHeight = window.innerHeight - props.y;
   const canvasWidth = availableWidth;
@@ -35,8 +34,6 @@ const Canvas = (props) => {
         boxSizing: "border-box",
         padding: "1%",
         backgroundColor: "#EEEEEE",
-        width: availableWidth,
-        height: availableHeight
       }}
     >
       <Stage width={canvasWidth} height={canvasHeight*2} draggable>

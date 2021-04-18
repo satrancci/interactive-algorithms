@@ -49,7 +49,7 @@ const SingleInput = (props) => {
     if (props.hidden) {return null};
 
     return (
-      <div style={{display: "inline-block", marginRight: "5px", marginBottom: "10px"}}>
+      <div style={{display: "inline-block"}}>
         <Input
           placeholder={placeholderValue}
           label={`${inputName}: `}

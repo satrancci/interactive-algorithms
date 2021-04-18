@@ -22,7 +22,7 @@ const Canvas = (props) => {
   const cellHeight = canvasHeight / (divisor * divisorConstant);
   const iFactor = canvasWidth / (divisor * divisorConstant);
   const textCenterX = cellX + cellWidth * 0.5;
-  const fontSize = cellWidth / 4;
+  const fontSize = Math.max(cellWidth / 5, cellHeight / 5);
 
   const canvasCenter = canvasWidth / 2;
 
@@ -64,7 +64,9 @@ const Canvas = (props) => {
               cellHeight={cellHeight}
               iFactor={iFactor}
               cellWidth={cellWidth}
+              ellHeight={cellHeight}
               fontSize={fontSize}
+
             />
           ) : null}
           {

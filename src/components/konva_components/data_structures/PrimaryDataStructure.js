@@ -6,9 +6,7 @@ import Array2D from "./Array2D";
 
 const PrimaryDataStructure = (props) => {
   
-  console.log(`PRIMARY DS canvasHeight: ${props.canvasHeight}`)
-
-  const cellY = props.canvasHeight*0.1;
+  const cellY = 0;
   const textCenterY = cellY+props.cellHeight*0.4;
 
   return (

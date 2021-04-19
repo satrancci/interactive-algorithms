@@ -55,6 +55,7 @@ const PrimaryDataStructure = (props) => {
           canvasHeight={props.canvasHeight}
           curNodeID={props.curNodeID}
           maxLevel={0}
+          algorithm={props.algorithm}
         />
       ) : null}
     </Group>

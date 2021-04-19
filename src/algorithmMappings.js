@@ -10,6 +10,7 @@ import nQueens from './algorithms/array2d/nQueens';
 import longestIncreasingSubsequence from './algorithms/array/longestIncreasingSubsequence';
 import editDistance from './algorithms/array2d/editDistance';
 import subsetSum from './algorithms/array/subsetSum';
+import huffmanCoding from './algorithms/tree/huffmanCoding';
 
 
 const algorithmMappings = {
@@ -24,7 +25,8 @@ const algorithmMappings = {
     nQueens: {f:nQueens, tags:["Array2D"], params:{}},
     longestIncreasingSubsequence: {f:longestIncreasingSubsequence, tags:["Array"], params:{}},
     editDistance: {f:editDistance, tags:["Array2D"], params:{}},
-    subsetSum: {f:subsetSum, tags:["Array"], params:{}}
+    subsetSum: {f:subsetSum, tags:["Array"], params:{}},
+    huffmanCoding: {f:huffmanCoding, tags:["Tree"], params:{}}
 };
 
 export default algorithmMappings;

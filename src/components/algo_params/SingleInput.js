@@ -14,7 +14,7 @@ const getPlaceholderValue = (inputName) => {
         case "sudokuBoard":
             return "str of size 81, no commas"
         case "freqs":
-          return "e.g. a:5,b:2,c:1"
+            return "e.g. a:5,b:2,c:1"
         default:
             return "";
     }

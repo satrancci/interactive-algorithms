@@ -22,9 +22,7 @@ const TreeNode = (props) => {
     fontSize = level > 3 ? fontSize * decayTable[level] : fontSize;
 
     let radius = Math.min(canvasWidth, canvasHeight) * 0.04;
-    console.log(`TREENODE original radius: ${radius} for level: ${level}`);
     radius = level > 3 ? radius * decayTable[level] : radius;
-    console.log(`TREENODE adjusted radius: ${radius} for level: ${level}`);
 
     return (
         <Group id={"nodeID"+id}>

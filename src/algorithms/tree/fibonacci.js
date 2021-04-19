@@ -35,7 +35,7 @@ const fibonacciHelper = async (tree, node, n) => {
         const newTree = _.cloneDeep(tree);
         store.dispatch(assignVisValues(newTree));
 
-        store.dispatch(updateMessage(`Recursing...`));
+        store.dispatch(updateMessage(`Returning...`));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 
         return;
@@ -55,7 +55,7 @@ const fibonacciHelper = async (tree, node, n) => {
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
     await fibonacciHelper(tree, node.left, n-1);
 
-    store.dispatch(updateMessage(`Recursing...`));
+    store.dispatch(updateMessage(`Returning...`));
     store.dispatch(updateNodeID(node.id));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 
@@ -71,7 +71,7 @@ const fibonacciHelper = async (tree, node, n) => {
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
     await fibonacciHelper(tree, node.right, n-2);
 
-    store.dispatch(updateMessage(`Recursing...`));
+    store.dispatch(updateMessage(`Returning...`));
     store.dispatch(updateNodeID(node.id));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
     
@@ -82,7 +82,7 @@ const fibonacciHelper = async (tree, node, n) => {
     const newTreeAfterRight = _.cloneDeep(tree);
     store.dispatch(assignVisValues(newTreeAfterRight));
 
-    store.dispatch(updateMessage(`Recursing...`));
+    store.dispatch(updateMessage(`Returning...`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 
 }

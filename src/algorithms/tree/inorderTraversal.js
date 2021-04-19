@@ -36,7 +36,7 @@ const inorderTraversalHelper = async (node) => {
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
         await inorderTraversalHelper(node.left);
 
-        store.dispatch(updateMessage(`Recursing...`));
+        store.dispatch(updateMessage(`Returning...`));
         store.dispatch(updateNodeID(node.id));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 
@@ -61,7 +61,7 @@ const inorderTraversalHelper = async (node) => {
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
     }
 
-    store.dispatch(updateMessage(`Recursing...`));
+    store.dispatch(updateMessage(`Returning...`));
     store.dispatch(updateNodeID(node.id));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 

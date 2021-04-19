@@ -9,6 +9,8 @@ import sudokuSolver from './algorithms/array2d/sudokuSolver';
 import nQueens from './algorithms/array2d/nQueens';
 import longestIncreasingSubsequence from './algorithms/array/longestIncreasingSubsequence';
 import editDistance from './algorithms/array2d/editDistance';
+import subsetSum from './algorithms/array/subsetSum';
+
 
 const algorithmMappings = {
     twoSum: {f:twoSum, tags:["Array"], params:{targetVal:''}},
@@ -21,7 +23,8 @@ const algorithmMappings = {
     fibonacci: {f:fibonacci, tags:["Tree"], params:{}},
     nQueens: {f:nQueens, tags:["Array2D"], params:{}},
     longestIncreasingSubsequence: {f:longestIncreasingSubsequence, tags:["Array"], params:{}},
-    editDistance: {f:editDistance, tags:["Array2D"], params:{}}
+    editDistance: {f:editDistance, tags:["Array2D"], params:{}},
+    subsetSum: {f:subsetSum, tags:["Array"], params:{}}
 };
 
 export default algorithmMappings;

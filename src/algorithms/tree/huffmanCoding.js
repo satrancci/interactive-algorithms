@@ -35,7 +35,7 @@ const huffmanCoding = async () => {
 
     const BASE_SLEEP_TIME = 700;
     
-    const freqs = parseInput(BASE_SLEEP_TIME);
+    const freqs = parseInput();
     store.dispatch(updateMessage(`Frequencies: ${JSON.stringify(freqs)}`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 

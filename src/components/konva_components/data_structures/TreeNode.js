@@ -13,10 +13,16 @@ const decayTable = {
     9: 0.6
 }
 
+const calculateLeftEdgeCoord = (x, y, parentX, parentY) => {
+    const coordX = x+(parentX-x)/2;
+    const coordY = y+(parentY-y)/2+y*0.02;
+    return [coordX, coordY];
+}
 
 const TreeNode = (props) => {
 
-    const {i, x, y, val, level, parentX, parentY, id, curNodeID, canvasWidth, canvasHeight} = props;
+    const {i, x, y, val, level, parentX, parentY, id, curNodeID, canvasWidth, canvasHeight, edgeVal} = props;
+
 
     let fontSize = Math.min(canvasWidth, canvasHeight) * 0.02;
     fontSize = level > 3 ? fontSize * decayTable[level] : fontSize;
@@ -24,10 +30,18 @@ const TreeNode = (props) => {
     let radius = Math.min(canvasWidth, canvasHeight) * 0.04;
     radius = level > 3 ? radius * decayTable[level] : radius;
 
+    let edgeX = null;
+    let edgeY = null;
+    if (!(edgeVal === undefined || edgeVal === null)) {
+        [edgeX, edgeY] = calculateLeftEdgeCoord(x, y, parentX, parentY);
+    }
+
+
     return (
         <Group id={"nodeID"+id}>
              <Circle x={x} y={y} radius={radius} fill={curNodeID === id ? "red" : "green"} />
              <Line points={[x-radius, y+radius*0.3, x+radius, y+radius*0.3]} stroke="black" strokeWidth={0.5}/>
+             {(edgeVal === undefined || edgeVal === null) ? null : <Text text={edgeVal} x={edgeX} y={edgeY} fontSize={fontSize} />}
              <Text text={val} x={x-val.toString().length*0.08*radius} y={y-radius*0.3} fontSize={fontSize} />
              <Text text={id} x={x} y={y+radius*0.5} fontSize={fontSize*0.75} />
              {parentX && parentY ? <Line points={[parentX, parentY+radius, x, y-radius]} stroke={"black"} strokeWidth={1} /> : null}

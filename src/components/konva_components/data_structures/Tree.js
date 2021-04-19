@@ -3,8 +3,11 @@ import { Group } from "react-konva";
 
 import TreeNode from "./TreeNode";
 
+const displayBinaryEdges = ["huffmanCoding"];
+
+
 const Tree = (props) => {
-  const { values, x, offset, level, isRoot, canvasCenter, child, curNodeID } = props;
+  const { values, x, offset, level, isRoot, canvasCenter, child, curNodeID, algorithm } = props;
   const maxLevel = Math.max(props.maxLevel, level);
 
   if (!values) {
@@ -34,6 +37,7 @@ const Tree = (props) => {
           canvasWidth={props.canvasWidth}
           canvasHeight={props.canvasHeight}
           maxLevel={maxLevel}
+          edgeVal={null}
         />
       ) : null}
       {child === "left" ? (
@@ -49,6 +53,7 @@ const Tree = (props) => {
           canvasWidth={props.canvasWidth}
           canvasHeight={props.canvasHeight}
           maxLevel={maxLevel}
+          edgeVal={displayBinaryEdges.includes(algorithm) ? 0 : null}
         />
       ) : null}
       {child === "right" ? (
@@ -64,6 +69,7 @@ const Tree = (props) => {
           canvasWidth={props.canvasWidth}
           canvasHeight={props.canvasHeight}
           maxLevel={maxLevel}
+          edgeVal={displayBinaryEdges.includes(algorithm) ? 1 : null}
         />
       ) : null}
       {values.left ? (
@@ -79,6 +85,7 @@ const Tree = (props) => {
           canvasWidth={props.canvasWidth}
           canvasHeight={props.canvasHeight}
           maxLevel={maxLevel}
+          algorithm={algorithm}
         />
       ) : null}
       {values.right ? (
@@ -94,6 +101,7 @@ const Tree = (props) => {
           canvasWidth={props.canvasWidth}
           canvasHeight={props.canvasHeight}
           maxLevel={maxLevel}
+          algorithm={algorithm}
         />
       ) : null}
     </Group>

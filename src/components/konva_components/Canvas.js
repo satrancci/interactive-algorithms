@@ -59,6 +59,7 @@ const Canvas = (props) => {
               canvasCenter={canvasCenter}
               fontSize={fontSize}
               curNodeID={props.state.nodeID}
+              algorithm={props.state.algorithm}
             />
           }
           {props.state.dataStructure === "Array" ? (

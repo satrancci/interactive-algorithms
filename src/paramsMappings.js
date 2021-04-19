@@ -10,7 +10,8 @@ const paramsMappings = {
     nQueens: ["n"],
     longestIncreasingSubsequence: ["arr"],
     subsetSum: ["arr", "targetSum"],
-    editDistance: ["str1", "str2"]
+    editDistance: ["str1", "str2"],
+    huffmanCoding: ["freqs"]
 };
 
 export default paramsMappings;

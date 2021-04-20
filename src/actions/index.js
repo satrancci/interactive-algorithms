@@ -37,6 +37,14 @@ export const updateMessage = (message) => {
     };
 };
 
+export const deleteMessage = () => {
+    return {
+        type: 'DELETE_MESSAGE'
+    };
+};
+
+
+
 export const addValue = (val) => {
     return {
         type: 'ADD_VALUE',
@@ -77,6 +85,12 @@ export const updateTree = (tree) => {
         payload: {
             tree:tree
         }
+    };
+};
+
+export const deleteTree = () => {
+    return {
+        type: 'DELETE_TREE'
     };
 };
 

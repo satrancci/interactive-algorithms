@@ -9,6 +9,8 @@ import paramsMappings from "../../paramsMappings";
 
 import MessageError from "./MessageError";
 
+import _ from "lodash";
+
 const InputParams = (props) => {
   const inputNames = paramsMappings[props.state.algorithm];
 
@@ -30,7 +32,9 @@ const InputParams = (props) => {
   return (
     <div>
       <div id="input-container" style={{ display: "flex" }}>
-        {inputNames.includes("treeValues") ? <TreeInput algorithm={props.state.algorithm}/> : null}
+        {inputNames.includes("treeValues") ? (
+          <TreeInput algorithm={props.state.algorithm} />
+        ) : null}
 
         {inputNames &&
           !inputNames.includes("treeValues") &&
@@ -45,9 +49,11 @@ const InputParams = (props) => {
             );
           })}
       </div>
-      <div id="error-container">
-        <MessageError errors={props.state.errors}/>
-      </div>
+      {!_.isEmpty(props.state.errors) ? (
+        <div id="error-container">
+          <MessageError errors={props.state.errors} />
+        </div>
+      ) : null}
     </div>
   );
 };

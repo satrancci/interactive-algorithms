@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Dropdown } from "semantic-ui-react";
 
-import { updateAlgorithm, updateDataStructure, deleteVisValues, deleteInputObj, deleteErrors } from '../../actions';
+import { updateAlgorithm, updateDataStructure, deleteVisValues, deleteInputObj, deleteErrors, deleteTree } from '../../actions';
 import algorithmMappings from '../../algorithmMappings';
 
 // sort by the length of algorithm name so that all options are fully visible in the dropdown
@@ -23,6 +23,7 @@ const AlgorithmSelection = (props) => {
     props.updateDataStructure(newDataStructure);
     props.deleteErrors();
     props.deleteInputObj();
+    props.deleteTree();
     props.deleteVisValues();
   }
 
@@ -56,5 +57,6 @@ export default connect(mapStateToProps, {
   updateDataStructure,
   deleteVisValues,
   deleteInputObj,
-  deleteErrors
+  deleteErrors,
+  deleteTree
 })(AlgorithmSelection);

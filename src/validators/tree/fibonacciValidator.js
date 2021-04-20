@@ -9,7 +9,7 @@ const schema = {
 
 
 const fibonaccivalidator = (inputName, value) => {
-  console.log(`fibonacciValidator received inputname: ${inputName}, value: ${value}`);
+  //console.log(`fibonacciValidator received inputname: ${inputName}, value: ${value}`);
   let res = null;
   switch (inputName) {
       case "n":

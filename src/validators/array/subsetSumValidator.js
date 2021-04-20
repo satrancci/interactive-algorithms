@@ -10,7 +10,7 @@ const schema = {
 };
 
 const subsetSumValidator = (inputName, value) => {
-  console.log(`subsetSumValidator received inputName: ${inputName}, value: ${value}`);
+  //console.log(`subsetSumValidator received inputName: ${inputName}, value: ${value}`);
   let res = null;
   switch (inputName) {
       case "arr":

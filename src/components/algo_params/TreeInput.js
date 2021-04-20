@@ -157,6 +157,7 @@ const TreeInput = (props) => {
               onSingleInputSubmit={onSingleInputSubmit}
               buttonText={optionSelected}
               onAddSubmit={onAddSubmit}
+              algorithm={props.algorithm}
             />
           );
         })}

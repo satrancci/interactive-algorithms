@@ -2,7 +2,7 @@ const Joi = require("joi");
 
 const schema = {
   arr: Joi.object({
-    arr: Joi.array().min(1).max(15).required().items(Joi.string().alphanum())
+    arr: Joi.array().min(1).max(15).required().items(Joi.string().trim().length(1).regex(/[a-z]/))
   })
 };
 

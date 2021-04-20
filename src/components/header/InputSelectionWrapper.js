@@ -22,7 +22,7 @@ const InputSelectionWrapper = (props) => {
   return (
     <div id="input-selection-wrapper" style={{boxSizing: "border-box", backgroundColor: "#F4F4F4", padding: "0%"}} ref = {elemRef}>
 
-      {props.state.algorithm && <InputParams algorithm={props.state.algorithm}/>}
+      {props.state.algorithm && <InputParams/>}
       
       {props.state.algorithm && (!_.isEmpty(props.state.inputObj)) && <VisualizationSpeed/>}
 

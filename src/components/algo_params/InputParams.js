@@ -30,7 +30,7 @@ const InputParams = (props) => {
   return (
     <div>
       <div id="input-container" style={{ display: "flex" }}>
-        {inputNames.includes("treeValues") ? <TreeInput algorithm={props.algorithm}/> : null}
+        {inputNames.includes("treeValues") ? <TreeInput algorithm={props.state.algorithm}/> : null}
 
         {inputNames &&
           !inputNames.includes("treeValues") &&
@@ -40,7 +40,7 @@ const InputParams = (props) => {
                 key={inputName}
                 inputName={inputName}
                 onSingleInputSubmit={onSingleInputSubmit}
-                algorithm={props.algorithm}
+                algorithm={props.state.algorithm}
               />
             );
           })}

@@ -6,8 +6,10 @@ const isPalindrome = async () => {
 
    const BASE_SLEEP_TIME = 700;
 
-   const {arr} = store.getState().inputObj;
-   console.log(`isPalindrome received arr: ${arr}`);
+   const {str} = store.getState().inputObj;
+   console.log(`isPalindrome received arr: ${str}`);
+
+   const arr = str.split("");
 
    store.dispatch(assignVisValues(_.cloneDeep(arr)));
    

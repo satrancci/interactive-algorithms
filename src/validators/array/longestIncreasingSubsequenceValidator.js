@@ -2,7 +2,7 @@ const Joi = require("joi");
 
 const schema = {
   arr: Joi.object({
-    arr: Joi.array().min(1).max(15).required().items(Joi.number())
+    arr: Joi.array().min(1).max(10).required().items(Joi.number())
   })
 };
 

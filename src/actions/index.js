@@ -129,3 +129,19 @@ export const deleteVisValues = () => {
         type: 'DELETE_VIS_VALUES'
     }
 };
+
+
+export const setErrors = (errors) => {
+    return {
+        type: 'SET_ERRORS',
+        payload: {
+            errors:errors
+        }
+    };
+};
+
+export const deleteErrors = () => {
+    return {
+        type: 'DELETE_ERRORS'
+    };
+};

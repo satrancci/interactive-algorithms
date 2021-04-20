@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { connect } from "react-redux";
 import { Input, Button } from 'semantic-ui-react';
+import validationMappings from "../../validationMappings";
+import  { setErrors, deleteErrors } from "../../actions";
 
 const getPlaceholderValue = (inputName) => {
     switch (inputName) {
@@ -8,6 +11,7 @@ const getPlaceholderValue = (inputName) => {
         case "targetSum":
         case "n":
             return "e.g. 5";
+        case "str":
         case "str1":
         case "str2":
             return "e.g. abc"
@@ -22,8 +26,8 @@ const getPlaceholderValue = (inputName) => {
 
 
 const SingleInput = (props) => {
-  
-  const inputName = props.inputName;
+
+  const {inputName, algorithm} = props;
   const placeholderValue = getPlaceholderValue(inputName);
 
   const [valToAdd, setValToAdd] = useState("");
@@ -31,21 +35,11 @@ const SingleInput = (props) => {
   const onAddValue = newVal => setValToAdd(newVal);
 
   const onAddSubmit = () => {
-    // need to add robust and modular validation, these checks below are just temporary
-    if (valToAdd) {
-        if (inputName === "arr") {
-            const arr = valToAdd.split(",");
-            props.onSingleInputSubmit(inputName, arr);
-        } else if (inputName === "sudokuBoard"){
-            const arr2d = valToAdd.split("").reduce((rows, key, index) => (index % 9 == 0 ? rows.push([key]) : rows[rows.length-1].push(key)) && rows, []); // one-liner from https://stackoverflow.com/questions/4492385/how-to-convert-simple-array-into-two-dimensional-array-matrix-with-javascript
-            props.onSingleInputSubmit(inputName, arr2d);
-        } else if (inputName === "n") {
-          props.onSingleInputSubmit(inputName, parseInt(valToAdd));
-        } else {
-            props.onSingleInputSubmit(inputName, valToAdd);
-        }
-    //setValToAdd("");
-    }
+    props.deleteErrors();
+    const validator = validationMappings[algorithm].f;
+    const [statusCode, retVal] = validator(inputName, valToAdd); // [0, values] or [1, errorMsg]
+    //console.log(`statusCode: ${statusCode}, retVal: ${JSON.stringify(retVal)}`);
+    statusCode === 0 ? props.onSingleInputSubmit(inputName, retVal) : props.setErrors([retVal]);
   };
     
     if (props.hidden) {return null};
@@ -67,4 +61,13 @@ const SingleInput = (props) => {
 };
 
 
-export default SingleInput;
+const mapStateToProps = (state) => {
+  return {
+    errors: state.errors,
+  };
+};
+
+export default connect(mapStateToProps, {
+  setErrors,
+  deleteErrors
+})(SingleInput);

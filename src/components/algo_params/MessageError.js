@@ -5,7 +5,6 @@ const MessageError = (props) => {
   return (
     <Message
       error
-      header="There were some errors with your input."
       list={props.errors}
     />
   );

@@ -45,10 +45,10 @@ export default class BinaryTree {
 
   delete(nodeID) {
     if (!this.root) {
-      return [1, `'Tree is empty. There is nothing to delete.`];
+      return [1, `Tree is empty. There is nothing to delete.`];
     }
     if (!this.idMap[nodeID]) {
-      return [1, `Node that you want to delete does not exist in the tree`];
+      return [1, `Node that you want to delete does not exist in the tree.`];
     }
     if (this.root.id === nodeID) {
       this.idMap.delete(nodeID);
@@ -77,7 +77,7 @@ export default class BinaryTree {
       return [1, `Tree is empty. There is nothing to modify.`];
     }
     if (!this.idMap[nodeID]) {
-      return [1, `Node that you want to modify does not exist in the tree`];
+      return [1, `Node that you want to modify does not exist in the tree.`];
     }
     const node = this.idMap[nodeID];
     node.value = new_value;

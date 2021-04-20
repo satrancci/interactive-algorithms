@@ -10,6 +10,7 @@ import nodeIDReducer from './nodeIDReducer';
 import speedReducer from './speedReducer';
 import inputObjReducer from './inputObjReducer';
 import visValuesReducer from './visValuesReducer';
+import errorReducer from './errorReducer';
 
 export default combineReducers({
   dataStructure: dsReducer,
@@ -22,5 +23,6 @@ export default combineReducers({
   nodeID: nodeIDReducer,
   visualizationSpeed: speedReducer,
   inputObj: inputObjReducer,
-  visValues: visValuesReducer
+  visValues: visValuesReducer,
+  errors: errorReducer
 });

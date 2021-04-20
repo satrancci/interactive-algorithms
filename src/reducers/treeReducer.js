@@ -6,11 +6,10 @@ const treeReducer = (tree=initialTree, action) => {
     switch (action.type) {
         case 'UPDATE_TREE':
           return action.payload.tree;
+        case 'DELETE_TREE':
+          return initialTree;
         default:
           return tree;
-        
-        case 'SOME_OTHER_ACTION':
-          return {}
     }
 };
 

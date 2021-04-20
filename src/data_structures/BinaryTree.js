@@ -7,6 +7,11 @@ export default class BinaryTree {
     this.idMap = new Map();
   }
 
+  nodeExists(nodeID) {
+    const exists = this.idMap[nodeID];
+    return exists ? [0, ""] : [1, `The node "${nodeID}" does not exist in the tree.`];
+  }
+
   insert(parentID, value, left=true) {
     const nodeID = createNodeID(this.idMap);
     const newNode = new BinaryTreeNode(nodeID, value);
@@ -16,12 +21,10 @@ export default class BinaryTree {
     } else {
       const parentNode = this.idMap[parentID];
       if (!parentNode) {
-        console.log("this parentID does not exist");
-        return;
+        return [1, `The parentID "${parentID}" does not exist in the tree.`];
       }
       if (parentNode.left && parentNode.right) {
-        console.log("the parent node already has two children");
-        return;
+        return [1, `The parent node "${parentID}" already has two children.`];
       }
       newNode.parentID = parentNode.id;
       if (parentNode.isLeaf()) {
@@ -37,51 +40,49 @@ export default class BinaryTree {
       }
       this.idMap[nodeID] = newNode;
     }
+    return [0, ""];
   }
 
   delete(nodeID) {
     if (!this.root) {
-      console.log('Tree is empty. There is nothing to delete.');
-      return;
+      return [1, `Tree is empty. There is nothing to delete.`];
     }
     if (!this.idMap[nodeID]) {
-      console.log('Node that you want to delete does not exist in the tree');
-      return
+      return [1, `Node that you want to delete does not exist in the tree.`];
     }
     if (this.root.id === nodeID) {
       this.idMap.delete(nodeID);
       this.root = null;
-      console.log('Root deleted');
-      return;
+      //console.log('Root deleted');
+      return [0, ""];
     }
     this.deleteNode(nodeID);
   }
 
   deleteNode(nodeID) {
     const node = this.idMap[nodeID];
-    console.log(`deleteNode(): nodeID ${nodeID} received. node: ${JSON.stringify(node)}`)
+    //console.log(`deleteNode(): nodeID ${nodeID} received. node: ${JSON.stringify(node)}`)
     const parentNode = this.idMap[node.parentID];
     if (parentNode.left && parentNode.left.id === nodeID) {
       parentNode.left = null;
-      return;
+      return [0,""];
     } else {
       parentNode.right = null;
-      return
+      return [0, ""];
     }
   }
 
   modify(nodeID, new_value) {
     if (!this.root) {
-      console.log('Tree is empty. There is nothing to modify.');
-      return;
+      return [1, `Tree is empty. There is nothing to modify.`];
     }
     if (!this.idMap[nodeID]) {
-      console.log('Node that you want to modify does not exist in the tree');
-      return
+      return [1, `Node that you want to modify does not exist in the tree.`];
     }
     const node = this.idMap[nodeID];
     node.value = new_value;
-    console.log(`Node ${nodeID}'s has been successfully modified to ${this.idMap[nodeID].value}`)
+    //console.log(`Node ${nodeID}'s has been successfully modified to ${this.idMap[nodeID].value}`)
+    return [0, ""];
   }
 
 };

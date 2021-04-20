@@ -1,6 +1,6 @@
 const paramsMappings = {
     twoSum: ["arr", "targetSum"],
-    isPalindrome: ["arr"],
+    isPalindrome: ["str"],
     sudokuSolver: ["sudokuBoard"],
     levelOrderTraversal: ["treeValues"],
     preorderTraversal: ["treeValues"],
@@ -11,7 +11,7 @@ const paramsMappings = {
     longestIncreasingSubsequence: ["arr"],
     subsetSum: ["arr", "targetSum"],
     editDistance: ["str1", "str2"],
-    huffmanCoding: ["freqs"]
+    huffmanCoding: ["str"]
 };
 
 export default paramsMappings;

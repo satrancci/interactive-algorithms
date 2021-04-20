@@ -1,44 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import TreeInput from "./TreeInput";
 import SingleInput from "./SingleInput";
 
 import { assignInputObj } from "../../actions";
-import paramsMappings from '../../paramsMappings';
+import paramsMappings from "../../paramsMappings";
+
+import MessageError from "./MessageError";
 
 const InputParams = (props) => {
+  const inputNames = paramsMappings[props.state.algorithm];
 
-    const inputNames = paramsMappings[props.state.algorithm];
+  const [inputObj, setInputObj] = useState({});
 
-    const [inputObj, setInputObj] = useState({});
+  const onSingleInputSubmit = (inputName, value) => {
+    setInputObj((inputObj) => ({
+      ...inputObj,
+      [inputName]: value,
+    }));
+  };
 
-    const onSingleInputSubmit = (inputName, value) => {
-        setInputObj(inputObj => ({
-            ...inputObj, 
-            [inputName]: value
-        }))
+  useEffect(() => {
+    if (Object.keys(inputObj).length === inputNames.length) {
+      props.assignInputObj(inputObj);
     }
+  }, [inputObj]);
 
-    useEffect(() => {
-        if (Object.keys(inputObj).length === inputNames.length) {
-            props.assignInputObj(inputObj);
-        }
-    }, [inputObj])
+  return (
+    <div>
+      <div id="input-container" style={{ display: "flex" }}>
+        {inputNames.includes("treeValues") ? <TreeInput /> : null}
 
-    return (
-        <div style={{display: "flex"}}>
-            {inputNames.includes("treeValues") ? <TreeInput/> : null}
-
-            {inputNames && (!inputNames.includes("treeValues")) && inputNames.map((inputName) => {
-                return (
-                    <SingleInput key={inputName} inputName={inputName} onSingleInputSubmit={onSingleInputSubmit}/>
-                )
-            })}
-        </div>
-    )
+        {inputNames &&
+          !inputNames.includes("treeValues") &&
+          inputNames.map((inputName) => {
+            return (
+              <SingleInput
+                key={inputName}
+                inputName={inputName}
+                onSingleInputSubmit={onSingleInputSubmit}
+              />
+            );
+          })}
+      </div>
+      <div id="error-container">
+        <MessageError errors={props.state.errors}/>
+      </div>
+    </div>
+  );
 };
-
 
 const mapStateToProps = (state) => {
   return {
@@ -47,5 +58,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  assignInputObj
+  assignInputObj,
 })(InputParams);

@@ -9,12 +9,9 @@ import _ from "lodash";
 
 
 const parseInput = () => {
-    const {freqs} = store.getState().inputObj;
-    console.log(`huffmanCoding received freqs: ${freqs}`);
-    const obj = {};
-    freqs.split(",").map(pair => pair.split(":")).map(x => obj[x[0]] = x[1]);
-    const freqsParsed = {};
-    Object.entries(obj).map(x => freqsParsed[x[0]] = parseInt(x[1]));
+    const {str} = store.getState().inputObj;
+    console.log(`huffmanCoding received str: ${str}`);
+    const freqsParsed = _.countBy(str);
     return freqsParsed;
 }
 

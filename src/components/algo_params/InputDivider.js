@@ -5,6 +5,10 @@ import InputSelectionWrapper from "./InputSelectionWrapper";
 import GenerateRandomButton from "./GenerateRandomButton";
 
 const InputDivider = (props) => {
+
+  const {algorithm, dataStructure, inputObj} = props.state;
+  const {resize, callback} = props;
+
   const elemRef = useRef(null);
 
   const displayBlock = props.displayBlock ? "block" : "none";
@@ -17,14 +21,14 @@ const InputDivider = (props) => {
         elemHeight = elemRef.current.offsetHeight;
         elemWidth = elemRef.current.offsetWidth;
       }
-      props.callback({ width: elemWidth, height: elemHeight });
+      callback({ width: elemWidth, height: elemHeight });
     }
   }, [
     elemRef,
-    props.state.algorithm,
-    props.state.dataStructure,
-    props.state.inputObj,
-    props.resize,
+    algorithm,
+    dataStructure,
+    inputObj,
+    resize,
     displayBlock
   ]);
 

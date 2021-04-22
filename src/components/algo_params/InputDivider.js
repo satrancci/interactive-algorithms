@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { connect } from "react-redux";
-import { Button, Divider, Grid, Segment } from "semantic-ui-react";
+import { Divider, Grid, Segment } from "semantic-ui-react";
 import InputSelectionWrapper from "./InputSelectionWrapper";
+import GenerateRandomButton from "./GenerateRandomButton";
 
 const InputDivider = (props) => {
   const elemRef = useRef(null);
@@ -35,7 +36,7 @@ const InputDivider = (props) => {
         <Divider horizontal>Or</Divider>
         <Grid>
           <Grid.Column textAlign="center">
-            <Button size="medium" primary content="Generate random" />
+            <GenerateRandomButton/>
           </Grid.Column>
         </Grid>
       </Segment>

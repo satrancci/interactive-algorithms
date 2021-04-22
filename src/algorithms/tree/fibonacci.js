@@ -28,7 +28,7 @@ const fibonacciHelper = async (tree, node, n) => {
     store.dispatch(updateNodeID(node.id));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 
-    if ( n == 0 || n == 1 ) {
+    if ( n === 0 || n === 1 ) {
         store.dispatch(updateMessage(`A BASE CASE reached. Can return directly!`));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
         node.value = `${n}`;

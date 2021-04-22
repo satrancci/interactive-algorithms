@@ -44,15 +44,6 @@ export const deleteMessage = () => {
 };
 
 
-export const addParams = (params) => {
-    return {
-        type: 'ADD_PARAMS',
-        payload: {
-            params:params
-        }
-    };
-};
-
 export const updateTree = (tree) => {
     return {
         type: 'UPDATE_TREE',

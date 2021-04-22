@@ -15,9 +15,6 @@ const DebuggingState = (props) => {
           nodeID: {props.state.nodeID}
         </div>
         <div>
-          params:{JSON.stringify(props.state.params)}
-        </div>
-        <div>
           algorithm: {props.state.algorithm}
         </div>
         <div>

@@ -44,22 +44,6 @@ export const deleteMessage = () => {
 };
 
 
-
-export const addValue = (val) => {
-    return {
-        type: 'ADD_VALUE',
-        payload: {
-            val: val
-        }
-    };
-};
-
-export const popValue = () => {
-    return {
-        type: 'POP_VALUE'
-    };
-};
-
 export const updateAtIndex = (idx, newVal) => {
     return {
         type: 'UPDATE_AT_INDEX',

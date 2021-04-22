@@ -107,6 +107,8 @@ const huffmanCoding = async () => {
     store.dispatch(updateMessage(`This is our tree that encodes and losslessly compresses characters`));
     store.dispatch(assignVisValues(_.cloneDeep(tree)));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    store.dispatch(updateMessage(`Original freqs: ${JSON.stringify(freqs)}`));
+    await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 
 }   
 

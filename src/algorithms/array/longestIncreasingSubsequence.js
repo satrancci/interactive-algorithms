@@ -1,5 +1,5 @@
 import store from "../../store";
-import { updateIndex, updateAtIndex, updateMessage, assignVisValues } from "../../actions";
+import { updateIndex, updateMessage, assignVisValues } from "../../actions";
 import _ from "lodash";
 
 
@@ -37,7 +37,6 @@ const longestIncreasingSubsequence = async (paramsObj) => {
                 store.dispatch(updateMessage(`Set dp[curIdx] = dp[prevIdx] + 1;`));
                 dp[curIdx] = dp[prevIdx] + 1;
                 store.dispatch(assignVisValues(_.cloneDeep(dp)));
-                store.dispatch(updateAtIndex(curIdx, dp[curIdx]));
                 await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
 
                 store.dispatch(updateMessage(`Run maxLength = max(maxLength, dp[curIdx]): max(${maxLength}, ${dp[curIdx]})`));

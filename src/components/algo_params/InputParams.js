@@ -13,6 +13,7 @@ import _ from "lodash";
 
 const InputParams = (props) => {
   const inputNames = paramsMappings[props.state.algorithm];
+  const {assignInputObj} = props;
 
   const [inputObj, setInputObj] = useState({});
 
@@ -25,7 +26,7 @@ const InputParams = (props) => {
 
   useEffect(() => {
     if (Object.keys(inputObj).length === inputNames.length) {
-      props.assignInputObj(inputObj);
+      assignInputObj(inputObj);
     }
   }, [inputObj]);
 

@@ -14,19 +14,19 @@ import huffmanCoding from './algorithms/tree/huffmanCoding';
 
 
 const algorithmMappings = {
-    twoSum: {f:twoSum, tags:["Array"], params:{targetVal:''}},
-    isPalindrome: {f:isPalindrome, tags:["Array"], params:{}},
-    sudokuSolver: {f:sudokuSolver, tags:["Array2D"], params:{}},
-    levelOrderTraversal: {f:levelOrderTraversal, tags:["Tree"], params:{}},
-    preorderTraversal: {f:preorderTraversal, tags:["Tree"], params:{}},
-    inorderTraversal: {f:inorderTraversal, tags:["Tree"], params:{}},
-    postorderTraversal: {f:postorderTraversal, tags:["Tree"], params:{}},
-    fibonacci: {f:fibonacci, tags:["Tree"], params:{}},
-    nQueens: {f:nQueens, tags:["Array2D"], params:{}},
-    longestIncreasingSubsequence: {f:longestIncreasingSubsequence, tags:["Array"], params:{}},
-    editDistance: {f:editDistance, tags:["Array2D"], params:{}},
-    subsetSum: {f:subsetSum, tags:["Array"], params:{}},
-    huffmanCoding: {f:huffmanCoding, tags:["Tree"], params:{}}
+    twoSum: {f:twoSum, tags:["Array"]},
+    isPalindrome: {f:isPalindrome, tags:["Array"]},
+    sudokuSolver: {f:sudokuSolver, tags:["Array2D"]},
+    levelOrderTraversal: {f:levelOrderTraversal, tags:["Tree"]},
+    preorderTraversal: {f:preorderTraversal, tags:["Tree"]},
+    inorderTraversal: {f:inorderTraversal, tags:["Tree"]},
+    postorderTraversal: {f:postorderTraversal, tags:["Tree"]},
+    fibonacci: {f:fibonacci, tags:["Tree"]},
+    nQueens: {f:nQueens, tags:["Array2D"]},
+    longestIncreasingSubsequence: {f:longestIncreasingSubsequence, tags:["Array"]},
+    editDistance: {f:editDistance, tags:["Array2D"]},
+    subsetSum: {f:subsetSum, tags:["Array"]},
+    huffmanCoding: {f:huffmanCoding, tags:["Tree"]}
 };
 
 export default algorithmMappings;

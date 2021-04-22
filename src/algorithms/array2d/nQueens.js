@@ -1,5 +1,5 @@
 import store from "../../store";
-import { addValue, updateIndex, updateMessage, assignVisValues } from "../../actions";
+import { updateIndex, updateMessage, assignVisValues } from "../../actions";
 import _ from "lodash";
 
 

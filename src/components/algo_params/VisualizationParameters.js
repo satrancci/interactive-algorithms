@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import VisualizationSpeed from "./VisualizationSpeed";
 
-import _ from "lodash";
 
 const VisualizationParameters = (props) => {
 

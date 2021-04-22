@@ -21,7 +21,7 @@ const calculateLeftEdgeCoord = (x, y, parentX, parentY) => {
 
 const TreeNode = (props) => {
 
-    const {i, x, y, val, level, parentX, parentY, id, curNodeID, canvasWidth, canvasHeight, edgeVal} = props;
+    const {x, y, val, level, parentX, parentY, id, curNodeID, canvasWidth, canvasHeight, edgeVal} = props;
 
 
     let fontSize = Math.min(canvasWidth, canvasHeight) * 0.02;

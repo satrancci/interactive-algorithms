@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import _ from "lodash";
-
 import InputParams from "./InputParams";
 import DebuggingState from "../debugging/DebuggingState";
 

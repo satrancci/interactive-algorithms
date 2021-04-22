@@ -7,10 +7,16 @@ import GenerateRandomButton from "./GenerateRandomButton";
 const InputDivider = (props) => {
   const elemRef = useRef(null);
 
+  const displayBlock = props.displayBlock ? "block" : "none";
+
   useEffect(() => {
+    let elemHeight = 0;
+    let elemWidth = 0;  
     if (elemRef.current) {
-      let elemHeight = elemRef.current.offsetHeight;
-      let elemWidth = elemRef.current.offsetWidth;
+      if (displayBlock) {
+        elemHeight = elemRef.current.offsetHeight;
+        elemWidth = elemRef.current.offsetWidth;
+      }
       props.callback({ width: elemWidth, height: elemHeight });
     }
   }, [
@@ -19,10 +25,14 @@ const InputDivider = (props) => {
     props.state.dataStructure,
     props.state.inputObj,
     props.resize,
+    displayBlock
   ]);
 
+
+
+
   return (
-    <div id="divider" ref={elemRef}>
+    <div id="divider" ref={elemRef} style={{display: displayBlock}}>
       <Segment
         basic
         style={{

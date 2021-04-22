@@ -8,7 +8,7 @@ import { updateVisualizationSpeed } from '../../actions';
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
+    width: 200,
   },
 });
 
@@ -30,7 +30,7 @@ const VisualizationSpeed = (props) => {
   const onChangeSpeed = newValue => props.updateVisualizationSpeed(newValue);
 
   return (
-    <div className={classes.root} style={{margin: "auto"}}>
+    <div className={classes.root} style={{margin: "auto", padding: "0%"}}>
       <Typography id="discrete-slider" gutterBottom>
       </Typography>
       <Slider

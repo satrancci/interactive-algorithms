@@ -162,7 +162,7 @@ export const updateStateAfterCancel = () => (dispatch) => {
     dispatch(deleteMessage());
     dispatch(deleteTree());
     dispatch(deleteNodeID());
-    dispatch(updateVisualizationSpeed(3));
+    dispatch(updateVisualizationSpeed(4));
     dispatch(deleteInputObj());
     dispatch(deleteVisValues());
     dispatch(deleteErrors());

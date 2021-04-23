@@ -18,7 +18,7 @@ function valuetext(value) {
 
 const marks = [
   {
-    value: 3,
+    value: 4,
     label: 'Fast <- Normal -> Slow',
   }
 ];
@@ -38,10 +38,10 @@ const VisualizationSpeed = (props) => {
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="off"
-        step={1}
+        step={0.1}
         marks={marks}
-        min={1}
-        max={5}
+        min={0}
+        max={8}
         onChange={(e,v) => onChangeSpeed(v)}
       />
     </div>

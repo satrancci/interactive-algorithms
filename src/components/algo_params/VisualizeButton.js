@@ -10,9 +10,14 @@ const VisualizeButton = (props) => {
 
     const f = algorithmMappings[props.state.algorithm].f;
     props.toggleIsVisualizing(1);
-    await f();
+    try {
+      await f();
+    } catch (e) {
+      console.log(`${props.state.algorithm}() ran into error: ${e}`);
+      props.updateStateAfterCancel();
+    }
     props.toggleIsVisualizing(0);
-    };
+  }
 
     return (
         <Button size="small" disabled={props.disabled} color="orange" style={{marginLeft: "auto"}} onClick={onVisualize}>Visualize!</Button>

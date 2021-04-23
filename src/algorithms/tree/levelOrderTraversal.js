@@ -13,7 +13,7 @@ const levelOrderTraversal = async () => {
   store.dispatch(assignVisValues(_.cloneDeep(treeValues)));
 
   const root = treeValues.root;
-  levelOrderTraversalHelper(root);
+  await levelOrderTraversalHelper(root);
 };
 
 const levelOrderTraversalHelper = async (root) => {
@@ -25,12 +25,14 @@ const levelOrderTraversalHelper = async (root) => {
   while (q.length > 0) {
     store.dispatch(updateMessage(`Exploring level ${level}...`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
     const levelSize = q.length;
     for (let i = 0; i < levelSize; i++) {
       const node = q.shift();
       store.dispatch(updateNodeID(node.id));
       store.dispatch(updateMessage(`Exploring node ${node.id}`));
       await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+      if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
       if (node.left) {
         q.push(node.left);
       }
@@ -41,6 +43,7 @@ const levelOrderTraversalHelper = async (root) => {
     if (q.length > 0) {
       store.dispatch(updateMessage(`Going to a new level...`));
       await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+      if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
       level += 1;
     }
   }

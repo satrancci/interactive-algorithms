@@ -8,16 +8,19 @@ import _ from "lodash";
 
 const Header = (props) => {
 
+  const {algorithm, dataStructure, inputObj} = props.state;
+  const {resize, callback} = props; 
+
   const elemRef = useRef(null);
 
   useEffect(() => {
     if(elemRef.current){
         let elemHeight = elemRef.current.offsetHeight;
         let elemWidth  = elemRef.current.offsetWidth;
-        props.callback({width: elemWidth, height: elemHeight});
+        callback({width: elemWidth, height: elemHeight});
     }
           
-  }, [elemRef, props.state.algorithm, props.state.dataStructure, props.state.inputObj, props.resize]);
+  }, [elemRef, algorithm, dataStructure, inputObj, resize]);
 
     return (
         <div id="header" style={{boxSizing: "border-box", backgroundColor: "#add8e6", display: "flex"}} ref={elemRef}>

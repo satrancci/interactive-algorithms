@@ -1,10 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import VisualizationSpeed from "./VisualizationSpeed";
+import CancelVisualizationButton from "./CancelVisualizationButton";
 
-import _ from "lodash";
 
 const VisualizationParameters = (props) => {
+
+  const {algorithm, dataStructure, inputObj} = props.state;
+  const {resize, callback} = props;
 
   const elemRef = useRef(null);
 
@@ -12,13 +15,14 @@ const VisualizationParameters = (props) => {
     if(elemRef.current){
         let elemHeight = elemRef.current.offsetHeight;
         let elemWidth  = elemRef.current.offsetWidth;
-        props.callback({width: elemWidth, height: elemHeight});
+        callback({width: elemWidth, height: elemHeight});
     }
           
-  }, [elemRef, props.state.algorithm, props.state.dataStructure, props.state.inputObj, props.resize]);
+  }, [elemRef, algorithm, dataStructure, inputObj, resize]);
 
     return (
         <div id="visualization-parameters" style={{boxSizing: "border-box", display: "flex"}} ref={elemRef}>
+            <CancelVisualizationButton/>
             <VisualizationSpeed/>
         </div>
     )

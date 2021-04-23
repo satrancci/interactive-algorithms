@@ -4,7 +4,7 @@ import { Group, Text } from 'react-konva';
 const Message = (props) => {
 
     const textStartX = props.canvasWidth*0.02;
-    const textStartY = props.canvasHeight*0.85;
+    const textStartY = props.canvasHeight*0.75;
 
     const fontSize = props.canvasWidth/40;
 

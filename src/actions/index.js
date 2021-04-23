@@ -27,6 +27,12 @@ export const updateIndex = (indexTuple) => {
     };
 };
 
+export const deleteIndices = () => {
+    return {
+        type: 'DELETE_INDICES'
+    };
+};
+
 
 export const updateMessage = (message) => {
     return {
@@ -43,41 +49,6 @@ export const deleteMessage = () => {
     };
 };
 
-
-
-export const addValue = (val) => {
-    return {
-        type: 'ADD_VALUE',
-        payload: {
-            val: val
-        }
-    };
-};
-
-export const popValue = () => {
-    return {
-        type: 'POP_VALUE'
-    };
-};
-
-export const updateAtIndex = (idx, newVal) => {
-    return {
-        type: 'UPDATE_AT_INDEX',
-        payload: {
-            idx: idx,
-            newVal: newVal
-        }
-    };
-};
-
-export const addParams = (params) => {
-    return {
-        type: 'ADD_PARAMS',
-        payload: {
-            params:params
-        }
-    };
-};
 
 export const updateTree = (tree) => {
     return {
@@ -100,6 +71,12 @@ export const updateNodeID = (nodeID) => {
         payload: {
             nodeID: nodeID
         }
+    };
+};
+
+export const deleteNodeID = () => {
+    return {
+        type: 'DELETE_NODE_ID',
     };
 };
 
@@ -159,3 +136,39 @@ export const deleteErrors = () => {
         type: 'DELETE_ERRORS'
     };
 };
+
+
+export const toggleIsVisualizing = (bool) => {
+    return {
+        type: 'TOGGLE_IS_VISUALIZING',
+        payload: {
+            bool: bool
+        }
+    };
+};
+
+export const toggleCancelClicked = (bool) => {
+    return {
+        type: 'TOGGLE_CANCEL_CLICKED_BOOL',
+        payload: {
+            bool: bool
+        }
+    };
+};
+
+
+export const updateStateAfterCancel = () => (dispatch) => {
+    dispatch(deleteIndices());
+    dispatch(deleteMessage());
+    dispatch(deleteTree());
+    dispatch(deleteNodeID());
+    dispatch(updateVisualizationSpeed(4));
+    dispatch(deleteInputObj());
+    dispatch(deleteVisValues());
+    dispatch(deleteErrors());
+    dispatch(deleteNodeID());
+    dispatch(toggleIsVisualizing(0));
+    dispatch(toggleCancelClicked(0));
+}
+
+

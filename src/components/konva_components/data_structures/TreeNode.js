@@ -21,13 +21,13 @@ const calculateLeftEdgeCoord = (x, y, parentX, parentY) => {
 
 const TreeNode = (props) => {
 
-    const {i, x, y, val, level, parentX, parentY, id, curNodeID, canvasWidth, canvasHeight, edgeVal} = props;
+    const {x, y, val, level, parentX, parentY, id, curNodeID, canvasWidth, canvasHeight, edgeVal} = props;
 
 
-    let fontSize = Math.min(canvasWidth, canvasHeight) * 0.02;
+    let fontSize = Math.min(Math.abs(canvasWidth), Math.abs(canvasHeight)) * 0.02;
     fontSize = level > 3 ? fontSize * decayTable[level] : fontSize;
 
-    let radius = Math.min(canvasWidth, canvasHeight) * 0.04;
+    let radius = Math.min(Math.abs(canvasWidth), Math.abs(canvasHeight)) * 0.04;
     radius = level > 3 ? radius * decayTable[level] : radius;
 
     let edgeX = null;

@@ -27,43 +27,53 @@ const inorderTraversalHelper = async (node) => {
 
     store.dispatch(updateNodeID(node.id));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
 
     store.dispatch(updateMessage(`Check left child of ${node.id}`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
 
     if (node.left) {
         store.dispatch(updateMessage(`Left child of ${node.id} exists. Going there...`));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+        if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
         await inorderTraversalHelper(node.left);
 
         store.dispatch(updateMessage(`Returning...`));
         store.dispatch(updateNodeID(node.id));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+        if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
 
     } else {
         store.dispatch(updateMessage(`Left child of ${node.id} does not exist.`));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+        if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
     }
 
     store.dispatch(updateMessage(`Exploring node ${node.id}`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
 
 
     store.dispatch(updateMessage(`Check right child of ${node.id}`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
 
     if (node.right) {
         store.dispatch(updateMessage(`Right child of ${node.id} exists. Going there...`));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+        if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
         await inorderTraversalHelper(node.right);
     } else {
         store.dispatch(updateMessage(`Right child of ${node.id} does not exist.`));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+        if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
     }
 
     store.dispatch(updateMessage(`Returning...`));
     store.dispatch(updateNodeID(node.id));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
 
 }
 

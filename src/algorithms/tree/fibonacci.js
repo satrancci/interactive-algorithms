@@ -27,16 +27,20 @@ const fibonacciHelper = async (tree, node, n) => {
     
     store.dispatch(updateNodeID(node.id));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
 
-    if ( n == 0 || n == 1 ) {
+    if ( n === 0 || n === 1 ) {
         store.dispatch(updateMessage(`A BASE CASE reached. Can return directly!`));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+        if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
         node.value = `${n}`;
         const newTree = _.cloneDeep(tree);
         store.dispatch(assignVisValues(newTree));
 
         store.dispatch(updateMessage(`Returning...`));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+        if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
+        if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
 
         return;
     }
@@ -53,11 +57,13 @@ const fibonacciHelper = async (tree, node, n) => {
     
     store.dispatch(updateMessage(`${node.value}: Make first recursive call`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
     await fibonacciHelper(tree, node.left, n-1);
 
     store.dispatch(updateMessage(`Returning...`));
     store.dispatch(updateNodeID(node.id));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
 
     const newTreeAfterLeft = _.cloneDeep(tree);
     store.dispatch(assignVisValues(newTreeAfterLeft));
@@ -69,14 +75,17 @@ const fibonacciHelper = async (tree, node, n) => {
 
     store.dispatch(updateMessage(`${node.value}: Make second recursive call`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
     await fibonacciHelper(tree, node.right, n-2);
 
     store.dispatch(updateMessage(`Returning...`));
     store.dispatch(updateNodeID(node.id));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
     
     store.dispatch(updateMessage(`${node.value}: Both recursive calls returned. Current value is the sum of returned values.`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
 
     node.value = parseInt(node.left.value) + parseInt(node.right.value);
     const newTreeAfterRight = _.cloneDeep(tree);
@@ -84,6 +93,7 @@ const fibonacciHelper = async (tree, node, n) => {
 
     store.dispatch(updateMessage(`Returning...`));
     await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+    if (!store.getState().isVisualizing) {throw new Error("Cancel event detected");}
 
 }
 

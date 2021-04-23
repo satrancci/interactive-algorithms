@@ -3,6 +3,7 @@ import { Icon } from "semantic-ui-react";
 
 const Minimizer = (props) => (
   <div
+    id="minimizer"
     style={{
       boxSizing: "border-box",
       textAlign: "center",

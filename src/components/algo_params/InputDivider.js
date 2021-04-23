@@ -1,10 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { Divider, Grid, Segment } from "semantic-ui-react";
 import InputSelectionWrapper from "./InputSelectionWrapper";
 import GenerateRandomButton from "./GenerateRandomButton";
 
 const InputDivider = (props) => {
+
+  const {algorithm, dataStructure, inputObj} = props.state;
+  const {resize, callback} = props;
+
   const elemRef = useRef(null);
 
   const displayBlock = props.displayBlock ? "block" : "none";
@@ -17,17 +21,29 @@ const InputDivider = (props) => {
         elemHeight = elemRef.current.offsetHeight;
         elemWidth = elemRef.current.offsetWidth;
       }
-      props.callback({ width: elemWidth, height: elemHeight });
+      callback({ width: elemWidth, height: elemHeight });
     }
   }, [
     elemRef,
-    props.state.algorithm,
-    props.state.dataStructure,
-    props.state.inputObj,
-    props.resize,
+    algorithm,
+    dataStructure,
+    inputObj,
+    resize,
     displayBlock
   ]);
 
+  const [text, setText] = useState("");
+  const onRandomClickCallback = (obj) => obj["treeValues"] ? setText("") : setText(JSON.stringify(obj));
+  
+  useEffect(()=> {
+    const showTextNSeconds = async (n) => {
+      await new Promise((r) => setTimeout(r, n*1000));
+      setText("");
+    }
+    if (text) {
+      showTextNSeconds(3);
+    }
+  }, [text])
 
 
 
@@ -46,7 +62,8 @@ const InputDivider = (props) => {
         <Divider horizontal>Or</Divider>
         <Grid>
           <Grid.Column textAlign="center">
-            <GenerateRandomButton/>
+            <GenerateRandomButton onRandomClickCallback={onRandomClickCallback}/>
+            {<p style={{color: "green"}}>{text}</p>}
           </Grid.Column>
         </Grid>
       </Segment>

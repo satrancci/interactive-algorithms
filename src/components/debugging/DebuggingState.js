@@ -9,16 +9,16 @@ const DebuggingState = (props) => {
           dataStructure: {props.state.dataStructure}
         </div>
         <div>
-          values:[{props.state.values.map(val => `${val}  `)}]
+          isVisualizing: {props.state.isVisualizing}
+        </div>
+        <div>
+          cancelClicked: {props.state.cancelClicked}
         </div>
         <div>
           treeValuesRoot: {JSON.stringify(props.state.treeValues.root)}
         </div>
         <div>
           nodeID: {props.state.nodeID}
-        </div>
-        <div>
-          params:{JSON.stringify(props.state.params)}
         </div>
         <div>
           algorithm: {props.state.algorithm}

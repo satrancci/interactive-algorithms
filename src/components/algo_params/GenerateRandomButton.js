@@ -14,6 +14,7 @@ const GenerateRandomButton = (props) => {
        const randomInputObj = inputGenerator();
        props.assignInputObj(randomInputObj);
        if (randomInputObj["treeValues"]) {props.updateTree(randomInputObj["treeValues"])};
+       props.onRandomClickCallback(randomInputObj);
     }
 
     return (

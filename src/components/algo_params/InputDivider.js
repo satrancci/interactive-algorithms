@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { Divider, Grid, Segment } from "semantic-ui-react";
 import InputSelectionWrapper from "./InputSelectionWrapper";
@@ -32,6 +32,18 @@ const InputDivider = (props) => {
     displayBlock
   ]);
 
+  const [text, setText] = useState("");
+  const onRandomClickCallback = (obj) => obj["treeValues"] ? setText("") : setText(JSON.stringify(obj));
+  
+  useEffect(()=> {
+    const showTextNSeconds = async (n) => {
+      await new Promise((r) => setTimeout(r, n*1000));
+      setText("");
+    }
+    if (text) {
+      showTextNSeconds(3);
+    }
+  }, [text])
 
 
 
@@ -50,7 +62,8 @@ const InputDivider = (props) => {
         <Divider horizontal>Or</Divider>
         <Grid>
           <Grid.Column textAlign="center">
-            <GenerateRandomButton/>
+            <GenerateRandomButton onRandomClickCallback={onRandomClickCallback}/>
+            {<p style={{color: "green"}}>{text}</p>}
           </Grid.Column>
         </Grid>
       </Segment>

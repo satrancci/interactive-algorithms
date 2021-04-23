@@ -167,8 +167,8 @@ export const updateStateAfterCancel = () => (dispatch) => {
     dispatch(deleteVisValues());
     dispatch(deleteErrors());
     dispatch(deleteNodeID());
-    dispatch(toggleIsVisualizing(false));
-    dispatch(toggleCancelClicked(false));
+    dispatch(toggleIsVisualizing(0));
+    dispatch(toggleCancelClicked(0));
 }
 
 

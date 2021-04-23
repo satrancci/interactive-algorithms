@@ -27,6 +27,12 @@ export const updateIndex = (indexTuple) => {
     };
 };
 
+export const deleteIndices = () => {
+    return {
+        type: 'DELETE_INDICES'
+    };
+};
+
 
 export const updateMessage = (message) => {
     return {
@@ -65,6 +71,12 @@ export const updateNodeID = (nodeID) => {
         payload: {
             nodeID: nodeID
         }
+    };
+};
+
+export const deleteNodeID = () => {
+    return {
+        type: 'DELETE_NODE_ID',
     };
 };
 
@@ -143,3 +155,20 @@ export const toggleCancelClicked = (bool) => {
         }
     };
 };
+
+
+export const updateStateAfterCancel = () => (dispatch) => {
+    dispatch(deleteIndices());
+    dispatch(deleteMessage());
+    dispatch(deleteTree());
+    dispatch(deleteNodeID());
+    dispatch(updateVisualizationSpeed(3));
+    dispatch(deleteInputObj());
+    dispatch(deleteVisValues());
+    dispatch(deleteErrors());
+    dispatch(deleteNodeID());
+    dispatch(toggleIsVisualizing(false));
+    dispatch(toggleCancelClicked(false));
+}
+
+

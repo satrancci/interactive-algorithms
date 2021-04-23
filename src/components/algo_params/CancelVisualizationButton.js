@@ -12,11 +12,12 @@ const CancelVisualizationButton = (props) => {
     }
 
     return (
-        <Button 
+        <Button
         size="small"
-        content="Cancel"
         onClick={onCancelClick}
-        />
+        >
+            Cancel
+        </Button>
     )
 };
 

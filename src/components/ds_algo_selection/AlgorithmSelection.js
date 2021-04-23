@@ -28,6 +28,7 @@ const AlgorithmSelection = (props) => {
   return (
     <div style={{}}>
         <Dropdown
+          disabled={props.isVisualizing ? true : false}
           placeholder='Select Algorithm'
           text={props.algorithm}
           onChange={handleOnChange}
@@ -44,7 +45,8 @@ const AlgorithmSelection = (props) => {
 const mapStateToProps = (state) => {
   return {
     algorithm: state.algorithm,
-    dataStructure: state.dataStructure
+    dataStructure: state.dataStructure,
+    isVisualizing: state.isVisualizing
   };
 };
 

@@ -55,7 +55,7 @@ const App = (props) => {
       {props.state.algorithm && (
         <Minimizer up={minimizerUp} onToggle={onMinimizerToggle} />
       )}
-      {props.state.algorithm && (
+      {(props.state.algorithm && (!props.state.isVisualizing)) && (
         <InputDivider
           callback={onDividerSizeUpdate}
           resize={resize}

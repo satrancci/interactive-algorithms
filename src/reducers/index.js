@@ -10,6 +10,7 @@ import inputObjReducer from './inputObjReducer';
 import visValuesReducer from './visValuesReducer';
 import errorReducer from './errorReducer';
 import isVisualizingReducer from './isVisualizingReducer';
+import cancelClickedReducer from './cancelClickedReducer';
 
 export default combineReducers({
   dataStructure: dsReducer,
@@ -22,5 +23,6 @@ export default combineReducers({
   inputObj: inputObjReducer,
   visValues: visValuesReducer,
   errors: errorReducer,
-  isVisualizing: isVisualizingReducer
+  isVisualizing: isVisualizingReducer,
+  cancelClicked: cancelClickedReducer
 });

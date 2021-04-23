@@ -134,3 +134,12 @@ export const toggleIsVisualizing = (bool) => {
         }
     };
 };
+
+export const toggleCancelClicked = (bool) => {
+    return {
+        type: 'TOGGLE_CANCEL_CLICKED_BOOL',
+        payload: {
+            bool: bool
+        }
+    };
+};

@@ -12,6 +12,9 @@ const DebuggingState = (props) => {
           isVisualizing: {props.state.isVisualizing}
         </div>
         <div>
+          cancelClicked: {props.state.cancelClicked}
+        </div>
+        <div>
           treeValuesRoot: {JSON.stringify(props.state.treeValues.root)}
         </div>
         <div>

@@ -5,11 +5,10 @@ const idxReducer = (indices={}, action) => {
           const [name, index] = action.payload.indexTuple;
           newState[name] = index;
           return newState;
+        case 'DELETE_INDICES':
+          return {};
         default:
           return indices;
-        
-        case 'SOME_OTHER_ACTION':
-          return {}
     }
 };
 

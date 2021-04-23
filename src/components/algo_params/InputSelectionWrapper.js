@@ -8,7 +8,7 @@ const InputSelectionWrapper = (props) => {
   return (
     <div id="input-selection-wrapper" style={{boxSizing: "border-box", backgroundColor: "#F4F4F4", padding: "0%"}}>
       {props.state.algorithm && <InputParams/>}
-      {/*<DebuggingState />*/}
+      {<DebuggingState/>}
     </div>
   );
 };

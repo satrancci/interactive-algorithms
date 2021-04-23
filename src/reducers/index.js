@@ -9,6 +9,7 @@ import speedReducer from './speedReducer';
 import inputObjReducer from './inputObjReducer';
 import visValuesReducer from './visValuesReducer';
 import errorReducer from './errorReducer';
+import isVisualizingReducer from './isVisualizingReducer';
 
 export default combineReducers({
   dataStructure: dsReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
   visualizationSpeed: speedReducer,
   inputObj: inputObjReducer,
   visValues: visValuesReducer,
-  errors: errorReducer
+  errors: errorReducer,
+  isVisualizing: isVisualizingReducer
 });

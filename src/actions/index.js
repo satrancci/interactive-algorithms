@@ -124,3 +124,13 @@ export const deleteErrors = () => {
         type: 'DELETE_ERRORS'
     };
 };
+
+
+export const toggleIsVisualizing = (bool) => {
+    return {
+        type: 'TOGGLE_IS_VISUALIZING',
+        payload: {
+            bool: bool
+        }
+    };
+};

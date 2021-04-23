@@ -9,6 +9,9 @@ const DebuggingState = (props) => {
           dataStructure: {props.state.dataStructure}
         </div>
         <div>
+          isVisualizing: {props.state.isVisualizing}
+        </div>
+        <div>
           treeValuesRoot: {JSON.stringify(props.state.treeValues.root)}
         </div>
         <div>

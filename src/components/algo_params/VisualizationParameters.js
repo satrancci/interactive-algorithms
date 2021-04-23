@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import VisualizationSpeed from "./VisualizationSpeed";
+import CancelVisualizationButton from "./CancelVisualizationButton";
 
 
 const VisualizationParameters = (props) => {
@@ -21,6 +22,7 @@ const VisualizationParameters = (props) => {
 
     return (
         <div id="visualization-parameters" style={{boxSizing: "border-box", display: "flex"}} ref={elemRef}>
+            <CancelVisualizationButton/>
             <VisualizationSpeed/>
         </div>
     )

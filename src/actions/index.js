@@ -65,6 +65,24 @@ export const deleteTree = () => {
     };
 };
 
+
+export const updateGraph = (graph) => {
+    return {
+        type: 'UPDATE_GRAPH',
+        payload: {
+            graph:graph
+        }
+    };
+};
+
+export const deleteGraph = () => {
+    return {
+        type: 'DELETE_GRAPH'
+    };
+};
+
+
+
 export const updateNodeID = (nodeID) => {
     return {
         type: 'UPDATE_NODE_ID',

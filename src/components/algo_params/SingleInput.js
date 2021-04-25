@@ -42,6 +42,7 @@ const SingleInput = (props) => {
     statusCode === 0 ? props.onSingleInputSubmit(inputName, retVal) : props.setErrors([retVal]);
   };
     
+
     if (props.hidden) {return null};
 
     return (
@@ -55,7 +56,7 @@ const SingleInput = (props) => {
           value={valToAdd}
           onChange={(e) => onAddValue(e.target.value)}
         />
-        <Button size="small" primary onClick={onAddSubmit}>{props.buttonText || "Add"}</Button>
+        <Button size="small" primary onClick={onAddSubmit}>{"Submit"}</Button>
       </div>
     );
 };

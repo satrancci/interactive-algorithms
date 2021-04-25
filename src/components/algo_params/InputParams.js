@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-
 import TreeInput from "./TreeInput";
+import GraphInput from "./GraphInput";
 import SingleInput from "./SingleInput";
-
 import { assignInputObj } from "../../actions";
 import paramsMappings from "../../paramsMappings";
-
 import MessageError from "./MessageError";
 
 import _ from "lodash";
@@ -37,8 +35,12 @@ const InputParams = (props) => {
           <TreeInput algorithm={props.state.algorithm} />
         ) : null}
 
+        {inputNames.includes("graphValues") ? (
+          <GraphInput algorithm={props.state.algorithm} />
+        ) : null}
+
         {inputNames &&
-          !inputNames.includes("treeValues") &&
+          !inputNames.includes("treeValues") && !inputNames.includes("graphValues") &&
           inputNames.map((inputName) => {
             return (
               <SingleInput

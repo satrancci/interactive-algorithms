@@ -11,7 +11,11 @@ const paramsMappings = {
     longestIncreasingSubsequence: ["arr"],
     subsetSum: ["arr", "targetSum"],
     editDistance: ["str1", "str2"],
-    huffmanCoding: ["str"]
+    huffmanCoding: ["str"],
+    bfs: ["graphValues"],
+    dfs: ["graphValues"],
+    dijkstra: ["graphValues"],
+    bellmanFord: ["graphValues"]
 };
 
 export default paramsMappings;

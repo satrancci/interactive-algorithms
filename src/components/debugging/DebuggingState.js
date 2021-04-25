@@ -18,6 +18,9 @@ const DebuggingState = (props) => {
           treeValuesRoot: {JSON.stringify(props.state.treeValues.root)}
         </div>
         <div>
+          graphValues: {JSON.stringify(props.state.graphValues.graph)}
+        </div>
+        <div>
           nodeID: {props.state.nodeID}
         </div>
         <div>

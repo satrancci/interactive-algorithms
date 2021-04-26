@@ -18,7 +18,7 @@ export default class Graph {
 
   edgeExists(nodeID1, nodeID2){
     const exists = this.graph[nodeID1]["edges"][nodeID2] && this.graph[nodeID2]["edges"][nodeID1];
-    return exists ? [0, ""] : [1, `The edge "${nodeID1}-${nodeID2}" does not exist in the graph.`];
+    return exists ? [0, `The edge "${nodeID1}-${nodeID2}" already exists in the graph.`] : [1, `The edge "${nodeID1}-${nodeID2}" does not exist in the graph.`];
   }
 
   addNode(value) {

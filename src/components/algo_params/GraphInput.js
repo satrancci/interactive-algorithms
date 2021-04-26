@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { updateGraph, assignInputObj, deleteInputObj } from "../../actions";
+import { updateGraph, assignInputObj, deleteInputObj, setErrors } from "../../actions";
 import { Button, Form } from "semantic-ui-react";
 import SingleInput from "./SingleInput";
 
@@ -97,6 +97,13 @@ const GraphInput = (props) => {
     const nodeID2 = obj["nodeID2"];
     const cost = obj["cost"];
     let newGraph = _.cloneDeep(props.graphValues);
+
+    const [statusCode, message] = newGraph.edgeExists(nodeID1, nodeID2);
+    if (statusCode === 0) { // 0 if edge exists
+      props.setErrors([message]);
+      return;
+    }
+
     newGraph.addEdge(nodeID1, nodeID2, cost);
     props.assignInputObj({ graphValues: newGraph });
     props.updateGraph(newGraph);
@@ -106,6 +113,13 @@ const GraphInput = (props) => {
     const nodeID1 = obj["nodeID1"];
     const nodeID2 = obj["nodeID2"];
     let newGraph = _.cloneDeep(props.graphValues);
+
+    const [statusCode, message] = newGraph.edgeExists(nodeID1, nodeID2);
+    if (statusCode === 1) { // 1 if edge does not exist
+      props.setErrors([message]);
+      return;
+    }
+
     newGraph.deleteEdge(nodeID1, nodeID2);
     props.assignInputObj({ graphValues: newGraph });
     props.updateGraph(newGraph);
@@ -116,6 +130,13 @@ const GraphInput = (props) => {
     const nodeID2 = obj["nodeID2"];
     const newCost = obj["cost"];
     let newGraph = _.cloneDeep(props.graphValues);
+
+    const [statusCode, message] = newGraph.edgeExists(nodeID1, nodeID2);
+    if (statusCode === 1) { // 1 if edge does not exist
+      props.setErrors([message]);
+      return;
+    }
+    
     newGraph.modifyEdgeCost(nodeID1, nodeID2, newCost);
     props.assignInputObj({ graphValues: newGraph });
     props.updateGraph(newGraph);
@@ -205,4 +226,5 @@ export default connect(mapStateToProps, {
   updateGraph,
   assignInputObj,
   deleteInputObj,
+  setErrors
 })(GraphInput);

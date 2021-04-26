@@ -1,8 +1,14 @@
+import _ from "lodash";
+
+
+const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
 export default class Graph {
   constructor() {
     this.graph = {}
     this.length = 0
     this.maxLength = 12
+    this.letters = String.fromCharCode(..._.range('A'.charCodeAt(0), ALPHABET[this.maxLength-1].charCodeAt(0) + 1)).split("");
   }
 
   nodeExists(nodeID){
@@ -18,7 +24,9 @@ export default class Graph {
   addNode(value) {
     if (this.length === this.maxLength) {return [1, `Could not insert. The graph cannot have more than ${this.maxLength} nodes.`];}
     this.length += 1;
-    this.graph[this.length] = {value: value, edges: {}};
+    const existingKeys = Object.keys(this.graph);
+    const availableNodes = this.letters.filter((o) => existingKeys.indexOf(o) === -1);
+    this.graph[availableNodes[0]] = {value: value, edges: {}};
     return [0, `Node ${this.length} has been successfully added to the graph`];
   }
 

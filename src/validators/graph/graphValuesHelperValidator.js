@@ -14,7 +14,7 @@ const schema = {
 
 
 const graphValuesHelperValidator = (inputName, value) => {
-    console.log(`graphValuesHelperValidator received inputname: ${inputName}, value: ${value}`);
+    //console.log(`graphValuesHelperValidator received inputname: ${inputName}, value: ${value}`);
     let [newGraph, statusCode, message] = [null, null, null];
     let valueTrimmed = value.trim();
     let res = null;

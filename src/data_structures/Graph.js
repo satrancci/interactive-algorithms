@@ -21,7 +21,7 @@ export default class Graph {
     return exists ? [0, `The edge "${nodeID1}-${nodeID2}" already exists in the graph.`] : [1, `The edge "${nodeID1}-${nodeID2}" does not exist in the graph.`];
   }
 
-  addNode(value) {
+  addNode(value="") {
     if (this.length === this.maxLength) {return [1, `Could not insert. The graph cannot have more than ${this.maxLength} nodes.`];}
     this.length += 1;
     const existingKeys = Object.keys(this.graph);

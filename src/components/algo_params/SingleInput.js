@@ -42,6 +42,11 @@ const SingleInput = (props) => {
       props.onSingleInputSubmit(inputName, 1);
       return;
     }
+    if (props.inputDisabled && inputName === "node-value") { // a bit ugly, need to find a better way in the future to deal with this exception 
+      props.onSingleInputSubmit(inputName, "");
+      return;
+    }
+
     props.deleteErrors();
     const validator = validationMappings[algorithm].f;
     const [statusCode, retVal] =  validator(inputName, valToAdd); // [0, values] or [1, errorMsg]
@@ -64,7 +69,7 @@ const SingleInput = (props) => {
           value={valToAdd}
           onChange={(e) => onAddValue(e.target.value)}
         />
-        <Button size="small" primary onClick={onAddSubmit}>{"Submit"}</Button>
+        <Button size="small" primary onClick={onAddSubmit}>{props.buttonText || "Submit"}</Button>
       </div>
     );
 };

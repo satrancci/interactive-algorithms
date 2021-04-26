@@ -211,7 +211,8 @@ const GraphInput = (props) => {
               key={labelName}
               inputName={labelName}
               hidden={false}
-              inputDisabled={hideEdgeCost.includes(props.algorithm) && labelName === "cost" ? true : false}
+              inputDisabled={(hideEdgeCost.includes(props.algorithm) && labelName === "cost" ) || optionSelected==="AddNode" ? true : false}
+              buttonText={optionSelected==="AddNode" ? "Add" : ""}
               onSingleInputSubmit={onSingleInputSubmit}
               algorithm={props.algorithm}
             />

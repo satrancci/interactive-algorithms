@@ -22,6 +22,8 @@ const graphValuesHelperValidator = (inputName, value) => {
         case "node-id":
         case "nodeID1":
         case "nodeID2":
+        case "src":
+        case "dst":
             newGraph = _.cloneDeep(store.getState().graphValues);
             [statusCode, message] = newGraph.nodeExists(valueTrimmed);
             //console.log(`node-id check value: ${valueTrimmed}`);

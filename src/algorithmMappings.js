@@ -11,6 +11,10 @@ import longestIncreasingSubsequence from './algorithms/array/longestIncreasingSu
 import editDistance from './algorithms/array2d/editDistance';
 import subsetSum from './algorithms/array/subsetSum';
 import huffmanCoding from './algorithms/tree/huffmanCoding';
+import bfs from './algorithms/graph/bfs';
+import dfs from './algorithms/graph/dfs';
+import dijkstra from './algorithms/graph/dijkstra';
+import bellmanFord from './algorithms/graph/bellmanFord';
 
 
 const algorithmMappings = {
@@ -26,7 +30,11 @@ const algorithmMappings = {
     longestIncreasingSubsequence: {f:longestIncreasingSubsequence, tags:["Array"]},
     editDistance: {f:editDistance, tags:["Array2D"]},
     subsetSum: {f:subsetSum, tags:["Array"]},
-    huffmanCoding: {f:huffmanCoding, tags:["Tree"]}
+    huffmanCoding: {f:huffmanCoding, tags:["Tree"]},
+    bfs: {f:bfs, tags:["Graph"]},
+    dfs: {f:dfs, tags:["Graph"]},
+    dijkstra: {f:dijkstra, tags:["Graph"]},
+    bellmanFord: {f:bellmanFord, tags:["Graph"]}
 };
 
 export default algorithmMappings;

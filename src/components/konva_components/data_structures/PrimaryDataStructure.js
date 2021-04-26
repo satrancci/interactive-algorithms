@@ -3,6 +3,7 @@ import { Group } from "react-konva";
 import Array from "./Array";
 import Tree from "./Tree";
 import Array2D from "./Array2D";
+import Graph from "./Graph";
 
 const PrimaryDataStructure = (props) => {
   
@@ -58,6 +59,7 @@ const PrimaryDataStructure = (props) => {
           algorithm={props.algorithm}
         />
       ) : null}
+       {props.dataStructure === "Graph" ? <Graph graph={props.graphValues} canvasWidth={props.canvasWidth} canvasHeight={props.canvasHeight}/> : null}
     </Group>
   );
 };

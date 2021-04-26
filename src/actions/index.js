@@ -65,6 +65,24 @@ export const deleteTree = () => {
     };
 };
 
+
+export const updateGraph = (graph) => {
+    return {
+        type: 'UPDATE_GRAPH',
+        payload: {
+            graph:graph
+        }
+    };
+};
+
+export const deleteGraph = () => {
+    return {
+        type: 'DELETE_GRAPH'
+    };
+};
+
+
+
 export const updateNodeID = (nodeID) => {
     return {
         type: 'UPDATE_NODE_ID',
@@ -161,6 +179,7 @@ export const updateStateAfterCancel = () => (dispatch) => {
     dispatch(deleteIndices());
     dispatch(deleteMessage());
     dispatch(deleteTree());
+    dispatch(deleteGraph());
     dispatch(deleteNodeID());
     dispatch(updateVisualizationSpeed(4));
     dispatch(deleteInputObj());

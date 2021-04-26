@@ -11,6 +11,7 @@ import visValuesReducer from './visValuesReducer';
 import errorReducer from './errorReducer';
 import isVisualizingReducer from './isVisualizingReducer';
 import cancelClickedReducer from './cancelClickedReducer';
+import graphReducer from './graphReducer';
 
 export default combineReducers({
   dataStructure: dsReducer,
@@ -18,6 +19,7 @@ export default combineReducers({
   indices: idxReducer,
   message: msgReducer,
   treeValues: treeReducer,
+  graphValues: graphReducer,
   nodeID: nodeIDReducer,
   visualizationSpeed: speedReducer,
   inputObj: inputObjReducer,

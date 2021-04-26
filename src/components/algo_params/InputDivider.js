@@ -33,7 +33,7 @@ const InputDivider = (props) => {
   ]);
 
   const [text, setText] = useState("");
-  const onRandomClickCallback = (obj) => obj["treeValues"] ? setText("") : setText(JSON.stringify(obj));
+  const onRandomClickCallback = (obj) => (obj["treeValues"] || obj["graphValues"]) ? setText("") : setText(JSON.stringify(obj));
   
   useEffect(()=> {
     const showTextNSeconds = async (n) => {

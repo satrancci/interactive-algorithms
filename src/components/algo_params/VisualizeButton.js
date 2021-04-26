@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Button } from 'semantic-ui-react';
 import algorithmMappings from '../../algorithmMappings';
-import { toggleIsVisualizing, updateStateAfterCancel, deleteVisValues} from "../../actions";
+import { toggleIsVisualizing, updateStateAfterCancel, deleteVisValues, deleteInputObj} from "../../actions";
+
+import _ from "lodash";
 
 const VisualizeButton = (props) => {
-
   const onVisualize = async () => {
 
     const f = algorithmMappings[props.state.algorithm].f;
@@ -17,14 +18,14 @@ const VisualizeButton = (props) => {
       props.updateStateAfterCancel();
     }
     props.toggleIsVisualizing(0);
-    if (props.state.treeValues.root !== null) { // so that users could add/modify/delete the same tree after first visualization
-      props.deleteVisValues();
-    }
-    
+    props.deleteInputObj();
+    if ((!_.isEmpty(props.state.graphValues.graph)) || props.state.treeValues.root !== null) {
+      props.deleteVisValues(); // so that users could add/modify/delete the same tree/graph after first visualization
+    }    
   }
 
     return (
-        <Button size="small" disabled={props.state.isVisualizing || props.disabled} color="orange" style={{marginLeft: "auto"}} onClick={onVisualize}>Visualize!</Button>
+        <Button size="small" disabled={Boolean(Number(props.state.isVisualizing)) || props.disabled} color="orange" style={{marginLeft: "auto"}} onClick={onVisualize}>Visualize!</Button>
     );
 };
 
@@ -39,5 +40,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   toggleIsVisualizing,
   updateStateAfterCancel,
-  deleteVisValues
+  deleteVisValues,
+  deleteInputObj
 })(VisualizeButton);

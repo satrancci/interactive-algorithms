@@ -11,6 +11,10 @@ import longestIncreasingSubsequenceValidator from './validators/array/longestInc
 import editDistanceValidator from './validators/array2d/editDistanceValidator';
 import subsetSumValidator from './validators/array/subsetSumValidator';
 import huffmanCodingValidator from './validators/tree/huffmanCodingValidator';
+import bfsValidator from './validators/graph/bfsValidator';
+import dfsValidator from './validators/graph/dfsValidator';
+import dijkstraValidator from './validators/graph/dijkstraValidator';
+import bellmanFordValidator from './validators/graph/bellmanFordValidator';
 
 
 
@@ -27,7 +31,11 @@ const validationMappings = {
     longestIncreasingSubsequence: {f:longestIncreasingSubsequenceValidator},
     editDistance: {f:editDistanceValidator},
     subsetSum: {f:subsetSumValidator},
-    huffmanCoding: {f:huffmanCodingValidator}
+    huffmanCoding: {f:huffmanCodingValidator},
+    bfs: {f:bfsValidator},
+    dfs: {f:dfsValidator},
+    dijkstra: {f:dijkstraValidator},
+    bellmanFord: {f:bellmanFordValidator}
 };
 
 export default validationMappings;

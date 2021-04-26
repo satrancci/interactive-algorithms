@@ -12,10 +12,10 @@ const paramsMappings = {
     subsetSum: ["arr", "targetSum"],
     editDistance: ["str1", "str2"],
     huffmanCoding: ["str"],
-    bfs: ["graphValues"],
-    dfs: ["graphValues"],
-    dijkstra: ["graphValues"],
-    bellmanFord: ["graphValues"]
+    bfs: ["graphValues", "src"],
+    dfs: ["graphValues", "src"],
+    dijkstra: ["graphValues", "src", "dst"],
+    bellmanFord: ["graphValues", "src", "dst"]
 };
 
 export default paramsMappings;

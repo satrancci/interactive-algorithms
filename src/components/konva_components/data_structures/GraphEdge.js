@@ -7,6 +7,7 @@ const calculateEdgeTextCoord = (x1, y1, x2, y2) => {
     let coordX = 0; 
     if (slopeValue < 0 || slopeValue === 0) {coordX = x1+(x2-x1)/2};
     if (slopeValue > 0 ) {coordX = x1+(x2-x1)/2-((x2-x1)*0.1)};
+    if (slopeValue === Infinity ) {coordX = x1+(x2-x1)/2+5};
     const coordY = y1+(y2-y1)/2+y1*0.02;
     return [coordX, coordY];
 }

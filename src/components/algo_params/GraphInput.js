@@ -81,7 +81,7 @@ const GraphInput = (props) => {
     }
 
     newGraph.addNode(value);
-    props.assignInputObj({ graphValues: newGraph });
+    props.assignInputObj(Object.assign({},_.cloneDeep(props.inputObj), { graphValues: newGraph }));
     props.updateGraph(newGraph);
   };
 
@@ -93,7 +93,7 @@ const GraphInput = (props) => {
       props.deleteInputObj();
       setOptionSelected("AddNode");
     } else {
-      props.assignInputObj({ graphValues: newGraph });
+      props.assignInputObj(Object.assign({},_.cloneDeep(props.inputObj), { graphValues: newGraph }));
     }
     props.updateGraph(newGraph);
   };
@@ -111,7 +111,7 @@ const GraphInput = (props) => {
     }
 
     newGraph.addEdge(nodeID1, nodeID2, cost);
-    props.assignInputObj({ graphValues: newGraph });
+    props.assignInputObj(Object.assign({},_.cloneDeep(props.inputObj), { graphValues: newGraph }));
     props.updateGraph(newGraph);
   };
 
@@ -127,7 +127,7 @@ const GraphInput = (props) => {
     }
 
     newGraph.deleteEdge(nodeID1, nodeID2);
-    props.assignInputObj({ graphValues: newGraph });
+    props.assignInputObj(Object.assign({},_.cloneDeep(props.inputObj), { graphValues: newGraph }));
     props.updateGraph(newGraph);
   };
 
@@ -144,7 +144,7 @@ const GraphInput = (props) => {
     }
     
     newGraph.modifyEdgeCost(nodeID1, nodeID2, newCost);
-    props.assignInputObj({ graphValues: newGraph });
+    props.assignInputObj(Object.assign({},_.cloneDeep(props.inputObj), { graphValues: newGraph }));
     props.updateGraph(newGraph);
   };
 
@@ -226,6 +226,7 @@ const GraphInput = (props) => {
 const mapStateToProps = (state) => {
   return {
     graphValues: state.graphValues,
+    inputObj: state.inputObj
   };
 };
 

@@ -26,7 +26,16 @@ const InputParams = (props) => {
     if (Object.keys(inputObj).length === inputNames.length) {
       assignInputObj(inputObj);
     }
+    if ((inputNames.includes("graphValues") && Object.keys(inputObj).length+1 === inputNames.length)) {
+      const obj1 = Object.assign({}, {graphValues: _.cloneDeep(props.state.graphValues)});
+      const obj2 = Object.assign(obj1, _.cloneDeep(inputObj));
+      assignInputObj(obj2);
+    }
   }, [inputObj]);
+
+  useEffect(() => {
+    setInputObj({});
+  }, [props.state.algorithm])
 
   return (
     <div>
@@ -52,6 +61,23 @@ const InputParams = (props) => {
             );
           })}
       </div>
+      {inputNames.includes("graphValues") && inputNames.length > 1 
+      ?
+      <div id="extra-graph-params">
+          {inputNames.filter(x => x !== "graphValues").map((inputName) => {
+            return (
+              <SingleInput
+                key={inputName}
+                inputName={inputName}
+                onSingleInputSubmit={onSingleInputSubmit}
+                algorithm={props.state.algorithm}
+              />
+            );
+          })}
+      </div>
+      :
+      null
+       }
       {!_.isEmpty(props.state.errors) ? (
         <div id="error-container">
           <MessageError errors={props.state.errors} />

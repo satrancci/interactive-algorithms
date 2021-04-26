@@ -5,7 +5,7 @@ const GraphNode = (props) => {
   
   const {nodeID, canvasWidth, canvasHeight, radius} = props;
   const {x, y} = props.coordinates;
-  console.log(`GraphNode received x:${x}, y:${y}, nodeID: ${JSON.stringify(nodeID)}`);
+  //console.log(`GraphNode received x:${x}, y:${y}, nodeID: ${JSON.stringify(nodeID)}`);
 
   const fontSize = Math.min(Math.abs(canvasWidth), Math.abs(canvasHeight)) * 0.02;
 

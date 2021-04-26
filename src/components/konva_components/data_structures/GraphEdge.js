@@ -13,10 +13,10 @@ const calculateEdgeTextCoord = (x1, y1, x2, y2) => {
 const GraphEdge = (props) => {
     
   const {from, to, cost, positions, canvasWidth, canvasHeight, radius} = props;
-  console.log(`GraphEdge received: from:${from}, to:${to}, cost:${cost}`);
+  //console.log(`GraphEdge received: from:${from}, to:${to}, cost:${cost}`);
 
   const randomColor = "#"+Math.floor(Math.random()*16777215).toString(16); // https://css-tricks.com/snippets/javascript/random-hex-color/
-  console.log(`randomColor: ${randomColor}`);  
+  //console.log(`randomColor: ${randomColor}`);  
 
 
   let fromX = positions[from].x;
@@ -47,9 +47,9 @@ const GraphEdge = (props) => {
   
 
   const [edgeValX, edgeValY] = calculateEdgeTextCoord(fromX, fromY, toX, toY);
-  console.log(`GraphEdge edgeValX: ${edgeValX}, edgeValY: ${edgeValY}`);
+  //console.log(`GraphEdge edgeValX: ${edgeValX}, edgeValY: ${edgeValY}`);
 
-  console.log(`GraphEdge fromX: ${fromX}, fromY: ${fromY}, toX: ${toX}, toY: ${toY}`);
+  //console.log(`GraphEdge fromX: ${fromX}, fromY: ${fromY}, toX: ${toX}, toY: ${toY}`);
 
   
   const fontSize = Math.min(Math.abs(canvasWidth), Math.abs(canvasHeight)) * 0.02;

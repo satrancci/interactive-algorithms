@@ -1,5 +1,5 @@
-import React from "react";
-import { Group, Circle, Line, Text } from "react-konva";
+import React, { useState } from "react";
+import { Group, Line, Text } from "react-konva";
 
 
 const calculateEdgeTextCoord = (x1, y1, x2, y2) => {
@@ -9,15 +9,9 @@ const calculateEdgeTextCoord = (x1, y1, x2, y2) => {
 }
 
 
-
 const GraphEdge = (props) => {
     
   const {from, to, cost, positions, canvasWidth, canvasHeight, radius} = props;
-  //console.log(`GraphEdge received: from:${from}, to:${to}, cost:${cost}`);
-
-  const randomColor = "#"+Math.floor(Math.random()*16777215).toString(16); // https://css-tricks.com/snippets/javascript/random-hex-color/
-  //console.log(`randomColor: ${randomColor}`);  
-
 
   let fromX = positions[from].x;
   let fromY = positions[from].y;
@@ -45,23 +39,25 @@ const GraphEdge = (props) => {
       toY += radius;
   }
   
-
   const [edgeValX, edgeValY] = calculateEdgeTextCoord(fromX, fromY, toX, toY);
-  //console.log(`GraphEdge edgeValX: ${edgeValX}, edgeValY: ${edgeValY}`);
 
-  //console.log(`GraphEdge fromX: ${fromX}, fromY: ${fromY}, toX: ${toX}, toY: ${toY}`);
+  const [isHovered, setIsHovered] = useState(false);
+  const onMouseOverCallback = () => setIsHovered(true);
+  const onMouseOutCallback = () => setIsHovered(false);
 
-  
-  const fontSize = Math.min(Math.abs(canvasWidth), Math.abs(canvasHeight)) * 0.02;
+
+  const edgeColor = isHovered ? "orange" : "black";
+  let fontSize = Math.min(Math.abs(canvasWidth), Math.abs(canvasHeight)) * 0.02;
+  fontSize = isHovered ? fontSize *= 3 : fontSize;
 
   return (
-      <Group>
+      <Group onMouseOver={onMouseOverCallback} onMouseOut={onMouseOutCallback}>
       <Line
         points={[fromX,fromY,toX,toY]}
-        stroke={randomColor}
+        stroke={edgeColor}
         strokeWidth={null}
       />
-      <Text text={cost} x={edgeValX} y={edgeValY} fontSize={fontSize} fill={randomColor}/>
+      <Text text={cost} x={edgeValX} y={edgeValY} fontSize={fontSize} fill={edgeColor}/>
       </Group>
 
   );

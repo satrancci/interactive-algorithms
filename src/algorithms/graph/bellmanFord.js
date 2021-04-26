@@ -1,6 +1,9 @@
+import store from '../../store';
+
 const bellmanFord = () => {
     // placeholder for now
-    console.log(`bellmanFord called!`);
+    const {graphValues, src, dst} = store.getState().inputObj;
+    console.log(`bellmanFord received src: ${src}, dst: ${dst}, graphValues: ${JSON.stringify(graphValues)}`);;
     return;
 }
 

@@ -1,6 +1,9 @@
+import store from '../../store';
+
 const bfs = () => {
     // placeholder for now
-    console.log(`bfs called!`);
+    const {graphValues, src} = store.getState().inputObj;
+    console.log(`bfs received src: ${src}, graphValues: ${JSON.stringify(graphValues)}`);
     return;
 }
 

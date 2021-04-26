@@ -43,7 +43,7 @@ const TreeNode = (props) => {
              <Line points={[x-radius, y+radius*0.3, x+radius, y+radius*0.3]} stroke="black" strokeWidth={0.5}/>
              {(edgeVal === undefined || edgeVal === null) ? null : <Text text={edgeVal} x={edgeX} y={edgeY} fontSize={fontSize} />}
              <Text text={val} x={x-val.toString().length*0.08*radius} y={y-radius*0.3} fontSize={fontSize} />
-             <Text text={id} x={x} y={y+radius*0.5} fontSize={fontSize*0.75} />
+             <Text text={id} x={x-id.toString().length*0.08*radius} y={y+radius*0.5} fontSize={fontSize*0.75} />
              {parentX && parentY ? <Line points={[parentX, parentY+radius, x, y-radius]} stroke={"black"} strokeWidth={1} /> : null}
         </Group>
         

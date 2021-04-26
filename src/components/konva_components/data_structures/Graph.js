@@ -9,18 +9,18 @@ const Graph = (props) => {
   const offsetX = canvasWidth * 0.05;
 
   const positions = {
-    A: { x: offsetX, y: canvasHeight / 2 },
-    B: { x: offsetX + canvasWidth * 0.1, y: canvasHeight * 0.1 },
-    C: { x: offsetX + canvasWidth * 0.1, y: canvasHeight * 0.9 },
-    D: { x: offsetX + canvasWidth * 0.3, y: canvasHeight * 0.1 },
-    E: { x: offsetX + canvasWidth * 0.3, y: canvasHeight * 0.9 },
-    F: { x: offsetX + canvasWidth * 0.5, y: canvasHeight * 0.2 },
-    G: { x: offsetX + canvasWidth * 0.5, y: canvasHeight * 0.8 },
-    H: { x: offsetX + canvasWidth * 0.7, y: canvasHeight * 0.1 },
-    I: { x: offsetX + canvasWidth * 0.7, y: canvasHeight * 0.9 },
-    J: { x: offsetX + canvasWidth * 0.9, y: canvasHeight * 0.2 },
-    K: { x: offsetX + canvasWidth * 0.9, y: canvasHeight * 0.8 },
-    L: { x: offsetX + canvasWidth * 0.8, y: canvasHeight / 2 },
+    A: { x: offsetX, y: canvasHeight * 0.5 },
+    B: { x: offsetX + canvasWidth * 0.1, y: canvasHeight * 0.2 },
+    C: { x: offsetX + canvasWidth * 0.1, y: canvasHeight * 0.8 },
+    D: { x: offsetX + canvasWidth * 0.2, y: canvasHeight * 0.5 },
+    E: { x: offsetX + canvasWidth * 0.3, y: canvasHeight * 0.2 },
+    F: { x: offsetX + canvasWidth * 0.3, y: canvasHeight * 0.8 },
+    G: { x: offsetX + canvasWidth * 0.4, y: canvasHeight * 0.5 },
+    H: { x: offsetX + canvasWidth * 0.5, y: canvasHeight * 0.2 },
+    I: { x: offsetX + canvasWidth * 0.5, y: canvasHeight * 0.8 },
+    J: { x: offsetX + canvasWidth * 0.7, y: canvasHeight * 0.2 },
+    K: { x: offsetX + canvasWidth * 0.7, y: canvasHeight * 0.8 },
+    L: { x: offsetX + canvasWidth * 0.8, y: canvasHeight * 0.5 },
   };
 
   const radius = Math.min(Math.abs(canvasWidth), Math.abs(canvasHeight)) * 0.04;

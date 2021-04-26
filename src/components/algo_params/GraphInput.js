@@ -11,8 +11,7 @@ const graphInputOperations = {
   DeleteNode: ["node-id"],
   AddEdge: ["nodeID1", "nodeID2", "cost"],
   DeleteEdge: ["nodeID1", "nodeID2"],
-  ModifyEdgeCost: ["nodeID1", "nodeID2", "cost"],
-  ModifyNodeValue: ["node-id", "node-value"]
+  ModifyEdgeCost: ["nodeID1", "nodeID2", "cost"]
 };
 
 const GraphInput = (props) => {
@@ -25,7 +24,6 @@ const GraphInput = (props) => {
   const onAddEdgeClick = () => !_.isEmpty(props.graphValues.graph) ? setOptionSelected("AddEdge") : null;
   const onDeleteEdgeClick = () => !_.isEmpty(props.graphValues.graph) ? setOptionSelected("DeleteEdge") : null;
   const onModifyEdgeCostClick = () => !_.isEmpty(props.graphValues.graph) ? setOptionSelected("ModifyEdgeCost") : null;
-  const onModifyNodeValueClick = () => !_.isEmpty(props.graphValues.graph) ? setOptionSelected("ModifyNodeValue") : null;
 
   const onSingleInputSubmit = (inputName, value) => {
     //console.log(`onSingleInputSubmit callback received: inputName: ${inputName}, value: ${value}`)
@@ -62,10 +60,6 @@ const GraphInput = (props) => {
           break;
         case "ModifyEdgeCost":
           onModifyEdgeCostSubmit(singleInputObj);
-          setSingleInputObj({});
-          break;
-        case "ModifyNodeValue":
-          onModifyNodeValueSubmit(singleInputObj);
           setSingleInputObj({});
           break;
         default:
@@ -124,14 +118,6 @@ const GraphInput = (props) => {
     props.updateGraph(newGraph);
   };
 
-  const onModifyNodeValueSubmit = (obj) => {
-    const nodeID = obj["node-id"];
-    const newValue = obj["node-value"];
-    let newGraph = _.cloneDeep(props.graphValues);
-    newGraph.modifyNodeValue(nodeID, newValue);
-    props.assignInputObj({ graphValues: newGraph });
-    props.updateGraph(newGraph);
-  };
 
   return (
     <div>
@@ -185,16 +171,6 @@ const GraphInput = (props) => {
             onClick={onModifyEdgeCostClick}
           >
             ModifyEdgeCost
-          </Button>
-          <Button.Or />
-          <Button
-            size="small"
-            color={optionSelected === "ModifyNodeValue" ? "teal" : null}
-            active={optionSelected === "ModifyNodeValue"}
-            disabled={!optionSelected === "ModifyNodeValue"}
-            onClick={onModifyNodeValueClick}
-          >
-            ModifyNodeValue
           </Button>
         </Button.Group>
       </div>

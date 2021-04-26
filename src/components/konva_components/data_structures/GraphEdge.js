@@ -47,8 +47,8 @@ const GraphEdge = (props) => {
 
 
   const edgeColor = isHovered ? "orange" : "black";
-  let fontSize = Math.min(Math.abs(canvasWidth), Math.abs(canvasHeight)) * 0.02;
-  fontSize = isHovered ? fontSize *= 3 : fontSize;
+  let fontSize = Math.min(Math.abs(canvasWidth), Math.abs(canvasHeight)) * 0.04;
+  fontSize = isHovered ? fontSize *= 2 : fontSize;
 
   return (
       <Group onMouseOver={onMouseOverCallback} onMouseOut={onMouseOutCallback}>

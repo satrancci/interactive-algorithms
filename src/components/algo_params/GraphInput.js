@@ -6,6 +6,8 @@ import SingleInput from "./SingleInput";
 
 import _ from "lodash";
 
+const hideEdgeCost = ["bfs", "dfs"];
+
 const graphInputOperations = {
   AddNode: ["node-value"],
   DeleteNode: ["node-id"],
@@ -15,6 +17,7 @@ const graphInputOperations = {
 };
 
 const GraphInput = (props) => {
+
   const [optionSelected, setOptionSelected] = useState("AddNode");
 
   const [singleInputObj, setSingleInputObj] = useState({});
@@ -37,7 +40,7 @@ const GraphInput = (props) => {
     const objLength = Object.keys(singleInputObj).length;
     const optionsLength = graphInputOperations[optionSelected].length;
     if (
-      objLength !== 0 && objLength === optionsLength) {
+      objLength !== 0 && objLength === optionsLength ) {
       switch (optionSelected) {
         case "AddNode":
           onAddNodeSubmit(singleInputObj);
@@ -118,7 +121,6 @@ const GraphInput = (props) => {
     props.updateGraph(newGraph);
   };
 
-
   return (
     <div>
       <div>
@@ -147,7 +149,7 @@ const GraphInput = (props) => {
             size="small"
             color={optionSelected === "AddEdge" ? "teal" : null}
             active={optionSelected === "AddEdge"}
-            disabled={!optionSelected === "AddEdge"}
+            disabled={props.graphValues.length < 2}
             onClick={onAddEdgeClick}
           >
             AddEdge
@@ -157,7 +159,7 @@ const GraphInput = (props) => {
             size="small"
             color={optionSelected === "DeleteEdge" ? "teal" : null}
             active={optionSelected === "DeleteEdge"}
-            disabled={!optionSelected === "DeleteEdge"}
+            disabled={props.graphValues.length < 2}
             onClick={onDeleteEdgeClick}
           >
             DeleteEdge
@@ -167,7 +169,7 @@ const GraphInput = (props) => {
             size="small"
             color={optionSelected === "ModifyEdgeCost" ? "teal" : null}
             active={optionSelected === "ModifyEdgeCost"}
-            disabled={!optionSelected === "ModifyEdgeCost"}
+            disabled={hideEdgeCost.includes(props.algorithm) || props.graphValues.length < 2}
             onClick={onModifyEdgeCostClick}
           >
             ModifyEdgeCost
@@ -182,8 +184,8 @@ const GraphInput = (props) => {
               key={labelName}
               inputName={labelName}
               hidden={false}
+              inputDisabled={hideEdgeCost.includes(props.algorithm) && labelName === "cost" ? true : false}
               onSingleInputSubmit={onSingleInputSubmit}
-              buttonText={optionSelected}
               algorithm={props.algorithm}
             />
           );

@@ -19,10 +19,13 @@ const getPlaceholderValue = (inputName) => {
             return "str of size 81, no commas"
         case "freqs":
             return "e.g. a:5,b:2,c:1"
+        case "cost":
+            return "1"
         default:
             return "";
     }
 }
+
 
 
 const SingleInput = (props) => {
@@ -35,19 +38,24 @@ const SingleInput = (props) => {
   const onAddValue = newVal => setValToAdd(newVal);
 
   const onAddSubmit = () => {
+    if (props.inputDisabled && inputName === "cost") { // a bit ugly, need to find a better way in the future to deal with this exception 
+      props.onSingleInputSubmit(inputName, 1);
+      return;
+    }
     props.deleteErrors();
     const validator = validationMappings[algorithm].f;
-    const [statusCode, retVal] = validator(inputName, valToAdd); // [0, values] or [1, errorMsg]
+    const [statusCode, retVal] =  validator(inputName, valToAdd); // [0, values] or [1, errorMsg]
     //console.log(`statusCode: ${statusCode}, retVal: ${JSON.stringify(retVal)}`);
     statusCode === 0 ? props.onSingleInputSubmit(inputName, retVal) : props.setErrors([retVal]);
   };
-    
+
 
     if (props.hidden) {return null};
 
     return (
       <div style={{display: "inline-block"}}>
         <Input
+          disabled={props.inputDisabled}
           size="small"
           placeholder={placeholderValue}
           label={`${inputName}: `}

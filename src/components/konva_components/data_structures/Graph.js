@@ -34,7 +34,7 @@ const Graph = (props) => {
           <Group key={i}>
             <GraphNode nodeID={edges[0]} coordinates={positions[edges[0]]} canvasWidth={canvasWidth} canvasHeight={canvasHeight} radius={radius} />
             {Object.entries(edges[1]["edges"]).map((edge, j) => {
-              return parseInt(edges[0]) < parseInt(edge[0]) ? (
+              return edges[0] < edge[0] ? (
                 <GraphEdge
                   key={`edge${j}`}
                   from={edges[0]}

@@ -74,6 +74,12 @@ const GraphInput = (props) => {
   const onAddNodeSubmit = (obj) => {
     const value = obj["node-value"];
     let newGraph = _.cloneDeep(props.graphValues);
+
+    if (newGraph.length === newGraph.maxLength) { 
+      props.setErrors([`Could not insert. The graph cannot have more than ${newGraph.maxLength} nodes.`]);
+      return;
+    }
+
     newGraph.addNode(value);
     props.assignInputObj({ graphValues: newGraph });
     props.updateGraph(newGraph);

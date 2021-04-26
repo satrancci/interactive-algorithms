@@ -159,7 +159,7 @@ const GraphInput = (props) => {
             disabled={!optionSelected === "AddNode"}
             onClick={onAddNodeClick}
           >
-            AddNode
+            +Node
           </Button>
           <Button.Or />
           <Button
@@ -169,7 +169,7 @@ const GraphInput = (props) => {
             disabled={!optionSelected === "DeleteNode"}
             onClick={onDeleteNodeClick}
           >
-            DeleteNode
+            -Node
           </Button>
           <Button.Or />
           <Button
@@ -179,7 +179,7 @@ const GraphInput = (props) => {
             disabled={props.graphValues.length < 2}
             onClick={onAddEdgeClick}
           >
-            AddEdge
+            +Edge
           </Button>
           <Button.Or />
           <Button
@@ -189,7 +189,7 @@ const GraphInput = (props) => {
             disabled={props.graphValues.length < 2}
             onClick={onDeleteEdgeClick}
           >
-            DeleteEdge
+            -Edge
           </Button>
           <Button.Or />
           <Button
@@ -199,7 +199,7 @@ const GraphInput = (props) => {
             disabled={hideEdgeCost.includes(props.algorithm) || props.graphValues.length < 2}
             onClick={onModifyEdgeCostClick}
           >
-            ModifyEdgeCost
+            :=Edge
           </Button>
         </Button.Group>
       </div>

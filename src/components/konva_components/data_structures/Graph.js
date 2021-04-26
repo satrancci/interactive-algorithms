@@ -28,7 +28,6 @@ const Graph = (props) => {
   return (
     <Group>
       {Object.entries(graph).map((edges, i) => {
-        console.log(`value: ${edges[1]["value"]}`)
         return (
           <Group key={i}>
             <GraphNode

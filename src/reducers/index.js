@@ -12,6 +12,7 @@ import errorReducer from './errorReducer';
 import isVisualizingReducer from './isVisualizingReducer';
 import cancelClickedReducer from './cancelClickedReducer';
 import graphReducer from './graphReducer';
+import visitedNodesReducer from './visitedNodesReducer';
 
 export default combineReducers({
   dataStructure: dsReducer,
@@ -26,5 +27,6 @@ export default combineReducers({
   visValues: visValuesReducer,
   errors: errorReducer,
   isVisualizing: isVisualizingReducer,
-  cancelClicked: cancelClickedReducer
+  cancelClicked: cancelClickedReducer,
+  visitedNodes: visitedNodesReducer
 });

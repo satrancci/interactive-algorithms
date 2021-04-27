@@ -3,11 +3,12 @@ import { Group, Circle, Line, Text } from "react-konva";
 
 const GraphNode = (props) => {
   
-  const {nodeID, canvasWidth, canvasHeight, radius, nodeValue} = props;
+  const {nodeID, canvasWidth, canvasHeight, radius, nodeValue, curNodeID, visitedNodes} = props;
   const {x, y} = props.coordinates;
   //console.log(`GraphNode received x:${x}, y:${y}, nodeID: ${JSON.stringify(nodeID)}`);
 
-  const nodeColor = "#7CB9E8";
+  let nodeColor = visitedNodes.contains(nodeID) ? "green" :  "#7CB9E8";
+  nodeColor = curNodeID === nodeID ? "red" : nodeColor;
   const nodeIDTextX = x-radius*0.3;
   const nodeIDTextY = y-radius*0.6;
   const nodeIDFontSize = Math.min(Math.abs(canvasWidth), Math.abs(canvasHeight)) * 0.04;

@@ -12,12 +12,14 @@ export default class Graph {
   }
 
   nodeExists(nodeID){
-    const exists = this.graph[nodeID];
+    let exists = this.graph[nodeID];
+    exists = exists === undefined ? false : true;
     return exists ? [0, ""] : [1, `The node "${nodeID}" does not exist in the graph.`];
   }
 
   edgeExists(nodeID1, nodeID2){
-    const exists = this.graph[nodeID1]["edges"][nodeID2] && this.graph[nodeID2]["edges"][nodeID1];
+    let exists = this.graph[nodeID1]["edges"][nodeID2] && this.graph[nodeID2]["edges"][nodeID1];
+    exists = exists === undefined ? false : true;
     return exists ? [0, `The edge "${nodeID1}-${nodeID2}" already exists in the graph.`] : [1, `The edge "${nodeID1}-${nodeID2}" does not exist in the graph.`];
   }
 

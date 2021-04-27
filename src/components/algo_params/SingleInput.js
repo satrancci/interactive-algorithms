@@ -38,6 +38,7 @@ const SingleInput = (props) => {
   const onAddValue = newVal => setValToAdd(newVal);
 
   const onAddSubmit = () => {
+    props.deleteErrors();
     if (props.inputDisabled && inputName === "cost") { // a bit ugly, need to find a better way in the future to deal with this exception 
       props.onSingleInputSubmit(inputName, 1);
       return;
@@ -47,7 +48,6 @@ const SingleInput = (props) => {
       return;
     }
 
-    props.deleteErrors();
     const validator = validationMappings[algorithm].f;
     const [statusCode, retVal] =  validator(inputName, valToAdd); // [0, values] or [1, errorMsg]
     //console.log(`statusCode: ${statusCode}, retVal: ${JSON.stringify(retVal)}`);

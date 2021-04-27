@@ -6,9 +6,8 @@ import Array2D from "./Array2D";
 import Graph from "./Graph";
 
 const PrimaryDataStructure = (props) => {
-  
   const cellY = 0;
-  const textCenterY = cellY+props.cellHeight*0.4;
+  const textCenterY = cellY + props.cellHeight * 0.4;
 
   return (
     <Group>
@@ -59,7 +58,15 @@ const PrimaryDataStructure = (props) => {
           algorithm={props.algorithm}
         />
       ) : null}
-       {props.dataStructure === "Graph" ? <Graph graph={props.graphValues} canvasWidth={props.canvasWidth} canvasHeight={props.canvasHeight}/> : null}
+      {props.dataStructure === "Graph" ? (
+        <Graph
+          graph={props.graphValues}
+          canvasWidth={props.canvasWidth}
+          canvasHeight={props.canvasHeight}
+          curNodeID={props.curNodeID}
+          visitedNodes={props.visitedNodes}
+        />
+      ) : null}
     </Group>
   );
 };

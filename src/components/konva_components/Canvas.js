@@ -48,6 +48,7 @@ const Canvas = (props) => {
               values={props.state.visValues}
               treeValues={props.state.visValues.root || props.state.treeValues.root}
               graphValues={props.state.visValues.graph || props.state.graphValues.graph}
+              visitedNodes={props.state.visitedNodes}
               dataStructure={props.state.dataStructure}
               indices={props.state.indices}
               cellX={cellX}

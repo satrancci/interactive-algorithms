@@ -4,7 +4,7 @@ import GraphNode from "./GraphNode";
 import GraphEdge from "./GraphEdge";
 
 const Graph = (props) => {
-  const { canvasWidth, canvasHeight, graph } = props;
+  const { canvasWidth, canvasHeight, graph, curNodeID, visitedNodes} = props;
 
   const offsetX = canvasWidth * 0.05;
 
@@ -37,6 +37,8 @@ const Graph = (props) => {
               canvasWidth={canvasWidth}
               canvasHeight={canvasHeight}
               radius={radius}
+              curNodeID={curNodeID}
+              visitedNodes={visitedNodes}
             />
             {Object.entries(edges[1]["edges"]).map((edge, j) => {
               return edges[0] < edge[0] ? (

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Button } from 'semantic-ui-react';
 import algorithmMappings from '../../algorithmMappings';
-import { toggleIsVisualizing, updateStateAfterCancel, deleteVisValues, deleteInputObj, deleteNodeID} from "../../actions";
+import { toggleIsVisualizing, updateStateAfterCancel, deleteVisValues, updateStateAfterSuccessfulRun} from "../../actions";
 
 import _ from "lodash";
 
@@ -17,9 +17,7 @@ const VisualizeButton = (props) => {
       console.log(`${props.state.algorithm}() ran into error: ${e}`);
       props.updateStateAfterCancel();
     }
-    props.toggleIsVisualizing(0);
-    props.deleteInputObj();
-    props.deleteNodeID();
+    props.updateStateAfterSuccessfulRun();
     if ((!_.isEmpty(props.state.graphValues.graph)) || props.state.treeValues.root !== null) {
       props.deleteVisValues(); // so that users could add/modify/delete the same tree/graph after first visualization
     }    
@@ -42,6 +40,5 @@ export default connect(mapStateToProps, {
   toggleIsVisualizing,
   updateStateAfterCancel,
   deleteVisValues,
-  deleteInputObj,
-  deleteNodeID
+  updateStateAfterSuccessfulRun
 })(VisualizeButton);

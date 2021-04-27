@@ -206,4 +206,12 @@ export const updateStateAfterCancel = () => (dispatch) => {
     dispatch(deleteVisitedNodes());
 }
 
+export const updateStateAfterSuccessfulRun = () => (dispatch) => {
+    dispatch(toggleIsVisualizing(0));
+    dispatch(deleteInputObj());
+    dispatch(deleteNodeID());
+    dispatch(deleteVisitedNodes());
+}
+
+
 

@@ -29,7 +29,6 @@ const GraphInput = (props) => {
   const onModifyEdgeCostClick = () => !_.isEmpty(props.graphValues.graph) ? setOptionSelected("ModifyEdgeCost") : null;
 
   const onSingleInputSubmit = (inputName, value) => {
-    //console.log(`onSingleInputSubmit callback received: inputName: ${inputName}, value: ${value}`)
     setSingleInputObj((singleInputObj) => ({
       ...singleInputObj,
       [inputName]: value,
@@ -40,7 +39,7 @@ const GraphInput = (props) => {
     const objLength = Object.keys(singleInputObj).length;
     const optionsLength = graphInputOperations[optionSelected].length;
     if (
-      objLength !== 0 && objLength === optionsLength ) {
+      objLength !== 0 && objLength >= optionsLength ) {
       switch (optionSelected) {
         case "AddNode":
           onAddNodeSubmit(singleInputObj);
@@ -79,7 +78,6 @@ const GraphInput = (props) => {
       props.setErrors([`Could not insert. The graph cannot have more than ${newGraph.maxLength} nodes.`]);
       return;
     }
-
     newGraph.addNode(value);
     props.assignInputObj(Object.assign({},_.cloneDeep(props.inputObj), { graphValues: newGraph }));
     props.updateGraph(newGraph);

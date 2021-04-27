@@ -13,6 +13,7 @@ const schema = {
 };
 
 
+
 const graphValuesHelperValidator = (inputName, value) => {
     //console.log(`graphValuesHelperValidator received inputname: ${inputName}, value: ${value}`);
     let [newGraph, statusCode, message] = [null, null, null];
@@ -33,6 +34,9 @@ const graphValuesHelperValidator = (inputName, value) => {
             return res["error"] === undefined ? [0, res["value"][inputName]] : [1, res["error"]["message"]];
         case "cost":
             res = schema[inputName].validate({ [inputName]: value});
+            if (res["value"][inputName] < 0 && store.getState().algorithm === "dijkstra") {
+               return [1, "Dijkstra works only with NON-NEGATIVE costs!"] ;
+            }
             return res["error"] === undefined ? [0, res["value"][inputName]] : [1, res["error"]["message"]];
         default:
             return;

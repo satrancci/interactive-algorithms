@@ -81,6 +81,21 @@ export const deleteGraph = () => {
     };
 };
 
+export const assignVisitedNodes = (visited) => {
+    return {
+        type: 'ASSIGN_VISITED_NODES',
+        payload: {
+            visited:visited
+        }
+    };
+};
+
+export const deleteVisitedNodes = () => {
+    return {
+        type: 'DELETE_VISITED_NODES'
+    };
+};
+
 
 
 export const updateNodeID = (nodeID) => {
@@ -188,6 +203,7 @@ export const updateStateAfterCancel = () => (dispatch) => {
     dispatch(deleteNodeID());
     dispatch(toggleIsVisualizing(0));
     dispatch(toggleCancelClicked(0));
+    dispatch(deleteVisitedNodes());
 }
 
 

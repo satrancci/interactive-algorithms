@@ -120,7 +120,11 @@ const dijkstra = async () => {
 
       }
     }
-
+    if (!visited.contains(dst)) {
+        store.dispatch(updateMessage(`There is NO PATH from ${src} to ${dst}!`));
+        await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+        return;
+    }
     let parent = dst;
     const path = [];
     path.push(parent);

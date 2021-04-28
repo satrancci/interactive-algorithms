@@ -1,4 +1,4 @@
-A React app with step-by-step explanations and visualization of common computer science algorithms. Canvas objects are draggable.
+Step-by-step explanations and visualization of common computer science algorithms using React, Redux & KonvaJS. Canvas objects are draggable.
 
 
 # Acknowledgments

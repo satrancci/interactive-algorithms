@@ -123,6 +123,7 @@ const dijkstra = async () => {
     if (!visited.contains(dst)) {
         store.dispatch(updateMessage(`There is NO PATH from ${src} to ${dst}!`));
         await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed));
+        store.dispatch(updateGraph(_.cloneDeep(graphValues)));
         return;
     }
     let parent = dst;

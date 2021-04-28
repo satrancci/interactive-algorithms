@@ -14,9 +14,16 @@ const longestIncreasingSubsequence = async (paramsObj) => {
 
     const dp = new Array(n).fill(1);
 
-    store.dispatch(assignVisValues(_.cloneDeep(dp)));
+    store.dispatch(updateMessage(`arr: [${arr}]`));
+    await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed * 2));
 
+    store.dispatch(updateMessage(`We are going to build the "dp" array from left to right.`));
+    store.dispatch(assignVisValues(_.cloneDeep(dp)));
+    await new Promise((r) => setTimeout(r, BASE_SLEEP_TIME * store.getState().visualizationSpeed * 2));
+
+    
     let maxLength = 1;
+
 
     for (let curIdx=1; curIdx<n;curIdx++) {
         store.dispatch(updateIndex(["curIdx", curIdx]));
